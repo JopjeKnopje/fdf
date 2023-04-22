@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/04/23 01:10:12 by joppe         #+#    #+#                 */
-/*   Updated: 2023/04/23 01:10:30 by joppe         ########   odam.nl         */
+/*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
+/*   Updated: 2023/04/23 01:51:22 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "fdf.h"
 
-void test_func()
+void test_function(int x)
 {
-	printf("test test_func\n");
+	printf("x: %d\n", x);
 }

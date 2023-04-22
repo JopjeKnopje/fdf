@@ -6,10 +6,15 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/04/23 01:10:04 by joppe         ########   odam.nl         */
+/*   Updated: 2023/04/23 01:51:28 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 
-void test_func();
+#ifndef FDF_H
+# define FDF_H
 
+void test_function(int x);
+
+#endif
