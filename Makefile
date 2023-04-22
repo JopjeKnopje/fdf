@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/04/23 01:08:01 by joppe         ########   odam.nl          #
+#    Updated: 2023/04/23 01:11:02 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ CFLAGS += -g -fsanitize=address
 INC = -Ilibft/include -Iinclude 
 
 SRC_DIR = src
-SRCS = main.c
+SRCS = main.c \
+	   test.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
