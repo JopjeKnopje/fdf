@@ -23,6 +23,8 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 
 void ft_randomize(void* param)
 {
+	static unsigned int counter = 0;
+
 	for (int32_t i = 0; i < image->width; ++i)
 	{
 		for (int32_t y = 0; y < image->height; ++y)
@@ -54,6 +56,24 @@ void ft_hook(void* param)
 		image->instances[0].x += 5;
 }
 
+void ft_fps(void* param)
+{
+	mlx_t* mlx = param;
+
+	static double time_old = 0;
+	static unsigned int frames = 0; 
+
+	if (mlx_get_time() - time_old > 1.0)
+	{
+		printf("FPS: %d\n", frames);
+		frames = 0;
+		time_old = mlx_get_time();
+	}
+	else
+		frames++;
+
+}
+
 // -----------------------------------------------------------------------------
 
 int32_t main(int32_t argc, const char* argv[])
@@ -72,7 +92,7 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
+	if (mlx_image_to_window(mlx, image, WIDTH / 2, HEIGHT / 2) == -1)
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -81,6 +101,7 @@ int32_t main(int32_t argc, const char* argv[])
 	
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx_loop_hook(mlx, ft_fps, mlx);
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
