@@ -1,7 +1,14 @@
-// -----------------------------------------------------------------------------
-// Codam Coding College, Amsterdam @ 2022-2023 by W2Wizard.
-// See README in the root project for more information.
-// -----------------------------------------------------------------------------
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       ::::::::             */
+/*   main.c                                            :+:    :+:             */
+/*                                                    +:+                     */
+/*   By: jboeve <marvin@42.fr>                       +#+                      */
+/*                                                  +#+                       */
+/*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
+/*   Updated: 2023/05/15 11:33:08 by jboeve        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,7 +105,7 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	
+
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop_hook(mlx, ft_fps, mlx);

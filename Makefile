@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/04/23 01:49:52 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/15 11:30:23 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,18 @@ NAME = fdf
 LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
-CFLAGS = -ldl -lglfw -pthread -lm
-# CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -g -fsanitize=address
+
+CFLAGS = -ldl -pthread -lm 
+# CFLAGS += -Wall -Wextra -Werror
+# CFLAGS += -g -fsanitize=address
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	CFLAGS += -glfw 
+endif
+ifeq ($(UNAME_S),Darwin)
+	CFLAGS += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+endif
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
@@ -34,18 +43,18 @@ HEADERS := $(addprefix $(HEADER_DIR)/, $(HEADERS))
 OBJ_DIR = obj
 OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
+.PHONY: make_libft
 
-all: $(NAME)
+all: make_libft $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
+$(NAME): $(MLX) $(OBJS) $(LIBFT) 
 	$(CC) $(OBJS) $(LIBFT) $(MLX) $(CFLAGS) $(INC) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-.PHONY: $(LIBFT)
-$(LIBFT):
+make_libft:
 	$(MAKE) -C libft
 
 $(MLX):
@@ -61,7 +70,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean dfclean all
+re: fclean fclean all
 
 run: all
 	./$(NAME)
