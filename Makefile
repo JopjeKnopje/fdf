@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                          :+:    :+:              #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/15 11:30:23 by jboeve        ########   odam.nl          #
+#    Updated: 2023/05/16 20:39:14 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS = -ldl -pthread -lm
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	CFLAGS += -glfw 
+	CFLAGS += -lglfw 
 endif
 ifeq ($(UNAME_S),Darwin)
 	CFLAGS += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
@@ -57,8 +57,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 make_libft:
 	$(MAKE) -C libft
 
-$(MLX):
+MLX42:
 	git clone https://github.com/codam-coding-college/MLX42.git
+
+$(MLX): MLX42
 	cmake MLX42 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B MLX42/build
 	make -C MLX42/build -j4
 	cp MLX42/build/compile_commands.json .
@@ -70,7 +72,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean fclean all
+re: fclean all
 
 run: all
 	./$(NAME)
@@ -80,5 +82,6 @@ compile_commands: dfclean fclean
 
 dfclean:
 	$(MAKE) -C libft fclean
+	$(MAKE) -C MLX42/build clean
 dre:
 	$(MAKE) -C libft re
