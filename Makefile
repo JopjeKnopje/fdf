@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/16 20:39:14 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/16 21:26:36 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ INC = -Ilibft/include -IMLX42/include -Iinclude
 
 SRC_DIR = src
 SRCS = main.c \
-	   test.c
+	   parser.c \
+	   error.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
