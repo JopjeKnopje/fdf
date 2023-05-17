@@ -26,4 +26,4 @@ Dynamic | slow
 
 
 ## TODO
-[ ] Read norm about global static const char arrays.
+[o] Read norm about global static const char arrays.
