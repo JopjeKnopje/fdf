@@ -7,6 +7,11 @@
 
 
 ## Parsing
+* End with .fdf extension
+* Check for map dimensions
+* Invalid characters
+* Invalid color values
+
 
 ### LinkedList version
 * Have a `point` datatype (vec3d with pixel color).

@@ -6,19 +6,23 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 21:17:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/16 21:26:48 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/17 09:26:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-const static char *ERROR_NAME[] = {
-	"Usage: ./fdf <map>",
-};
 
-uint32_t error_message(t_error err)
+uint32_t	error_message(t_error err)
 {
-	write(STDOUT_FILENO, ERROR_NAME[err], ft_strlen(ERROR_NAME[err]));
-	write(STDOUT_FILENO, "\n", 1);
+	return (error_print(ERROR_NAME[err]));
+}
+
+// TODO Maybe return `0` instead of `1` make if statements for error checking way nicer
+uint32_t	error_print(const char *s)
+{
+	write(STDERR_FILENO, "Error: ", ft_strlen("Error: "));
+	write(STDERR_FILENO, s, ft_strlen(s));
+	write(STDERR_FILENO, "\n", 1);
 	return (EXIT_FAILURE);
 }

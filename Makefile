@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/16 21:26:36 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/17 09:19:18 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ fclean: clean
 re: fclean all
 
 run: all
-	./$(NAME)
+	./$(NAME) maps/elem-col.fdf
 
 compile_commands: dfclean fclean
 	$(MAKE) | compiledb
