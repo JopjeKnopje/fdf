@@ -6,33 +6,40 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/17 11:36:24 by jboeve        ########   odam.nl          #
+#    Updated: 2023/05/17 15:44:39 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-LIBFT = libft/build/libft.a
-MLX = MLX42/build/libmlx42.a
-
-
-# CFLAGS += -Wall -Wextra -Werror
-# CFLAGS += -g -fsanitize=address
-
+######################
+# OS Dependend flags #
+######################
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw 
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
+	# RUN_CMD = open -a terminal
 endif
+
+RUN_CMD += ./$(NAME) maps/elem-col.fdf 
+
+
+LIBFT = libft/build/libft.a
+MLX = MLX42/build/libmlx42.a
+
+# CFLAGS += -Wall -Wextra -Werror
+# CFLAGS = -g -fsanitize=address
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
 SRC_DIR = src
 SRCS = main.c \
 	   parser.c \
-	   error.c
+	   error.c \
+	   fdf.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
@@ -78,10 +85,8 @@ fclean: clean
 re: fclean all
 	$(MAKE) -C libft re
 
-
 run: all
-	# open -a terminal ./fdf
-	./$(NAME) maps/elem-col.fdf
+	$(RUN_CMD) 
 
-compile_commands: dfclean fclean
+compile_commands: fclean
 	$(MAKE) | compiledb

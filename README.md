@@ -7,10 +7,11 @@
 
 
 ## Parsing
-* End with .fdf extension
-* Check for map dimensions
-* Invalid characters
-* Invalid color values
+- [x] End with .fdf extension
+- [x] Empty map
+- [ ] Check for map dimensions
+- [ ] Invalid characters
+- [ ] Invalid color values
 
 
 ### LinkedList version
@@ -31,4 +32,4 @@ Dynamic | slow
 
 
 ## TODO
-[o] Read norm about global static const char arrays.
+- [x] Read norm about global static const char arrays.

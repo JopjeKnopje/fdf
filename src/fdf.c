@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   main.c                                            :+:    :+:             */
+/*   fdf.c                                             :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
-/*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/17 15:44:29 by jboeve        ########   odam.nl         */
+/*   Created: 2023/05/17 14:34:42 by jboeve        #+#    #+#                 */
+/*   Updated: 2023/05/17 15:44:10 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdlib.h>
 
-void leaks()
+int32_t fdf(int32_t argc, const char* argv[])
 {
-	system("leaks fdf");
-}
+	t_fdf fdf;
 
-int32_t main(int32_t argc, const char* argv[])
-{
-	atexit(leaks);
-	return (fdf(argc, argv));
+	if (argc != 2)
+		return (error_message(ERR_ARGS_INVALID));
+	if (parser(&fdf, argv[1]))
+		return (1);
+	return 0;
 }
