@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/17 15:52:47 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/17 15:58:00 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,21 @@
 #include <errno.h>
 #include <unistd.h>
 
-uint8_t check_extension(const char *map, const char *ext)
+uint8_t	check_extension(const char *map, const char *ext)
 {
-	int map_len;
-	int ext_len;
+	int	map_len;
+	int	ext_len;
 
 	map_len = ft_strlen(map);
 	ext_len = ft_strlen(ext);
-
 	if (map_len < ext_len + 1)
 		return (0);
 	return (!ft_strncmp((map + map_len - ext_len), ext, ext_len));
 }
 
-uint8_t open_map(const char *map)
+uint8_t	open_map(const char *map)
 {
-	int fd;
+	int	fd;
 
 	if (!check_extension(map, ".fdf"))
 		return (!error_message(ERR_MAP_INVALID));
@@ -45,8 +44,7 @@ uint8_t open_map(const char *map)
 	return (fd);
 }
 
-
-uint8_t parse_line(const char *line)
+uint8_t	parse_line(const char *line)
 {
 	char **split;
 	int i;
