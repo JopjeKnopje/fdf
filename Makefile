@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                          :+:    :+:              #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/17 15:44:39 by jboeve        ########   odam.nl          #
+#    Updated: 2023/05/17 17:11:25 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC_DIR = src
 SRCS = main.c \
 	   parser.c \
 	   error.c \
-	   fdf.c
+	   fdf.c \
+	   utils.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
@@ -76,17 +77,20 @@ $(MLX): MLX42
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf $(TEST_BIN_DIR)
-	$(MAKE) -C MLX42/build clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C libft fclean
 
 re: fclean all
-	$(MAKE) -C libft re
 
 run: all
-	$(RUN_CMD) 
+	$(RUN_CMD)
 
-compile_commands: fclean
+compile_commands: dfclean fclean
 	$(MAKE) | compiledb
+
+dfclean:
+	$(MAKE) -C libft fclean
+	$(MAKE) -C MLX42/build clean
+dre:
+	$(MAKE) -C libft re

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                          :+:    :+:             */
+/*   parser.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/17 15:58:00 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/17 17:09:02 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,32 @@ uint8_t	open_map(const char *map)
 	return (fd);
 }
 
+t_color get_color(const char *coord)
+{
+	t_color color;
+
+
+	char *delim = ft_strchr(coord, ',');
+
+	if (delim && delim[1])
+	{
+		delim++;
+		
+		printf("color value [%s]\n", delim);
+	}
+
+	return (color);
+}
+
 uint8_t	parse_line(const char *line)
 {
 	char **split;
+	char *delim;
 	int i;
 
 	split = ft_split(line, ' ');
+	if (!split)
+		return (1);
 	i = 0;
 	while (split[i])
 	{

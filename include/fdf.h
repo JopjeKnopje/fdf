@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/17 15:42:20 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/17 17:16:37 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,24 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef union s_rgba
+typedef union s_color
 {
-	uint8_t a;
-	uint8_t b;
-	uint8_t g;
-	uint8_t r;
-}	t_rgba;
+	unsigned int      c;
+	struct s_rgba 
+	{
+		uint8_t b;
+		uint8_t g;
+		uint8_t r;
+		uint8_t a;
+	} rgba;
+} t_color;
 
 typedef struct s_point
 {
 	uint32_t x;
 	uint32_t y;
 	uint32_t z;
-	t_rgba color;
+	t_color color;
 }	t_point;
 
 typedef struct s_fdf
@@ -59,6 +63,9 @@ int32_t		fdf(int32_t argc, const char* argv[]);
 
 // parser.c
 uint32_t 	parser(t_fdf *fdf, const char *map);
+
+// utils.c
+uint32_t	ft_atoi_hex(const char *s);
 
 // error.c
 uint32_t	error_message(t_error err);
