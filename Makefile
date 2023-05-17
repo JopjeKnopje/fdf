@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/17 09:19:18 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/17 11:36:24 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,15 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 
-CFLAGS = -ldl -pthread -lm 
 # CFLAGS += -Wall -Wextra -Werror
 # CFLAGS += -g -fsanitize=address
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	CFLAGS += -lglfw 
+	MLX_CFLAGS = -lglfw 
 endif
 ifeq ($(UNAME_S),Darwin)
-	CFLAGS += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
 endif
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
@@ -49,11 +48,12 @@ OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 all: make_libft $(NAME)
 
 $(NAME): $(MLX) $(OBJS) $(LIBFT) 
-	$(CC) $(OBJS) $(LIBFT) $(MLX) $(CFLAGS) $(INC) -o $(NAME)
+	echo $(MLX_CFLAGS)
+	$(CC) $(OBJS) $(LIBFT) $(MLX) $(MLX_CFLAGS) $(CFLAGS) $(INC) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $< 
 
 make_libft:
 	$(MAKE) -C libft
@@ -69,20 +69,19 @@ $(MLX): MLX42
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf $(TEST_BIN_DIR)
+	$(MAKE) -C MLX42/build clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
+	$(MAKE) -C libft re
+
 
 run: all
+	# open -a terminal ./fdf
 	./$(NAME) maps/elem-col.fdf
 
 compile_commands: dfclean fclean
 	$(MAKE) | compiledb
-
-dfclean:
-	$(MAKE) -C libft fclean
-	$(MAKE) -C MLX42/build clean
-dre:
-	$(MAKE) -C libft re
