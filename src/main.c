@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/19 23:32:44 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/19 23:40:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void test(const char *s)
 	uint32_t a = strtol(s, NULL, 16);
 	uint32_t b = ft_atoi_hex(s);
 	if (a != b)
-	{
 		printf("input [%s] failed a: %d b: %d\n", s, a, b);
-	}
 }
 
 int32_t	main(int32_t argc, const char *argv[])

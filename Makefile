@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/17 17:11:25 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/19 23:38:08 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,7 @@ SRC_DIR = src
 SRCS = main.c \
 	   parser.c \
 	   error.c \
-	   fdf.c \
-	   utils.c
+	   fdf.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
