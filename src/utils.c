@@ -6,11 +6,13 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/19 23:52:55 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 00:53:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdint.h>
+#include <strings.h>
 
 uint8_t	check_extension(const char *map, const char *ext)
 {
@@ -23,4 +25,3 @@ uint8_t	check_extension(const char *map, const char *ext)
 		return (0);
 	return (!ft_strncmp((map + map_len - ext_len), ext, ext_len));
 }
-

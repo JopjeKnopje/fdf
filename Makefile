@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/19 23:53:05 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/20 00:30:17 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
-# CFLAGS = -g -fsanitize=address
+CFLAGS = -g -fsanitize=address
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
@@ -40,7 +40,10 @@ SRCS = main.c \
 	   parser.c \
 	   error.c \
 	   utils.c \
-	   fdf.c
+	   fdf.c \
+	   list.c \
+	   free.c \
+	   meuk.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   fdf.c                                             :+:    :+:             */
+/*   free.c                                            :+:    :+:             */
 /*                                                    +:+                     */
-/*   By: jboeve <marvin@42.fr>                       +#+                      */
+/*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
-/*   Created: 2023/05/17 14:34:42 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/20 00:28:37 by joppe         ########   odam.nl         */
+/*   Created: 2023/05/20 00:29:45 by joppe         #+#    #+#                 */
+/*   Updated: 2023/05/20 00:41:25 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int32_t	fdf(int32_t argc, const char *argv[])
+void	free_split(char **s_split)
 {
-	t_fdf	fdf;
-	ft_bzero(&fdf, sizeof(t_fdf));
+	int	i;
 
-	if (argc != 2)
-		return (error_message(ERR_ARGS_INVALID));
-	if (parser(&fdf, argv[1]))
-		return (1);
-	return (0);
+	i = 0;
+	while (s_split[i])
+	{
+		free(s_split[i]);
+		i++;
+	}
+	free(s_split);
+}
+
+void free_lst(t_node *lst)
+{
+	t_node *tmp;
+
+	while (lst) 
+	{
+		tmp = lst;
+		lst = lst->next;
+		free(tmp);
+	}
 }

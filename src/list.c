@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:59:15 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 00:04:43 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 00:32:03 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_node	*lstlast(t_node *lst)
 	return (tmp);
 }
 
-t_node	*lstnew(void *point)
+t_node	*lstnew(t_point point)
 {
 	t_node	*node;
 
@@ -68,18 +68,3 @@ t_node	*lstnew(void *point)
 	return (node);
 }
 
-void	lstclear(t_node **lst, void (*del)(void*))
-{
-	t_node	*tmp;
-	t_node	*old;
-
-	tmp = *lst;
-	while (tmp)
-	{
-		old = tmp;
-		del(tmp->point);
-		tmp = tmp->next;
-		free(old);
-	}
-	*lst = NULL;
-}
