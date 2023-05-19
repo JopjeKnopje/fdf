@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:59:15 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 00:32:03 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 01:19:12 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	lstsize(t_node *lst)
 	return (i);
 }
 
-void	lstadd_back(t_node **lst, t_node *new)
+t_node	*lstadd_back(t_node **lst, t_node *new)
 {
 	t_node	*last;
 
 	if (!lst || !new)
-		return ;
+		return (NULL);
 	if (!(*lst))
 		*lst = new;
 	else
@@ -38,6 +38,7 @@ void	lstadd_back(t_node **lst, t_node *new)
 		last = lstlast(*lst);
 		last->next = new;
 	}
+	return (new);
 }
 
 t_node	*lstlast(t_node *lst)

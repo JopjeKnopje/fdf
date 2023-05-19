@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 01:09:12 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 01:20:28 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,13 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.z = ft_atoi(split[i]);
 		point.color = parse_color(split[i]);
 		if (!fdf->points)
+		{
 			fdf->points = lstnew(point);
+			fdf->points_last = fdf->points;
+		}
 		else
-			lstadd_back(&fdf->points, lstnew(point));
+			fdf->points_last = lstadd_back(&fdf->points_last, lstnew(point));
+		
 		i++;
 	}
 	free_split(split);

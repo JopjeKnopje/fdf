@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 01:07:36 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 01:20:28 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_node
 typedef struct s_fdf
 {
 	t_node *points;
+	t_node *points_last;
 }	t_fdf;
 
 typedef enum e_error
@@ -78,7 +79,7 @@ uint8_t 	init_fdf(t_fdf *fdf);
 
 // list.c
 int		lstsize(t_node *lst);
-void	lstadd_back(t_node **lst, t_node *new);
+t_node	*lstadd_back(t_node **lst, t_node *new);
 t_node	*lstlast(t_node *lst);
 t_node	*lstnew(t_point point);
 
