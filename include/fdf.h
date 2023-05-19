@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/17 17:16:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 00:06:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ typedef struct s_point
 {
 	uint32_t x;
 	uint32_t y;
-	uint32_t z;
 	t_color color;
 }	t_point;
+
+typedef struct s_node
+{
+	t_point 		*point;
+	struct s_node	*next;
+}	t_node;
 
 typedef struct s_fdf
 {
@@ -65,7 +70,14 @@ int32_t		fdf(int32_t argc, const char* argv[]);
 uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
-uint32_t	ft_atoi_hex(const char *s);
+uint8_t		check_extension(const char *map, const char *ext);
+
+// list.c
+int	lstsize(t_node *lst);
+void	lstadd_back(t_node **lst, t_node *new);
+t_node	*lstlast(t_node *lst);
+t_node	*lstnew(void *point);
+void	lstclear(t_node **lst, void (*del)(void*));
 
 // error.c
 uint32_t	error_message(t_error err);

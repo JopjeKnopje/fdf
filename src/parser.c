@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                           :+:    :+:            */
+/*   parser.c                                          :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/17 17:09:02 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 00:05:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,8 @@
 #include <errno.h>
 #include <unistd.h>
 
-uint8_t	check_extension(const char *map, const char *ext)
-{
-	int	map_len;
-	int	ext_len;
 
-	map_len = ft_strlen(map);
-	ext_len = ft_strlen(ext);
-	if (map_len < ext_len + 1)
-		return (0);
-	return (!ft_strncmp((map + map_len - ext_len), ext, ext_len));
-}
-
-uint8_t	open_map(const char *map)
+static uint8_t	open_map(const char *map)
 {
 	int	fd;
 
@@ -44,24 +33,7 @@ uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-t_color get_color(const char *coord)
-{
-	t_color color;
-
-
-	char *delim = ft_strchr(coord, ',');
-
-	if (delim && delim[1])
-	{
-		delim++;
-		
-		printf("color value [%s]\n", delim);
-	}
-
-	return (color);
-}
-
-uint8_t	parse_line(const char *line)
+static uint8_t	parse_line(t_fdf *fdf, const char *line)
 {
 	char **split;
 	char *delim;
@@ -73,6 +45,14 @@ uint8_t	parse_line(const char *line)
 	i = 0;
 	while (split[i])
 	{
+		if (ft_strchr(split[i], ','))
+		{
+
+		}
+		else
+		{
+		
+		}
 		printf("[%s]", split[i]);
 		i++;
 	}
@@ -80,7 +60,7 @@ uint8_t	parse_line(const char *line)
 	return (0);
 }
 
-uint8_t read_map(int fd)
+static uint8_t read_map(t_fdf *fdf, int fd)
 {
 	int i;
 	char *line;
@@ -90,7 +70,7 @@ uint8_t read_map(int fd)
 		return (error_message(ERR_MAP_INVALID));
 	while (line)
 	{
-		if (parse_line(line))
+		if (parse_line(fdf, line))
 		{
 			return (1);
 		}
@@ -108,7 +88,7 @@ uint32_t 	parser(t_fdf *fdf, const char *map)
 	fd = open_map(map);
 	if (!fd)
 		return (1);
-	if (read_map(fd))
+	if (read_map(fdf, fd))
 		return (1);
 
 	close(fd);
