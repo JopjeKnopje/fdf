@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   main.c                                             :+:    :+:            */
+/*   main.c                                            :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/17 17:21:49 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/19 23:32:44 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int32_t	main(int32_t argc, const char *argv[])
+void test(const char *s)
 {
-	const char *s = "ff123";
 	uint32_t a = strtol(s, NULL, 16);
 	uint32_t b = ft_atoi_hex(s);
-	printf("a %d\n", a);
-	printf("b %d\n", b);
+	if (a != b)
+	{
+		printf("input [%s] failed a: %d b: %d\n", s, a, b);
+	}
+}
+
+int32_t	main(int32_t argc, const char *argv[])
+{
+	const char *input[] = {
+ 		"0xaaaa",
+ 		"0x aaa",
+ 		"0xaa aa",
+ 		"xaaaa",
+ 		"x aaa",
+ 		"xaa aa",
+ 		"aaaa",
+ 		" aaa",
+ 		"aa aa",
+ 		"0xf1 3",
+ 		"0xf123",
+ 		"0xffff",
+ 		"xf1 3",
+ 		"xf123",
+ 		"xffff",
+ 		"f1 3",
+ 		"f123",
+ 		"ffff",
+		" x",
+		"f ",
+		" 0",
+		"1",
+		NULL
+	};
+	for (int i = 0; input[i]; i++)
+	{
+		test(input[i]);
+	}
 
 	// return (fdf(argc, argv));
 }
