@@ -33,3 +33,5 @@ Dynamic | slow
 
 ## TODO
 - [x] Read norm about global static const char arrays.
+- [ ] Some sort of optimization where it doens't draw the pixels that are already there?
+- [ ] When there is no user input (so when the scene isn't changing do not update the graphics)

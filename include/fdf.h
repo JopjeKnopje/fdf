@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 01:49:23 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:28:08 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 #define WIDTH 1024
 #define HEIGHT 720
 #define TITLE "Super awesome lines bruv"
+
+#define COLOR_BACKGROUND 0x000000FF
+#define COLOR_POINT 0xFF0000FF
 
 
 typedef union s_color
@@ -57,7 +60,6 @@ typedef struct s_fdf
 	t_node *points_last;
 
 	mlx_t *mlx;
-	mlx_image_t *buffers[2];
 	mlx_image_t *image;
 }	t_fdf;
 
@@ -85,7 +87,6 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
-uint8_t 	init_fdf(t_fdf *fdf);
 
 // list.c
 int		lstsize(t_node *lst);

@@ -6,13 +6,14 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 02:05:33 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:27:53 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "MLX42/MLX42_Int.h"
 #include "fdf.h"
+#include <GLFW/glfw3.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,31 +21,6 @@
 #include <MLX42/MLX42.h>
 
 
-
-// -----------------------------------------------------------------------------
-
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void ft_randomize(void *param)
-{
-	t_fdf *fdf = param;
-	for (int32_t i = 0; i < fdf->image->width; ++i)
-	{
-		for (int32_t y = 0; y < fdf->image->height; ++y)
-		{
-			uint32_t color = ft_pixel(
-				rand() % 0xFF, // R
-				rand() % 0xFF, // G
-				rand() % 0xFF, // B
-				rand() % 0xFF  // A
-			);
-			mlx_put_pixel(fdf->image, i, y, color);
-		}
-	}
-}
 
 void key_hook(void *param)
 {
@@ -65,78 +41,73 @@ void fps_hook(void *param)
 		fps = 0;
 	}
 	else
-	fps++;
+		fps++;
 }
 
-void fill_img(mlx_image_t *img, t_color c)
+void draw_clear(t_fdf *fdf)
 {
 	int x = 0;
-	while (x < img->width) 
+	while (x < fdf->image->width)
 	{
 		int y = 0;
-		while (y < img->height) 
+		while (y < fdf->image->height)
 		{
-			mlx_put_pixel(img, x, y, c.c);
+			mlx_put_pixel(fdf->image, x, y, 0x000000FF);
 			y++;
 		}
 		x++;
+	
+	}
+
+}
+
+void draw_points(t_fdf *fdf)
+{
+	t_node *tmp = fdf->points;
+
+	uint32_t scalar = 50;
+
+	int x, y;
+	while (tmp)
+	{
+		x = (tmp->point.x * scalar) + (WIDTH / 2);
+		y = (tmp->point.y * scalar);
+		printf("x: %d y: %d\n", x, y);
+		mlx_put_pixel(fdf->image, x, y, COLOR_POINT);
+		tmp = tmp->next;
 	}
 }
 
-int32_t double_buffer_init(t_fdf *fdf)
+
+void draw_hook(void *param)
 {
-	uint8_t i = 0;
-	while (i < 2) 
+	t_fdf *fdf = param;
+	// ft_randomize(param);
+	draw_clear(fdf);
+	draw_points(fdf);
+}
+
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void ft_randomize(void* param)
+{
+	t_fdf *fdf = param;
+	for (int32_t i = 0; i < fdf->image->width; ++i)
 	{
-		fdf->buffers[i] = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-		if (!fdf->buffers[i])
+		for (int32_t y = 0; y < fdf->image->height; ++y)
 		{
-			mlx_close_window(fdf->mlx);
-			error_print(mlx_strerror(mlx_errno));
-			return (1);
+			uint32_t color = ft_pixel(
+				rand() % 0xFF, // R
+				rand() % 0xFF, // G
+				rand() % 0xFF, // B
+				rand() % 0xFF  // A
+			);
+			mlx_put_pixel(fdf->image, i, y, color);
 		}
-		i++;
 	}
-	t_color c;
-
-
-	c.c = 0xFF00FFFF;
-	fill_img(fdf->buffers[0], c);
-	c.c = 0xFFB00BFF;
-	fill_img(fdf->buffers[1], c);
-
-	fdf->image = fdf->buffers[0];
-
-
-	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) == -1)
-	{
-		mlx_close_window(fdf->mlx);
-		error_print(mlx_strerror(mlx_errno));
-		return (1);
-	}
-	return (0);
-}
-
-int32_t double_buffer_swap(t_fdf *fdf)
-{
-	fdf->image->enabled = false;
-	if ((fdf->image) == (fdf->buffers[0]))
-	{
-		fdf->image = fdf->buffers[1];
-		// printf("swapped buffer to 1\n");
-	}
-	else {
-		fdf->image = fdf->buffers[0];
-		// printf("swapped buffer to 0\n");
-	}
-	fdf->image->enabled = true;
-	return (0);
-}
-
-void swap_hook(void *param)
-{
-	t_fdf* fdf = param;
-	double_buffer_swap(fdf);
 }
 
 
@@ -150,13 +121,26 @@ int32_t graphics_init(t_fdf *fdf)
 		return (1);
 	}
 
-	double_buffer_init(fdf);
+	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 
-	
+	if (!fdf->image)
+	{
+		mlx_close_window(fdf->mlx);
+		error_print(mlx_strerror(mlx_errno));
+		return (1);
+	}
+	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) == -1)
+	{
+		mlx_close_window(fdf->mlx);
+		error_print(mlx_strerror(mlx_errno));
+		return (1);
+	}
+
+
+
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
-	mlx_loop_hook(fdf->mlx, swap_hook, fdf);
-	// mlx_loop_hook(fdf->mlx, ft_randomize, fdf);
+	mlx_loop_hook(fdf->mlx, draw_hook, fdf);
 
 	mlx_loop(fdf->mlx);
 	mlx_terminate(fdf->mlx);

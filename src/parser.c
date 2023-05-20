@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 01:21:35 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:26:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ static uint8_t read_map(t_fdf *fdf, int fd)
 		line = get_next_line(fd);
 		i++;
 	}
-	free_lst(fdf->points);
 	return (0);
 }
 
