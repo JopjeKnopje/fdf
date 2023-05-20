@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 01:20:28 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 01:49:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 # define FDF_H
 
 #include "libft.h"
+#include <MLX42/MLX42.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#define WIDTH 1024
+#define HEIGHT 720
+#define TITLE "Super awesome lines bruv"
+
 
 typedef union s_color
 {
@@ -49,6 +55,10 @@ typedef struct s_fdf
 {
 	t_node *points;
 	t_node *points_last;
+
+	mlx_t *mlx;
+	mlx_image_t *buffers[2];
+	mlx_image_t *image;
 }	t_fdf;
 
 typedef enum e_error
@@ -87,9 +97,13 @@ t_node	*lstnew(t_point point);
 void	free_split(char **s_split);
 void 	free_lst(t_node *lst);
 
+// graphics.c
+int32_t graphics_init(t_fdf *fdf);
+
 // error.c
 uint32_t	error_message(t_error err);
 uint32_t 	error_print(const char *s);
+
 
 
 // meuk.c

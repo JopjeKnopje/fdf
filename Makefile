@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/20 00:30:17 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/20 01:22:59 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS = main.c \
 	   fdf.c \
 	   list.c \
 	   free.c \
-	   meuk.c
+	   meuk.c \
+	   graphics.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
