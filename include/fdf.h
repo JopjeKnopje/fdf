@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 03:06:19 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 23:31:16 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #define TITLE "Super awesome lines bruv"
 
 #define COLOR_BACKGROUND 0x000000FF
-#define COLOR_POINT 0xFF0000FF
+#define COLOR_POINT_DEFAULT 0x00AACFFF
 
 
 typedef struct s_point
@@ -84,6 +84,7 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
+uint32_t 	color_add_alpha(uint32_t c);
 
 // list.c
 int		lstsize(t_node *lst);

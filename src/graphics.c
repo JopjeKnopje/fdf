@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 03:07:45 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 23:38:38 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void draw_points(t_fdf *fdf)
 {
 	t_node *tmp = fdf->map->points;
 
-	uint32_t scalar = 50;
+	uint32_t scalar = 2;
 
 	int x, y;
 	while (tmp)

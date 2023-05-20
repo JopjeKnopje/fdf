@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/20 03:13:42 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 23:32:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 int32_t	main(int32_t argc, const char *argv[])
 {
