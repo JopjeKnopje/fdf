@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 02:38:32 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 03:14:12 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ static uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-t_color parse_color(const char *s)
+uint32_t parse_color(const char *s)
 {
 	char	*delim;
-	t_color	color;
+	uint32_t	color;
 
 	delim = ft_strchr(s, ',');
 	if (delim)
-		color.c = ft_atoi_hex(delim + 1);
+	{
+		// TODO Get color correctly
+		color = ft_atoi_hex(delim + 1);
+	}
 	else
-		color.c = 0;
+		color = 0;
 	return color;
 }
 
@@ -62,6 +65,7 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.y = line_count;
 		point.z = ft_atoi(split[i]);
 		point.color = parse_color(split[i]);
+		printf("color: %x\n", point.color);
 		if (!fdf->map->points)
 		{
 			fdf->map->points = lstnew(point);

@@ -5,8 +5,8 @@
 void print_point(t_point point)
 {
 	printf("x: %d, y: %d, z: %d", point.x, point.y, point.z);
-	if (point.color.c)
-		printf(" c: %x", point.color.c);
+	if (point.color)
+		printf(" c: %x", point.color);
 	printf("\n");
 
 }

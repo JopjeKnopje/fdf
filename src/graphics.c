@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 03:02:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 03:07:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void draw_points(t_fdf *fdf)
 		x += (WIDTH / 2) - (fdf->map->width * scalar / 2) + scalar / 2;
 		y += (HEIGHT / 2) - (fdf->map->height * scalar / 2) + scalar / 2;
 
-		mlx_put_pixel(fdf->image, x, y, COLOR_POINT);
+		mlx_put_pixel(fdf->image, x, y, tmp->point.color);
 		tmp = tmp->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 03:02:04 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 03:06:19 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,12 @@
 #define COLOR_POINT 0xFF0000FF
 
 
-typedef union s_color
-{
-	unsigned int      c;
-	struct s_rgba 
-	{
-		uint8_t b;
-		uint8_t g;
-		uint8_t r;
-		uint8_t a;
-	} rgba;
-} t_color;
-
 typedef struct s_point
 {
 	uint32_t x;
 	uint32_t y;
 	uint32_t z;
-	t_color color;
+	uint32_t color;
 }	t_point;
 
 typedef struct s_node
