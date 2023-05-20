@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 23:31:16 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 23:46:54 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_fdf
 {
 	t_map *map;
 
+	int32_t scalar;
 	mlx_t *mlx;
 	mlx_image_t *image;
 }	t_fdf;

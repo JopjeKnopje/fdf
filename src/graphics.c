@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 23:38:38 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/21 00:12:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void key_hook(void *param)
 
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
+		fdf->scalar++;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
+		fdf->scalar--;
 }
 
 void fps_hook(void *param)
@@ -58,26 +62,24 @@ void draw_clear(t_fdf *fdf)
 		x++;
 	
 	}
-
 }
 
 void draw_points(t_fdf *fdf)
 {
 	t_node *tmp = fdf->map->points;
-
-	uint32_t scalar = 2;
-
+	uint32_t scalar = fdf->scalar;
 	int x, y;
 	while (tmp)
 	{
-		// canvasWidth/2 - rectangleWidth/2
-		x = (tmp->point.x * scalar);
+		x = (tmp->point.x * 2 * scalar);
 		y = (tmp->point.y * scalar);
 
-		x += (WIDTH / 2) - (fdf->map->width * scalar / 2) + scalar / 2;
-		y += (HEIGHT / 2) - (fdf->map->height * scalar / 2) + scalar / 2;
 
-		mlx_put_pixel(fdf->image, x, y, tmp->point.color);
+		x += (fdf->image->width / 2) - (fdf->map->width * 2 * scalar / 2) + scalar;
+		y += (fdf->image->height / 2) - (fdf->map->height * scalar / 2) + scalar / 2;
+
+		if (x >= 0 && x <= fdf->image->width && y >= 0 && y <= fdf->image->height)
+			mlx_put_pixel(fdf->image, x, y, tmp->point.color);
 		tmp = tmp->next;
 	}
 }
@@ -86,7 +88,6 @@ void draw_points(t_fdf *fdf)
 void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
-	// ft_randomize(param);
 	draw_clear(fdf);
 	draw_points(fdf);
 }
@@ -126,6 +127,7 @@ int32_t graphics_init(t_fdf *fdf)
 	}
 
 	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	fdf->scalar = 20;
 
 	if (!fdf->image)
 	{
