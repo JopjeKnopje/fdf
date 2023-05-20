@@ -13,7 +13,7 @@ void print_point(t_point point)
 
 void print_points(t_fdf *fdf)
 {
-	t_node *tmp = fdf->points;
+	t_node *tmp = fdf->map->points;
 	while (tmp)
 	{
 		print_point(tmp->point);

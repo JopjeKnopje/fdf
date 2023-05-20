@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 02:26:45 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:38:02 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,16 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.y = line_count;
 		point.z = ft_atoi(split[i]);
 		point.color = parse_color(split[i]);
-		if (!fdf->points)
+		if (!fdf->map->points)
 		{
-			fdf->points = lstnew(point);
-			fdf->points_last = fdf->points;
+			fdf->map->points = lstnew(point);
+			fdf->map->points_last = fdf->map->points;
 		}
 		else
-			fdf->points_last = lstadd_back(&fdf->points_last, lstnew(point));
+			fdf->map->points_last = lstadd_back(&fdf->map->points_last, lstnew(point));
 		i++;
 	}
+	fdf->map->width = i;
 	free_split(split);
 	return (0);
 }
@@ -80,6 +81,10 @@ static uint8_t read_map(t_fdf *fdf, int fd)
 {
 	int i;
 	char *line;
+
+	fdf->map = ft_calloc(1, sizeof(t_map));
+	if (!fdf->map)
+		return (error_message(ERR_MALLOC_FAILURE));
 
 	i = 0;
 	line = get_next_line(fd);
@@ -96,6 +101,7 @@ static uint8_t read_map(t_fdf *fdf, int fd)
 		line = get_next_line(fd);
 		i++;
 	}
+	fdf->map->height = i;
 	return (0);
 }
 
@@ -110,5 +116,6 @@ uint32_t 	parser(t_fdf *fdf, const char *map)
 	if (read_map(fdf, fd))
 		return (1);
 	close(fd);
+	printf("map width %d | map heigth %d\n", fdf->map->width, fdf->map->height);
 	return (0);
 }

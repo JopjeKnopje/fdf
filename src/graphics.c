@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 02:27:53 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:36:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void draw_clear(t_fdf *fdf)
 
 void draw_points(t_fdf *fdf)
 {
-	t_node *tmp = fdf->points;
+	t_node *tmp = fdf->map->points;
 
 	uint32_t scalar = 50;
 
@@ -72,7 +72,7 @@ void draw_points(t_fdf *fdf)
 	{
 		x = (tmp->point.x * scalar) + (WIDTH / 2);
 		y = (tmp->point.y * scalar);
-		printf("x: %d y: %d\n", x, y);
+		// printf("x: %d y: %d\n", x, y);
 		mlx_put_pixel(fdf->image, x, y, COLOR_POINT);
 		tmp = tmp->next;
 	}

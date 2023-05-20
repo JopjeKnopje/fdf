@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 02:28:08 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:31:53 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,19 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-typedef struct s_fdf
+typedef struct s_map
 {
 	t_node *points;
 	t_node *points_last;
+
+	uint32_t width;
+	uint32_t height;
+
+}	t_map;
+
+typedef struct s_fdf
+{
+	t_map *map;
 
 	mlx_t *mlx;
 	mlx_image_t *image;
