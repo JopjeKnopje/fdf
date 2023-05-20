@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 02:38:02 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/20 02:38:32 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-
 
 static uint8_t	open_map(const char *map)
 {
@@ -116,6 +115,5 @@ uint32_t 	parser(t_fdf *fdf, const char *map)
 	if (read_map(fdf, fd))
 		return (1);
 	close(fd);
-	printf("map width %d | map heigth %d\n", fdf->map->width, fdf->map->height);
 	return (0);
 }
