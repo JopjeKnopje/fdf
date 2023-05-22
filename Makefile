@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/21 00:02:33 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/22 10:55:56 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ NAME = fdf
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw 
+	RUN_CMD = ./$(NAME) maps/elem-col.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
-	# RUN_CMD = open -a terminal
+	RUN_CMD = open -a terminal ./open.sh
 endif
 
-RUN_CMD += ./$(NAME) maps/elem-col.fdf 
 
 
 LIBFT = libft/build/libft.a
