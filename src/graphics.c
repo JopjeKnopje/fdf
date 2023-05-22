@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                        :+:    :+:             */
+/*   graphics.c                                         :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/22 16:52:39 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/22 18:36:37 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,25 @@ void draw_points(t_fdf *fdf)
 	uint32_t scalar = fdf->scalar;
 	uint32_t x, y;
 
+	t_point point;
+
+	int i = 0;
 	while (tmp)
 	{
-		x = (tmp->point.x * scalar);
-		y = (tmp->point.y * scalar);
+		// TODO Gotta find the x 0 y 0 pixel
+
+		x = (tmp->point.x - tmp->point.y) * scalar;
+		y = (tmp->point.x + tmp->point.y) * (scalar / 2);
+
+		x += (fdf->map->width - 1) * scalar;
 
 
 
-		// https://clintbellanger.net/articles/isometric_math/
-		// screen.x = (map.x - map.y) * TILE_WIDTH_HALF;
-		// screen.y = (map.x + map.y) * TILE_HEIGHT_HALF;
-		x = x * (scalar / 2) - y * (scalar / 2);
-		y = y * (scalar / 2) + x * (scalar / 2);
-
-
-		x += (fdf->image->width / 2) - (fdf->map->width * scalar / 2) + scalar;
-		y += (fdf->image->height / 2) - (fdf->map->height * scalar / 2) + (scalar / 2);
 
 		if (x >= 0 && x <= fdf->image->width && y >= 0 && y <= fdf->image->height)
 			mlx_put_pixel(fdf->image, x, y, tmp->point.color);
 		tmp = tmp->next;
+		i++;
 	}
 }
 
@@ -113,7 +112,7 @@ int32_t graphics_init(t_fdf *fdf)
 	}
 
 	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	fdf->scalar = 20;
+	fdf->scalar = 10;
 
 	if (!fdf->image)
 	{

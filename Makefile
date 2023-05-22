@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                          :+:    :+:              #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/22 16:11:26 by jboeve        ########   odam.nl          #
+#    Updated: 2023/05/22 18:24:07 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,7 @@ SRCS = main.c \
 	   list.c \
 	   free.c \
 	   meuk.c \
-	   graphics.c \
-	   projector.c
+	   graphics.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

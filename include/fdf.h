@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/22 16:18:31 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/22 18:18:39 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_map
 
 	uint32_t width;
 	uint32_t height;
-
 }	t_map;
 
 typedef struct s_fdf
@@ -101,7 +100,7 @@ void 	free_lst(t_node *lst);
 int32_t graphics_init(t_fdf *fdf);
 
 // projector.c
-void projector_iso(uint32_t *x, uint32_t *y, uint32_t scalar);
+t_point projector_iso(t_point point, uint32_t scalar);
 
 // error.c
 uint32_t	error_message(t_error err);

@@ -38,3 +38,7 @@ Dynamic | slow
 - [ ] Double check if makefile MLX related rules function correctly 
 - [ ] Only draw on user input.
 - [ ] Rainbow gradient background.
+
+
+## Resources
+* https://clintbellanger.net/articles/isometric_math/
