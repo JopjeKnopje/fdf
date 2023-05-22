@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                         :+:    :+:            */
+/*   graphics.c                                        :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/22 18:36:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/22 23:22:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,56 @@ void draw_clear(t_fdf *fdf)
 			y++;
 		}
 		x++;
-	
 	}
+}
+
+static t_point map_to_iso(t_point point, uint32_t scalar, uint32_t width)
+{
+	t_point point_iso;
+
+	point_iso.x = (point.x - point.y) * scalar;
+	point_iso.x += (width - 1) * scalar;
+	point_iso.y = (point.x + point.y) * (scalar / 2);
+	point_iso.z = point.z;
+	point_iso.color = point.color;
+
+	return (point_iso);
+}
+
+void fdf_put_pixel(t_fdf *fdf, t_point p)
+{
+	if (p.x >= 0 && p.x <= fdf->image->width && p.y >= 0 && p.y <= fdf->image->height)
+		mlx_put_pixel(fdf->image, p.x, p.y, p.color);
+	// else
+	//  	printf("Error: fdf_put_pixel out of bounds.");
 }
 
 void draw_points(t_fdf *fdf)
 {
 	t_node *tmp = fdf->map->points;
-	uint32_t scalar = fdf->scalar;
+	t_point point_iso;
+
 	uint32_t x, y;
 
-	t_point point;
+	if (fdf->scalar <= 0)
+		fdf->scalar = 1;
+	else if (fdf->scalar >= 55)
+		fdf->scalar = 55;
+
 
 	int i = 0;
 	while (tmp)
 	{
-		// TODO Gotta find the x 0 y 0 pixel
+		point_iso = map_to_iso(tmp->point, fdf->scalar, fdf->map->width);
 
-		x = (tmp->point.x - tmp->point.y) * scalar;
-		y = (tmp->point.x + tmp->point.y) * (scalar / 2);
+		// if (i <= 4 && tmp->next)
+		if (tmp->next)
+		{
+			t_point point_iso_next = map_to_iso(tmp->next->point, fdf->scalar, fdf->map->width);
+			line_draw(fdf, point_iso, point_iso_next);
+		}
 
-		x += (fdf->map->width - 1) * scalar;
-
-
-
-
-		if (x >= 0 && x <= fdf->image->width && y >= 0 && y <= fdf->image->height)
-			mlx_put_pixel(fdf->image, x, y, tmp->point.color);
+		fdf_put_pixel(fdf, point_iso);
 		tmp = tmp->next;
 		i++;
 	}
