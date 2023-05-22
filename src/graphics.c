@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/21 00:12:57 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/22 16:52:39 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <MLX42/MLX42.h>
+#include <math.h>
 
 
 
@@ -68,15 +69,24 @@ void draw_points(t_fdf *fdf)
 {
 	t_node *tmp = fdf->map->points;
 	uint32_t scalar = fdf->scalar;
-	int x, y;
+	uint32_t x, y;
+
 	while (tmp)
 	{
-		x = (tmp->point.x * 2 * scalar);
+		x = (tmp->point.x * scalar);
 		y = (tmp->point.y * scalar);
 
 
-		x += (fdf->image->width / 2) - (fdf->map->width * 2 * scalar / 2) + scalar;
-		y += (fdf->image->height / 2) - (fdf->map->height * scalar / 2) + scalar / 2;
+
+		// https://clintbellanger.net/articles/isometric_math/
+		// screen.x = (map.x - map.y) * TILE_WIDTH_HALF;
+		// screen.y = (map.x + map.y) * TILE_HEIGHT_HALF;
+		x = x * (scalar / 2) - y * (scalar / 2);
+		y = y * (scalar / 2) + x * (scalar / 2);
+
+
+		x += (fdf->image->width / 2) - (fdf->map->width * scalar / 2) + scalar;
+		y += (fdf->image->height / 2) - (fdf->map->height * scalar / 2) + (scalar / 2);
 
 		if (x >= 0 && x <= fdf->image->width && y >= 0 && y <= fdf->image->height)
 			mlx_put_pixel(fdf->image, x, y, tmp->point.color);
@@ -91,30 +101,6 @@ void draw_hook(void *param)
 	draw_clear(fdf);
 	draw_points(fdf);
 }
-
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void ft_randomize(void* param)
-{
-	t_fdf *fdf = param;
-	for (int32_t i = 0; i < fdf->image->width; ++i)
-	{
-		for (int32_t y = 0; y < fdf->image->height; ++y)
-		{
-			uint32_t color = ft_pixel(
-				rand() % 0xFF, // R
-				rand() % 0xFF, // G
-				rand() % 0xFF, // B
-				rand() % 0xFF  // A
-			);
-			mlx_put_pixel(fdf->image, i, y, color);
-		}
-	}
-}
-
 
 int32_t graphics_init(t_fdf *fdf)
 {
