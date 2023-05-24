@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                          :+:    :+:              #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/22 22:18:38 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/24 14:06:29 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
 CFLAGS = -g -fsanitize=address
+# CFLAGS = -g 
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 

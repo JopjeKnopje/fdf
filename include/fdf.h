@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/22 23:23:58 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/24 12:32:03 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_node
 
 typedef struct s_map
 {
-	t_node *points;
+	t_node *points_list;
 	t_node *points_last;
 
-
+	t_point *points;
 
 	uint32_t width;
 	uint32_t height;
@@ -57,7 +57,7 @@ typedef struct s_fdf
 {
 	t_map *map;
 
-	int32_t scalar;
+	uint32_t scalar;
 	mlx_t *mlx;
 	mlx_image_t *image;
 }	t_fdf;

@@ -38,6 +38,7 @@ Dynamic | slow
 - [ ] Double check if makefile MLX related rules function correctly 
 - [ ] Only draw on user input.
 - [ ] Rainbow gradient background.
+- [ ] Instead of gnl just read a shit ton of data from the map.
 
 
 ## Resources

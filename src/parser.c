@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                          :+:    :+:             */
+/*   parser.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 23:31:50 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/24 13:32:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include "get_next_line.h"
+#include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -33,7 +34,7 @@ static uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-uint32_t parse_color(const char *s)
+static uint32_t	parse_color(const char *s)
 {
 	uint32_t	color;
 	char		*delim;
@@ -62,10 +63,10 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.y = line_count;
 		point.z = ft_atoi(split[i]);
 		point.color = parse_color(split[i]);
-		if (!fdf->map->points)
+		if (!fdf->map->points_list)
 		{
-			fdf->map->points = lstnew(point);
-			fdf->map->points_last = fdf->map->points;
+			fdf->map->points_list = lstnew(point);
+			fdf->map->points_last = fdf->map->points_list;
 		}
 		else
 			fdf->map->points_last = lstadd_back(&fdf->map->points_last, lstnew(point));
@@ -104,6 +105,28 @@ static uint8_t read_map(t_fdf *fdf, int fd)
 	return (0);
 }
 
+static uint32_t list_to_arr(t_fdf *fdf)
+{
+	const uint32_t size = fdf->map->width * fdf->map->height;
+	t_node *tmp;
+	uint32_t i;
+
+	fdf->map->points = ft_calloc(sizeof(t_point), size + 1);
+	if (!fdf->map->points)
+		return (1);
+
+	i = 0;
+	tmp = fdf->map->points_list;
+	while (tmp && i < size)
+	{	
+		fdf->map->points[i] = tmp->point;
+
+		i++;
+		tmp = tmp->next;
+	}
+	free_lst(fdf->map->points_list);
+	return (0);
+}
 
 uint32_t 	parser(t_fdf *fdf, const char *map)
 {
@@ -114,6 +137,9 @@ uint32_t 	parser(t_fdf *fdf, const char *map)
 		return (1);
 	if (read_map(fdf, fd))
 		return (1);
+	if (list_to_arr(fdf))
+		return (1);
+
 	close(fd);
 	return (0);
 }
