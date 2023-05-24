@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/24 14:17:00 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/24 15:09:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color);
 }
 
+
 static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 {
 	t_point cur;
@@ -91,36 +92,31 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	t_point child2;
 
 	cur = fdf->map->points[y * fdf->map->width + x];
-	if (x + 1 < fdf->map->width)
-		child1 = fdf->map->points[y * fdf->map->width + x + 1];
-	else
-		return;
-	if (y + 1 < fdf->map->height)
-		child2 = fdf->map->points[(y + 1) * fdf->map->width + x];
-	else
-		return;
-
 	cur = map_to_iso(cur, fdf->scalar, fdf->map->width);
-	child1 = map_to_iso(child1, fdf->scalar, fdf->map->width);
-	child2 = map_to_iso(child2, fdf->scalar, fdf->map->width);
-
-	line_draw(fdf, cur, child1);
-	line_draw(fdf, cur, child2);
-
+	if (x + 1 < fdf->map->width)
+	{ 
+		child1 = fdf->map->points[y * fdf->map->width + x + 1];
+		child1 = map_to_iso(child1, fdf->scalar, fdf->map->width);
+		line_draw(fdf, cur, child1);
+	}
+	if (y + 1 < fdf->map->height)
+	{ 
+		child2 = fdf->map->points[(y + 1) * fdf->map->width + x];
+		child2 = map_to_iso(child2, fdf->scalar, fdf->map->width);
+		line_draw(fdf, cur, child2);
+	}
+	t_point tmp;
+	tmp = cur;
+	tmp.x += cur.z;
+	tmp.y += cur.z;
+	tmp.color = 0xFFFF00FF;
+	fdf_put_pixel(fdf, cur);
 }
 
 static void draw_wireframe(t_fdf *fdf)
 {
-	t_node *tmp = fdf->map->points_list;
-	t_point point_iso;
-
-	uint32_t x, y;
-	uint32_t x_screen, y_screen;
-
-	if (fdf->scalar <= 0)
-		fdf->scalar = 1;
-	else if (fdf->scalar >= 55)
-		fdf->scalar = 55;
+	uint32_t x;
+	uint32_t y;
 
 
 	x = 0;
@@ -153,10 +149,7 @@ int32_t graphics_init(t_fdf *fdf)
 		error_print(mlx_strerror(mlx_errno));
 		return (1);
 	}
-
 	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	fdf->scalar = 10;
-
 	if (!fdf->image)
 	{
 		mlx_close_window(fdf->mlx);
@@ -169,8 +162,7 @@ int32_t graphics_init(t_fdf *fdf)
 		error_print(mlx_strerror(mlx_errno));
 		return (1);
 	}
-
-
+	fdf->scalar = 10;
 
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);

@@ -39,6 +39,7 @@ Dynamic | slow
 - [ ] Only draw on user input.
 - [ ] Rainbow gradient background.
 - [ ] Instead of gnl just read a shit ton of data from the map.
+- [ ] Only calculate the pixels that are viewable.
 
 
 ## Resources
