@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   fdf.c                                              :+:    :+:            */
+/*   fdf.c                                             :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/17 14:34:42 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/24 13:33:09 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/25 23:38:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void fdf_cleanup(t_fdf *fdf)
+static void fdf_cleanup(t_fdf *fdf)
 {
 	free(fdf->map->points);
 	free(fdf->map);

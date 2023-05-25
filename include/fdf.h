@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/25 23:15:42 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/25 23:32:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ uint32_t 	error_print(const char *s);
 // meuk.c
 void print_point(t_point point);
 void print_points(t_fdf *fdf);
+void print_points_arr(t_fdf *fdf);
 
 #endif

@@ -21,3 +21,13 @@ void print_points(t_fdf *fdf)
 	}
 
 }
+void print_points_arr(t_fdf *fdf)
+{
+	int i = 0;
+	
+	while (i <= fdf->map->width * fdf->map->height) 
+	{
+		print_point(fdf->map->points[i]);
+		i++;
+	}
+}
