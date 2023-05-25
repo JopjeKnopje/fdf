@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                         :+:    :+:            */
+/*   graphics.c                                        :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/24 15:09:52 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/25 23:22:56 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+#include "MLX42/MLX42_Input.h"
 #include "MLX42/MLX42_Int.h"
 #include "fdf.h"
 #include "libft.h"
@@ -34,6 +35,10 @@ static void key_hook(void *param)
 		fdf->scalar++;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
 		fdf->scalar--;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
+		fdf->amplitude++;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))
+		fdf->amplitude--;
 }
 
 static void fps_hook(void *param)
@@ -65,13 +70,22 @@ static void draw_clear(t_fdf *fdf)
 	}
 }
 
-static t_point map_to_iso(t_point point, uint32_t scalar, uint32_t width)
+static t_point map_to_iso(t_point point, uint32_t scalar, uint32_t width, uint32_t amplitude)
 {
 	t_point point_iso;
 
-	point_iso.x = (point.x - point.y) * scalar;
-	point_iso.x += (width - 1) * scalar;
-	point_iso.y = (point.x + point.y) * (scalar / 2);
+	ft_bzero(&point_iso, sizeof(t_point));
+
+	// x1 = (x - y) * cos(0.8);
+	// y1 = (x + y) * sin (0.61) - z;
+
+	point_iso.x = ((point.x - point.y + width - 1) * scalar) * cos(0.8);
+	point_iso.y = ((point.x + point.y) * scalar / 2) * (sin(0.61)) - (point.z + (scalar * amplitude));
+
+
+	// point_iso.x = (point.x - point.y) * scalar;
+	// point_iso.x += (width - 1) * scalar;
+	// point_iso.y = (point.x + point.y) * (scalar / 2);
 	point_iso.z = point.z;
 	point_iso.color = point.color;
 
@@ -92,24 +106,19 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	t_point child2;
 
 	cur = fdf->map->points[y * fdf->map->width + x];
-	cur = map_to_iso(cur, fdf->scalar, fdf->map->width);
+	cur = map_to_iso(cur, fdf->scalar, fdf->map->width, fdf->amplitude);
 	if (x + 1 < fdf->map->width)
 	{ 
 		child1 = fdf->map->points[y * fdf->map->width + x + 1];
-		child1 = map_to_iso(child1, fdf->scalar, fdf->map->width);
+		child1 = map_to_iso(child1, fdf->scalar, fdf->map->width, fdf->amplitude);
 		line_draw(fdf, cur, child1);
 	}
 	if (y + 1 < fdf->map->height)
 	{ 
 		child2 = fdf->map->points[(y + 1) * fdf->map->width + x];
-		child2 = map_to_iso(child2, fdf->scalar, fdf->map->width);
+		child2 = map_to_iso(child2, fdf->scalar, fdf->map->width, fdf->amplitude);
 		line_draw(fdf, cur, child2);
 	}
-	t_point tmp;
-	tmp = cur;
-	tmp.x += cur.z;
-	tmp.y += cur.z;
-	tmp.color = 0xFFFF00FF;
 	fdf_put_pixel(fdf, cur);
 }
 
@@ -117,7 +126,6 @@ static void draw_wireframe(t_fdf *fdf)
 {
 	uint32_t x;
 	uint32_t y;
-
 
 	x = 0;
 	while (x < fdf->map->width)
@@ -163,6 +171,7 @@ int32_t graphics_init(t_fdf *fdf)
 		return (1);
 	}
 	fdf->scalar = 10;
+	fdf->amplitude = 1;
 
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
