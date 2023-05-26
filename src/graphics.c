@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/25 23:36:58 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/26 16:27:06 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 #include <stdbool.h>
 #include <MLX42/MLX42.h>
 #include <math.h>
-
-
 
 static void key_hook(void *param)
 {
@@ -80,12 +78,15 @@ static t_point map_to_iso(t_point point, uint32_t scalar, uint32_t width, uint32
 	// y1 = (x + y) * sin (0.61) - z;
 
 	point_iso.x = ((point.x - point.y + width - 1) * scalar) * cos(0.8);
-	point_iso.y = ((point.x + point.y) * scalar / 2) * (sin(0.61)) - (point.z + (scalar * amplitude));
+	point_iso.y = ((point.x + point.y) * scalar / 2) * (sin(0.61)) - (point.z + scalar);
+	point_iso.y += 100;
+	// printf("x: %d | y: %d\n", point_iso.x, point_iso.y);
 
 
 	// point_iso.x = (point.x - point.y) * scalar;
 	// point_iso.x += (width - 1) * scalar;
 	// point_iso.y = (point.x + point.y) * (scalar / 2);
+
 	point_iso.z = point.z;
 	point_iso.color = point.color;
 

@@ -44,3 +44,6 @@ Dynamic | slow
 
 ## Resources
 * https://clintbellanger.net/articles/isometric_math/
+* https://en.wikipedia.org/wiki/Rotation_matrix
+* https://en.wikipedia.org/wiki/3D_projection
+

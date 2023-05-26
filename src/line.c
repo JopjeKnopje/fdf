@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/25 22:28:25 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/25 23:44:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 {
 	t_point tmp;
+
+	tmp.color = p_start.color;
+
 	int32_t x_start = p_start.x;
 	int32_t y_start = p_start.y;
 	int32_t x_end = p_end.x;
