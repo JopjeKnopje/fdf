@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/26 16:27:06 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/28 23:40:34 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 {
 	if (p.x >= 0 && p.x <= fdf->image->width && p.y >= 0 && p.y <= fdf->image->height)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color);
+	else
+	 printf("fdf_put_pixel: out of bounds\n");
 }
 
 
@@ -111,6 +113,7 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	if (x + 1 < fdf->map->width)
 	{ 
 		child1 = fdf->map->points[y * fdf->map->width + x + 1];
+		// child1 = projector(fdf, child1);
 		child1 = map_to_iso(child1, fdf->scalar, fdf->map->width, fdf->amplitude);
 		line_draw(fdf, cur, child1);
 	}
@@ -118,6 +121,7 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	{ 
 		child2 = fdf->map->points[(y + 1) * fdf->map->width + x];
 		child2 = map_to_iso(child2, fdf->scalar, fdf->map->width, fdf->amplitude);
+		// child2 = projector(fdf, child2);
 		line_draw(fdf, cur, child2);
 	}
 	fdf_put_pixel(fdf, cur);
@@ -141,12 +145,39 @@ static void draw_wireframe(t_fdf *fdf)
 	}
 }
 
+static void draw_points_test(t_fdf *fdf)
+{
+	t_point projected;
+	uint32_t i;
+	uint32_t y;
+
+	t_point points[] = {
+		{10, 10, 10, 0xFFFFFFFF},
+		{-10, 10, 10, 0xFFFFFFFF},
+		{-10, -10, 10, 0xFFFFFFFF},
+		{10, -10, 10, 0xFFFFFFFF},
+		{10, 10, -10, 0xFFFFFFFF},
+		{-10, 10, -10, 0xFFFFFFFF},
+		{-10, -10, -10, 0xFFFFFFFF},
+		{10, -10, -10, 0xFFFFFFFF},
+	};
+
+	i = 0;
+	while (i < 8)
+	{
+		projected = projector(fdf, points[i]);
+		fdf_put_pixel(fdf, projected);
+		i++;
+	}
+}
+
 
 static void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
 	draw_clear(fdf);
-	draw_wireframe(fdf);
+	// draw_wireframe(fdf);
+	draw_points_test(fdf);
 }
 
 int32_t graphics_init(t_fdf *fdf)
@@ -171,7 +202,7 @@ int32_t graphics_init(t_fdf *fdf)
 		error_print(mlx_strerror(mlx_errno));
 		return (1);
 	}
-	fdf->scalar = 10;
+	fdf->scalar = 5;
 	fdf->amplitude = 1;
 
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);

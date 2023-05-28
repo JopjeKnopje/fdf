@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/24 14:06:29 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/28 19:56:51 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = fdf
 ######################
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	MLX_CFLAGS = -lglfw 
+	MLX_CFLAGS = -lglfw -lm
 	RUN_CMD = ./$(NAME) maps/elem-col.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
@@ -46,7 +46,8 @@ SRCS = main.c \
 	   free.c \
 	   meuk.c \
 	   graphics.c \
-	   line.c
+	   line.c \
+	   projector.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

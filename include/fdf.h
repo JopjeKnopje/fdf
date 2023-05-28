@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/25 23:54:21 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/28 22:24:14 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 #define WIDTH 1024
 #define HEIGHT 720
+
 #define TITLE "Super awesome lines bruv"
 
 #define COLOR_BACKGROUND 0x000000FF
@@ -109,6 +110,10 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end);
 // error.c
 uint32_t	error_message(t_error err);
 uint32_t 	error_print(const char *s);
+
+// projector.c
+t_point projector(t_fdf *fdf, t_point point);
+
 
 
 
