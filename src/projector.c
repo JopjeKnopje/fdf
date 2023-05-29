@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 09:28:14 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 09:30:47 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_point projector(t_fdf *fdf, t_point point)
 
 	int alpha = 35;
 	int beta = 45;
-	float angle = mlx_get_time() / 1;
+	float angle = mlx_get_time() / 8;
 
 	const float matrix_projection[3][3] = {
 	//   x  y  z
@@ -91,12 +91,12 @@ t_point projector(t_fdf *fdf, t_point point)
 
 
 
-	printf("before | x: %d, y: %d, z: %d\n", projected.x, projected.y, projected.z);
+	// printf("before | x: %d, y: %d, z: %d\n", projected.x, projected.y, projected.z);
 
 	// center(fdf, &projected);
 	// projected = matmul(projected, matrix_a);
 	// projected = matmul(projected, matrix_b);
-	// projected = matmul(projected, matrix_rotate_x);
+	projected = matmul(projected, matrix_rotate_x);
 	// projected = matmul(projected, matrix_rotate_z);
 	// projected = matmul(projected, matrix_rotate_y);
 	projected = matmul(projected, matrix_projection);
@@ -107,7 +107,7 @@ t_point projector(t_fdf *fdf, t_point point)
 	projected.z += fdf->image->width / 2;
 
 
-	printf("after | x: %d, y: %d, z: %d\n", projected.x, projected.y, projected.z);
+	// printf("after | x: %d, y: %d, z: %d\n", projected.x, projected.y, projected.z);
 
 	return projected;
 

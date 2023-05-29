@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 09:26:49 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 09:36:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,82 +97,51 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 {
 	if (p.x >= 0 && p.x <= fdf->image->width && p.y >= 0 && p.y <= fdf->image->height)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color);
-	else
-	 printf("fdf_put_pixel: out of bounds\n");
+	// else
+	//  printf("fdf_put_pixel: out of bounds\n");
 }
 
 
 static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 {
-	t_point cur;
-	t_point child1;
-	t_point child2;
-
-	cur = fdf->map->points[y * fdf->map->width + x];
-	// cur = map_to_iso(cur, fdf->scalar, fdf->map->width, fdf->amplitude);
-	cur = projector(fdf, cur);
-	if (x + 1 < fdf->map->width)
-	{ 
-		child1 = fdf->map->points[y * fdf->map->width + x + 1];
-		child1 = projector(fdf, child1);
-		// child1 = map_to_iso(child1, fdf->scalar, fdf->map->width, fdf->amplitude);
-		line_draw(fdf, cur, child1);
-	}
-	if (y + 1 < fdf->map->height)
-	{ 
-		child2 = fdf->map->points[(y + 1) * fdf->map->width + x];
-		// child2 = map_to_iso(child2, fdf->scalar, fdf->map->width, fdf->amplitude);
-		child2 = projector(fdf, child2);
-		line_draw(fdf, cur, child2);
-	}
-	fdf_put_pixel(fdf, cur);
+	t_point projected;
+	projected = projector(fdf, fdf->map->points[y * fdf->map->width + x]);
+	fdf_put_pixel(fdf, projected);
 }
 
 static void draw_wireframe(t_fdf *fdf)
 {
-	uint32_t x;
-	uint32_t y;
 
-	x = 0;
-	while (x < fdf->map->width)
-	{
-		y = 0;
-		while (y < fdf->map->height)
-		{
-			draw_lines(fdf, x, y);
-			y++;
-		}
-		x++;
-	}
-}
+	t_point projected1;
+	projected1 = projector(fdf, fdf->map->points[1 * fdf->map->width + 0]);
+	fdf_put_pixel(fdf, projected1);
 
-static void draw_points_test(t_fdf *fdf)
-{
-	uint32_t x;
-	uint32_t y;
-	t_point projected;
-	// t_point projected1;
-	// t_point projected2;
+	t_point projected2;
+	projected2 = projector(fdf, fdf->map->points[4 * fdf->map->width + 9]);
+	fdf_put_pixel(fdf, projected2);
 
-	// projected1 = projector(fdf, fdf->map->points[2 * fdf->map->width + 1]);
-	// projected2 = projector(fdf, fdf->map->points[2 * fdf->map->width + 7]);
+	t_point projected3;
+	projected3 = projector(fdf, fdf->map->points[4 * fdf->map->width + 9]);
+	fdf_put_pixel(fdf, projected3);
 
-	// fdf_put_pixel(fdf, projected1);
-	// fdf_put_pixel(fdf, projected2);
-	// line_draw(fdf, projected1, projected2);
+	line_draw(fdf, projected1, projected2);
+	line_draw(fdf, projected3, projected2);
+	
 
-	x = 0;
-	while (x < fdf->map->width)
-	{
-		y = 0;
-		while (y < fdf->map->height)
-		{
-			projected = projector(fdf, fdf->map->points[y * fdf->map->width + x]);
-			fdf_put_pixel(fdf, projected);
-			y++;
-		}
-		x++;
-	}
+	// uint32_t x;
+	// uint32_t y;
+	//
+	// x = 0;
+	// while (x < fdf->map->width)
+	// {
+	// 	y = 0;
+	// 	while (y < fdf->map->height)
+	// 	{
+	// 		draw_lines(fdf, x, y);
+	// 		y++;
+	// 	}
+	// 	x++;
+	// }
 }
 
 
@@ -180,8 +149,7 @@ static void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
 	draw_clear(fdf);
-	// draw_wireframe(fdf);
-	draw_points_test(fdf);
+	draw_wireframe(fdf);
 }
 
 int32_t graphics_init(t_fdf *fdf)
