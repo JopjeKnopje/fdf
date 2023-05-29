@@ -6,11 +6,12 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:59:15 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/20 01:19:12 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 21:35:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdint.h>
 
 int	lstsize(t_node *lst)
 {
@@ -68,4 +69,3 @@ t_node	*lstnew(t_point point)
 	node->next = NULL;
 	return (node);
 }
-

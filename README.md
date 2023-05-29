@@ -44,6 +44,7 @@ Dynamic | slow
 - [ ] Resize window.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
+- [ ] Weird color behaviour on linux.
 
 
 ## Resources

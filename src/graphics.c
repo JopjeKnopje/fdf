@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                         :+:    :+:            */
+/*   graphics.c                                        :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 19:53:17 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 23:22:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "MLX42/MLX42_Input.h"
 #include "MLX42/MLX42_Int.h"
@@ -23,14 +22,15 @@
 #include <MLX42/MLX42.h>
 #include <math.h>
 
-static void hooks_init(t_fdf *fdf)
+
+static void	hooks_init(t_fdf *fdf)
 {
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
 	mlx_loop_hook(fdf->mlx, draw_hook, fdf);
 }
 
-int32_t graphics_init(t_fdf *fdf)
+int32_t	graphics_init(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, TITLE, false);
 	if (!fdf->mlx)

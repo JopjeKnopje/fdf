@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 19:42:12 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 23:25:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 #define COLOR_BACKGROUND 0x333333FF
 #define COLOR_POINT_DEFAULT 0x00AACFFF
+
 
 
 typedef struct s_point
@@ -96,6 +97,8 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
 uint32_t 	color_add_alpha(uint32_t c);
+uint32_t	list_to_arr(t_fdf *fdf);
+t_point matmul(t_point point, const float matrix[3][3]);
 
 // list.c
 int		lstsize(t_node *lst);

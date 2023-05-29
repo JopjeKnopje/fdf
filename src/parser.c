@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                           :+:    :+:            */
+/*   parser.c                                          :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/24 13:32:52 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 21:40:43 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ static uint32_t	parse_color(const char *s)
 		color = color_add_alpha(ft_atoi_hex(delim + 1));
 	else
 		color = COLOR_POINT_DEFAULT;
-	return color;
+	return (color);
 }
 
 static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 {
-	char **split;
-	t_point point;
-	int i;
+	char	**split;
+	t_point	point;
+	int		i;
 
 	split = ft_split(line, ' ');
 	if (!split)
@@ -69,7 +69,8 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 			fdf->map->points_last = fdf->map->points_list;
 		}
 		else
-			fdf->map->points_last = lstadd_back(&fdf->map->points_last, lstnew(point));
+			fdf->map->points_last = lstadd_back(&fdf->map->points_last,
+					lstnew(point));
 		i++;
 	}
 	fdf->map->width = i;
@@ -77,15 +78,14 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	return (0);
 }
 
-static uint8_t read_map(t_fdf *fdf, int fd)
+static uint8_t	read_map(t_fdf *fdf, int fd)
 {
-	int i;
-	char *line;
+	int		i;
+	char	*line;
 
 	fdf->map = ft_calloc(1, sizeof(t_map));
 	if (!fdf->map)
 		return (error_message(ERR_MALLOC_FAILURE));
-
 	i = 0;
 	line = get_next_line(fd);
 	if (!line)
@@ -105,32 +105,9 @@ static uint8_t read_map(t_fdf *fdf, int fd)
 	return (0);
 }
 
-static uint32_t list_to_arr(t_fdf *fdf)
+uint32_t	parser(t_fdf *fdf, const char *map)
 {
-	const uint32_t size = fdf->map->width * fdf->map->height;
-	t_node *tmp;
-	uint32_t i;
-
-	fdf->map->points = ft_calloc(sizeof(t_point), size + 1);
-	if (!fdf->map->points)
-		return (1);
-
-	i = 0;
-	tmp = fdf->map->points_list;
-	while (tmp && i < size)
-	{	
-		fdf->map->points[i] = tmp->point;
-
-		i++;
-		tmp = tmp->next;
-	}
-	free_lst(fdf->map->points_list);
-	return (0);
-}
-
-uint32_t 	parser(t_fdf *fdf, const char *map)
-{
-	int fd;
+	int	fd;
 
 	fd = open_map(map);
 	if (!fd)
@@ -139,7 +116,6 @@ uint32_t 	parser(t_fdf *fdf, const char *map)
 		return (1);
 	if (list_to_arr(fdf))
 		return (1);
-
 	close(fd);
 	return (0);
 }
