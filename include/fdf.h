@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/28 22:24:14 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 08:40:48 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 
 typedef struct s_point
 {
-	uint32_t x;
-	uint32_t y;
-	uint32_t z;
-	uint32_t color;
+	int32_t x;
+	int32_t y;
+	int32_t z;
+	int32_t color;
 }	t_point;
 
 typedef struct s_node

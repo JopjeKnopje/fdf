@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   projector.c                                       :+:    :+:             */
+/*   projector.c                                        :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/28 23:46:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 09:28:14 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42.h"
 #include "fdf.h"
 #include <math.h>
+#include <stdio.h>
 
 static void scale(t_fdf *fdf, t_point *point)
 {
@@ -34,12 +35,11 @@ t_point matmul(t_point point, const float matrix[3][3])
 	float projy = point.y;
 	float projz = point.z;
 
-
 	point.x = (projx * matrix[0][0]) + (projy * matrix[0][1]) + (projz * matrix[0][2]);
 	point.y = (projx * matrix[1][0]) + (projy * matrix[1][1]) + (projz * matrix[1][2]);
 	point.z = (projx * matrix[2][0]) + (projy * matrix[2][1]) + (projz * matrix[2][2]);
 
-	return point;
+	return (point);
 }
 
 
@@ -97,10 +97,11 @@ t_point projector(t_fdf *fdf, t_point point)
 	// projected = matmul(projected, matrix_a);
 	// projected = matmul(projected, matrix_b);
 	// projected = matmul(projected, matrix_rotate_x);
+	// projected = matmul(projected, matrix_rotate_z);
 	// projected = matmul(projected, matrix_rotate_y);
-	projected = matmul(projected, matrix_rotate_z);
 	projected = matmul(projected, matrix_projection);
 	scale(fdf, &projected);
+
 	projected.x += fdf->image->width / 2;
 	projected.y += fdf->image->height / 2;
 	projected.z += fdf->image->width / 2;
