@@ -41,6 +41,7 @@ Dynamic | slow
 - [ ] Instead of gnl just read a shit ton of data from the map.
 - [ ] Only calculate the pixels that are viewable.
 - [ ] Optimize line drawing's drawing direction based on which point is in the screen. 
+- [ ] Resize window.
 
 
 ## Resources

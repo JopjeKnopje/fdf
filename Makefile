@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/28 19:56:51 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/29 17:16:07 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ MLX = MLX42/build/libmlx42.a
 # CFLAGS += -Wall -Wextra -Werror
 CFLAGS = -g -fsanitize=address
 # CFLAGS = -g 
+# CFLAGS = -O3
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
@@ -100,5 +101,5 @@ compile_commands: dfclean fclean
 dfclean:
 	$(MAKE) -C libft fclean
 	$(MAKE) -C MLX42/build clean
-dre:
+dre: re
 	$(MAKE) -C libft re

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 15:21:17 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/29 15:55:47 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static int32_t increment(int32_t val)
 		return (1);
 	return (-1);
 }
-
 
 void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 {
@@ -71,9 +70,7 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 				x_start += sx;
 				err -= dy;
 			}
-		
 		}
-		// printf("put pixel\n");
 	}
 	tmp.x = x_start;
 	tmp.y = y_start;

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 15:17:49 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/29 18:15:47 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static void key_hook(void *param)
 
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
+
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-		fdf->scalar++;
+		fdf->scalar += 0.1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
-		fdf->scalar--;
+		fdf->scalar -= 0.1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
-		fdf->amplitude++;
+		fdf->amplitude += 0.02;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))
-		fdf->amplitude--;
+		fdf->amplitude -= 0.02;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->angle += 0.1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
 		fdf->angle -= 0.1;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
-		fdf->paused = !fdf->paused;
+
 }
 
 static void fps_hook(void *param)
@@ -96,11 +96,6 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 {
 	if (p.x >= 0 && p.x <= fdf->image->width && p.y >= 0 && p.y <= fdf->image->height)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color);
-	// else
-	// {
-	// 	print_point(p);
-	// 	printf("fdf_put_pixel: out of bounds\n");
-	// }
 }
 
 
@@ -136,34 +131,6 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 
 static void draw_wireframe(t_fdf *fdf)
 {
-
-	// t_point projected1;
-	// projected1 = projector(fdf, fdf->map->points[0 * fdf->map->width + 0]);
-	// fdf_put_pixel(fdf, projected1);
-	//
-	// t_point projected2;
-	// projected2 = projector(fdf, fdf->map->points[5 * fdf->map->width + 9]);
-	// fdf_put_pixel(fdf, projected2);
-	//
-	// t_point projected3;
-	// projected3 = projector(fdf, fdf->map->points[9 * fdf->map->width + 0]);
-	//
-	//
-	// print_point(projected1);
-	// print_point(projected2);
-	// print_point(projected3);
-	//
-	//
-	// line_draw(fdf, projected1, projected2);
-	// line_draw(fdf, projected3, projected2);
-	//
-	// projected1.color = 0xFFAAFFFF;
-	// projected2.color = 0xFFAAFFFF;
-	// projected3.color = 0xFFAAFFFF;
-	// fdf_put_pixel(fdf, projected1);
-	// fdf_put_pixel(fdf, projected2);
-	// fdf_put_pixel(fdf, projected3);
-	
 
 	uint32_t x;
 	uint32_t y;
@@ -211,10 +178,9 @@ int32_t graphics_init(t_fdf *fdf)
 		error_print(mlx_strerror(mlx_errno));
 		return (1);
 	}
-	fdf->scalar = 20;
-	fdf->amplitude = 1;
-	fdf->paused = false;
-	fdf->angle = 0;
+	fdf->scalar = 15;
+	fdf->amplitude = .1;
+	fdf->angle = 1.6;
 
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);

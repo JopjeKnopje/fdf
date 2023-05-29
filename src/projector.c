@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 15:22:14 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/29 18:15:15 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@ static void scale(t_fdf *fdf, t_point *point)
 	point->z *= fdf->scalar;
 }
 
-void center(t_fdf *fdf, t_point *point)
+static void offset(t_fdf *fdf, t_point *point)
 {
-	point->x += (fdf->scalar / 2) + (fdf->image->width / 2) - (fdf->map->width * fdf->scalar / 2);
-	point->y += (fdf->scalar / 2) + (fdf->image->height / 2) - (fdf->map->height * fdf->scalar / 2);
+
+	point->x -= (fdf->map->width / 2);
+	point->y -= (fdf->map->height / 2);
+}
+
+static void center(t_fdf *fdf, t_point *point)
+{
+	point->x += (fdf->scalar / 2) + (fdf->image->width / 2) - (fdf->scalar / 2);
+	point->y += (fdf->scalar / 2) + (fdf->image->height / 2) - (fdf->scalar / 2);
 }
 
 
@@ -47,30 +54,31 @@ t_point projector(t_fdf *fdf, t_point point)
 {
 	t_point projected = point;
 
-	int alpha = 35;
-	int beta = 45;
-	float angle = mlx_get_time() / 0.5;
-	// float angle = fdf->angle;
+	float alpha = 0.61;
+	float beta = 0.78;
 
-	const float matrix_projection[3][3] = {
+	float angle = fdf->angle;
+	// float angle = 1.5;
+	printf("angle: %f\n", angle);
+
+	const float matrix_ortho[3][3] = {
 	//   x  y  z
 		{1, 0, 0},
 		{0, 1, 0},
 		{0, 0, 0},
 	};
 
-	// rotate y-axis
-	const float matrix_a[3][3] = {
-		{cos(alpha), 0, sin(alpha)},
-		{0, 1, 0},
-		{-sin(alpha), 0, cos(alpha)},
-	};
 	
-	// rotate x-axis
+	const float matrix_a[3][3] = {
+		{sqrt(3), 0, -sqrt(3)},
+		{1, 2, 1},
+		{sqrt(2), -sqrt(2), sqrt(2)},
+	};
+
 	const float matrix_b[3][3] = {
 		{1, 0, 0},
-		{0, cos(beta), -sin(beta)},
-		{0, sin(beta), cos(beta)},
+		{0, cos(angle), -sin(angle)},
+		{0, sin(angle), cos(angle)},
 	};
 
 	const float matrix_rotate_x[3][3] = {
@@ -91,16 +99,17 @@ t_point projector(t_fdf *fdf, t_point point)
 		{0, 0, 1},
 	};
 
+	offset(fdf, &projected);
 	scale(fdf, &projected);
+	projected.z *= fdf->amplitude;
 
 	// projected = matmul(projected, matrix_rotate_x);
 	// projected = matmul(projected, matrix_rotate_z);
-	projected = matmul(projected, matrix_rotate_y);
+	// projected = matmul(projected, matrix_rotate_y);
 
-	// projected = matmul(projected, matrix_a);
-	// projected = matmul(projected, matrix_b);
-	// projected = matmul(projected, matrix_rotate_x);
-	projected = matmul(projected, matrix_projection);
+	projected = matmul(projected, matrix_rotate_x);
+	projected = matmul(projected, matrix_a);
+	projected = matmul(projected, matrix_ortho);
 	center(fdf, &projected);
 
 
