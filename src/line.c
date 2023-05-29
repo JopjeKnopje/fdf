@@ -6,13 +6,22 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/25 23:44:00 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 15:21:17 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 #include <stdint.h>
+#include <stdio.h>
+
+
+static int32_t increment(int32_t val)
+{
+	if (val)
+		return (1);
+	return (-1);
+}
 
 
 void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
@@ -20,6 +29,7 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	t_point tmp;
 
 	tmp.color = p_start.color;
+	tmp.z = p_start.z;
 
 	int32_t x_start = p_start.x;
 	int32_t y_start = p_start.y;
@@ -28,53 +38,44 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 
 	int32_t dx = abs(x_end - x_start);
 	int32_t dy = abs(y_end - y_start);
+	int32_t sx = increment(x_end - x_start > 0);
+	int32_t sy = increment(y_end - y_start > 0);
 
-	int32_t pk = 2 * (dy - dx);
+	int32_t err = 0;
 
-	int32_t i = 0;
-	while (i <= dx)
+	if (dx > dy)
+		err = (dy - dx) / 2;
+	else
+		err = (dx - dy) / 2;
+	while (x_start != x_end || y_start != y_end)
 	{
-		if (x_start < x_end)
-			x_start++;
-		else
-			x_start--;
-		if (pk < 0)
+		tmp.y = y_start;
+		tmp.x = x_start;
+		fdf_put_pixel(fdf, tmp);
+		if (dx > dy)
 		{
-			if (dx > dy)
+			x_start += sx;
+			err += dy;
+			if (err * 2 >= dx)
 			{
-				tmp.x = x_start;
-				tmp.y = y_start;
-				fdf_put_pixel(fdf, tmp);
-				pk = pk + 2 * dy;
-			}
-			else 
-			{
-				tmp.x = x_start;
-				tmp.y = y_start;
-				fdf_put_pixel(fdf, tmp);
-				pk = pk + 2 * dy;
+				y_start += sy;
+				err -= dx;
 			}
 		}
 		else
 		{
-			if (y_start < y_end)
-				y_start++;
-			else
-				y_start--;
-			if (dx > dy)
+			y_start += sy;
+			err += dx;
+			if (err * 2 >= dy)
 			{
-				tmp.x = x_start;
-				tmp.y = y_start;
-				fdf_put_pixel(fdf, tmp);
+				x_start += sx;
+				err -= dy;
 			}
-			else 
-			{
-				tmp.x = x_start;
-				tmp.y = y_start;
-				fdf_put_pixel(fdf, tmp);
-			}
-			pk = pk + 2 * dy - 2 * dx;
+		
 		}
-		i++;
+		// printf("put pixel\n");
 	}
+	tmp.x = x_start;
+	tmp.y = y_start;
+	fdf_put_pixel(fdf, tmp);
 }

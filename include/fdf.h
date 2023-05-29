@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 08:40:48 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/29 11:51:03 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_fdf
 
 	uint32_t scalar;
 	uint32_t amplitude;
+	float angle;
+	bool paused;
 	mlx_t *mlx;
 	mlx_image_t *image;
 }	t_fdf;
@@ -113,6 +115,7 @@ uint32_t 	error_print(const char *s);
 
 // projector.c
 t_point projector(t_fdf *fdf, t_point point);
+void center(t_fdf *fdf, t_point *point);
 
 
 
