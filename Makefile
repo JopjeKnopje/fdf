@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                          :+:    :+:              #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/29 17:16:07 by jboeve        ########   odam.nl          #
+#    Updated: 2023/05/29 19:54:16 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = fdf
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw -lm
-	RUN_CMD = ./$(NAME) maps/elem-col.fdf
+	RUN_CMD = ./$(NAME) maps/42-custom.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
@@ -30,7 +30,7 @@ endif
 LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
-# CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 CFLAGS = -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -O3
@@ -48,7 +48,10 @@ SRCS = main.c \
 	   meuk.c \
 	   graphics.c \
 	   line.c \
-	   projector.c
+	   projector.c \
+	   keyinput.c \
+	   ui.c \
+	   draw.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
@@ -97,6 +100,9 @@ run: all
 
 compile_commands: dfclean fclean
 	$(MAKE) | compiledb
+
+norm:
+	norminette libft include src 
 
 dfclean:
 	$(MAKE) -C libft fclean

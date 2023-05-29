@@ -4,7 +4,7 @@
 
 void print_point(t_point point)
 {
-	printf("x: %d, y: %d, z: %d", point.x, point.y, point.z);
+	printf("x: %f, y: %f, z: %f", point.x, point.y, point.z);
 	if (point.color)
 		printf(" c: %x", point.color);
 	printf("\n");

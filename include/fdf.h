@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 18:06:25 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/29 19:42:12 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 #define TITLE "Super awesome lines bruv"
 
-#define COLOR_BACKGROUND 0x000000FF
+#define COLOR_BACKGROUND 0x333333FF
 #define COLOR_POINT_DEFAULT 0x00AACFFF
 
 
@@ -54,13 +54,19 @@ typedef struct s_map
 	uint32_t height;
 }	t_map;
 
-typedef struct s_fdf
+typedef struct s_projector
 {
-	t_map *map;
-
 	float scalar;
 	float amplitude;
 	float angle;
+
+} 	t_projector;
+
+typedef struct s_fdf
+{
+	t_map *map;
+	t_projector projector;
+
 	mlx_t *mlx;
 	mlx_image_t *image;
 }	t_fdf;
@@ -103,7 +109,6 @@ void 	free_lst(t_node *lst);
 
 // graphics.c
 int32_t graphics_init(t_fdf *fdf);
-void 	fdf_put_pixel(t_fdf *fdf, t_point p);
 
 // line.c
 void line_draw(t_fdf *fdf, t_point p_start, t_point p_end);
@@ -114,7 +119,17 @@ uint32_t 	error_print(const char *s);
 
 // projector.c
 t_point projector(t_fdf *fdf, t_point point);
+void projector_init(t_fdf *fdf);
 
+// keyinput.c
+void key_hook(void *param);
+
+// ui.c
+void fps_hook(void *param);
+
+// draw.c
+void draw_hook(void *param);
+void 	fdf_put_pixel(t_fdf *fdf, t_point p);
 
 
 // meuk.c

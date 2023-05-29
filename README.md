@@ -42,6 +42,8 @@ Dynamic | slow
 - [ ] Only calculate the pixels that are viewable.
 - [ ] Optimize line drawing's drawing direction based on which point is in the screen. 
 - [ ] Resize window.
+- [ ] FPS Counter in screen.
+- [ ] Support multiple projections in an enum that we can pass to the projector.
 
 
 ## Resources

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   projector.c                                       :+:    :+:             */
+/*   projector.c                                        :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 18:15:15 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/29 19:35:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 static void scale(t_fdf *fdf, t_point *point)
 {
-	point->x *= fdf->scalar;
-	point->y *= fdf->scalar;
-	point->z *= fdf->scalar;
+	point->x *= fdf->projector.scalar;
+	point->y *= fdf->projector.scalar;
+	point->z *= fdf->projector.scalar;
 }
 
 static void offset(t_fdf *fdf, t_point *point)
@@ -31,8 +31,8 @@ static void offset(t_fdf *fdf, t_point *point)
 
 static void center(t_fdf *fdf, t_point *point)
 {
-	point->x += (fdf->scalar / 2) + (fdf->image->width / 2) - (fdf->scalar / 2);
-	point->y += (fdf->scalar / 2) + (fdf->image->height / 2) - (fdf->scalar / 2);
+	point->x += (fdf->projector.scalar / 2) + (fdf->image->width / 2) - (fdf->projector.scalar / 2);
+	point->y += (fdf->projector.scalar / 2) + (fdf->image->height / 2) - (fdf->projector.scalar / 2);
 }
 
 
@@ -49,6 +49,13 @@ t_point matmul(t_point point, const float matrix[3][3])
 	return (point);
 }
 
+void projector_init(t_fdf *fdf)
+{
+	fdf->projector.scalar = 15;
+	fdf->projector.amplitude = .1;
+	fdf->projector.angle = 1.6;
+}
+
 
 t_point projector(t_fdf *fdf, t_point point)
 {
@@ -56,13 +63,9 @@ t_point projector(t_fdf *fdf, t_point point)
 
 	float alpha = 0.61;
 	float beta = 0.78;
-
-	float angle = fdf->angle;
-	// float angle = 1.5;
-	printf("angle: %f\n", angle);
+	float angle = 1.6;
 
 	const float matrix_ortho[3][3] = {
-	//   x  y  z
 		{1, 0, 0},
 		{0, 1, 0},
 		{0, 0, 0},
@@ -101,7 +104,7 @@ t_point projector(t_fdf *fdf, t_point point)
 
 	offset(fdf, &projected);
 	scale(fdf, &projected);
-	projected.z *= fdf->amplitude;
+	projected.z *= fdf->projector.amplitude;
 
 	// projected = matmul(projected, matrix_rotate_x);
 	// projected = matmul(projected, matrix_rotate_z);
