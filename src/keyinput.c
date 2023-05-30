@@ -6,11 +6,15 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 23:01:04 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/30 15:03:17 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
+
+#define ANGLE_STEP 0.03;
+#define AMPLITUDE_STEP 0.01;
 
 void	key_hook(void *param)
 {
@@ -24,11 +28,26 @@ void	key_hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
 		fdf->projector.scalar -= 0.1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
-		fdf->projector.amplitude += 0.02;
+		fdf->projector.amplitude += AMPLITUDE_STEP;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))
-		fdf->projector.amplitude -= 0.02;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->projector.angle += 0.1;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->projector.angle -= 0.1;
+		fdf->projector.amplitude -= AMPLITUDE_STEP;
+
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+		fdf->projector.angle_x += ANGLE_STEP;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+		fdf->projector.angle_x -= ANGLE_STEP;
+
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
+		fdf->projector.angle_z += ANGLE_STEP;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
+		fdf->projector.angle_z -= ANGLE_STEP;
+
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
+		fdf->projector.angle_y += ANGLE_STEP;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
+		fdf->projector.angle_y -= ANGLE_STEP;
+
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1))
+		projector_init(fdf);
+
 }

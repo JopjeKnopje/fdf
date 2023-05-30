@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 23:25:45 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/30 14:40:55 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 #define COLOR_POINT_DEFAULT 0x00AACFFF
 
 
+
+typedef struct s_mat3x3
+{
+	float data[3][3];
+} t_mat3x3;
 
 typedef struct s_point
 {
@@ -59,7 +64,9 @@ typedef struct s_projector
 {
 	float scalar;
 	float amplitude;
-	float angle;
+	float angle_x;
+	float angle_y;
+	float angle_z;
 
 } 	t_projector;
 
@@ -98,7 +105,7 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 uint8_t		check_extension(const char *map, const char *ext);
 uint32_t 	color_add_alpha(uint32_t c);
 uint32_t	list_to_arr(t_fdf *fdf);
-t_point matmul(t_point point, const float matrix[3][3]);
+t_point matmul(t_point point, t_mat3x3 m);
 
 // list.c
 int		lstsize(t_node *lst);
@@ -134,6 +141,12 @@ void fps_hook(void *param);
 void draw_hook(void *param);
 void 	fdf_put_pixel(t_fdf *fdf, t_point p);
 
+// matrices.c
+t_mat3x3	get_matrix_rotate_y(float angle);
+t_mat3x3	get_matrix_rotate_x(float angle);
+t_mat3x3	get_matrix_rotate_z(float angle);
+t_mat3x3	get_matrix_iso();
+t_mat3x3	get_matrix_ortho();
 
 // meuk.c
 void print_point(t_point point);

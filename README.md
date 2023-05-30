@@ -31,21 +31,31 @@ Dynamic | slow
 
 
 
-## TODO
+# TODO
+## Features
 - [x] Read norm about global static const char arrays.
 - [ ] Some sort of optimization where it doens't draw the pixels that are already there?
 - [ ] When there is no user input (so when the scene isn't changing do not update the graphics)
 - [ ] Double check if makefile MLX related rules function correctly 
 - [ ] Only draw on user input.
 - [ ] Rainbow gradient background.
-- [ ] Instead of gnl just read a shit ton of data from the map.
 - [ ] Resize window.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
 - [ ] Weird color behaviour on linux.
 - [ ] For clearing the screen just memset into the pixel buffer.
+- [ ] Dikke read buffer broer
+- [ ] Instead of gnl just read a shit ton of data from the map.
+- [ ] Spherical projection
+- [ ] Gradient on lines
+- [ ] Gradient on height
+- [ ] Save projection angles on number keys.
+
+
+## Issues
 - [x] Only draw the pixels that are viewable.
-- [ ] Optimize line drawing's drawing direction based on which point is in the screen. 
+- [ ] Segfault when opening a max with scale too large for window.
+- [ ] Memset pixel clear
 
 
 ## Resources
@@ -53,3 +63,6 @@ Dynamic | slow
 * https://en.wikipedia.org/wiki/Rotation_matrix
 * https://en.wikipedia.org/wiki/3D_projection
 
+
+* https://stackoverflow.com/questions/39440390/deforming-plane-mesh-to-sphere
+* http://paulbourke.net/geometry/transformationprojection/

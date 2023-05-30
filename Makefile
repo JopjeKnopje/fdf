@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/30 11:53:54 by jboeve        ########   odam.nl          #
+#    Updated: 2023/05/30 13:25:55 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ MLX = MLX42/build/libmlx42.a
 # CFLAGS += -Wall -Wextra -Werror
 # CFLAGS = -g -fsanitize=address
 # CFLAGS = -g 
-CFLAGS = -Ofast
+# CFLAGS = -Ofast
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
@@ -51,7 +51,8 @@ SRCS = main.c \
 	   projector.c \
 	   keyinput.c \
 	   ui.c \
-	   draw.c
+	   draw.c \
+	   matrices.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

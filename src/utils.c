@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/30 11:25:02 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/30 12:56:19 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ uint32_t	list_to_arr(t_fdf *fdf)
 	return (0);
 }
 
-t_point matmul(t_point point, const float matrix[3][3])
+t_point matmul(t_point point, t_mat3x3 m)
 {
-	float projx = point.x;
-	float projy = point.y;
-	float projz = point.z;
+	float px = point.x;
+	float py = point.y;
+	float pz = point.z;
 
-	point.x = (projx * matrix[0][0]) + (projy * matrix[0][1]) + (projz * matrix[0][2]);
-	point.y = (projx * matrix[1][0]) + (projy * matrix[1][1]) + (projz * matrix[1][2]);
-	point.z = (projx * matrix[2][0]) + (projy * matrix[2][1]) + (projz * matrix[2][2]);
+	point.x = (px * m.data[0][0]) + (py * m.data[0][1]) + (pz * m.data[0][2]);
+	point.y = (px * m.data[1][0]) + (py * m.data[1][1]) + (pz * m.data[1][2]);
+	point.z = (px * m.data[2][0]) + (py * m.data[2][1]) + (pz * m.data[2][2]);
 
 	return (point);
 }
