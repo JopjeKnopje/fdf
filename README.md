@@ -54,7 +54,7 @@ Dynamic | slow
 
 ## Issues
 - [x] Only draw the pixels that are viewable.
-- [ ] Segfault when opening a max with scale too large for window.
+- [ ] Segfault when opening a max with scale too large for window. (only on mac)
 - [ ] Memset pixel clear
 
 

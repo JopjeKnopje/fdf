@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                        :+:    :+:             */
+/*   graphics.c                                         :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/30 15:00:43 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/30 15:30:34 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/MLX42_Input.h"
 #include "fdf.h"
 #include "libft.h"
 #include <stdint.h>

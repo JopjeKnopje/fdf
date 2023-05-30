@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   projector.c                                       :+:    :+:             */
+/*   projector.c                                        :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/30 15:00:39 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/30 15:44:13 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,16 @@ static void center(t_fdf *fdf, t_point *point)
 	point->y += (fdf->projector.scalar / 2) + ((float) fdf->image->height / 2) - (fdf->projector.scalar / 2);
 }
 
+// ex projector_rotate(ROTATE_Z_LEFT);
+void project_rotate(t_fdf *fdf, e_rotates rotate)
+{
+	// lookup table with function points that take rotate as argument.
+}
+
+
 void projector_init(t_fdf *fdf)
 {
-	fdf->projector.scalar = 1;
+	fdf->projector.scalar = 60;
 	fdf->projector.amplitude = .03;
 	fdf->projector.angle_x = 0.82;
 	fdf->projector.angle_y = -0.63;
@@ -47,25 +54,16 @@ t_point projector(t_fdf *fdf, t_point point)
 {
 	t_point projected = point;
 
-	static double time_old = 0;
-
 
 	offset(fdf, &projected);
 	scale(fdf, &projected);
-
-
-	if (mlx_get_time() - time_old >= 1)
-	{
-		printf("angle_x: %f | angle_y %f | angle_z %f\n", fdf->projector.angle_x, fdf->projector.angle_y, fdf->projector.angle_z);
-		time_old = mlx_get_time();
-	}
 
 	projected.z *= fdf->projector.amplitude;
 	projected = matmul(projected, get_matrix_rotate_x(fdf->projector.angle_x));
 	projected = matmul(projected, get_matrix_rotate_y(fdf->projector.angle_y));
 	projected = matmul(projected, get_matrix_rotate_z(fdf->projector.angle_z));
-	// projected = matmul(projected, get_matrix_iso());
 	projected = matmul(projected, get_matrix_ortho());
+	// projected = matmul(projected, get_matrix_iso());
 	center(fdf, &projected);
 
 
