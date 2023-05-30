@@ -1,6 +1,7 @@
 // this file is for developing only should not be included during evaluation
 
 #include "fdf.h"
+#include <stdint.h>
 
 void print_point(t_point point)
 {
@@ -23,7 +24,7 @@ void print_points(t_fdf *fdf)
 }
 void print_points_arr(t_fdf *fdf)
 {
-	int i = 0;
+	uint32_t i = 0;
 	
 	while (i <= fdf->map->width * fdf->map->height) 
 	{

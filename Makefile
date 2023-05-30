@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/29 19:54:16 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/30 11:53:54 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ endif
 LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
-CFLAGS += -Wall -Wextra -Werror
-CFLAGS = -g -fsanitize=address
+# CFLAGS += -Wall -Wextra -Werror
+# CFLAGS = -g -fsanitize=address
 # CFLAGS = -g 
-# CFLAGS = -O3
+CFLAGS = -Ofast
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 

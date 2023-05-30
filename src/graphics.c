@@ -6,15 +6,13 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 23:22:57 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/30 11:05:37 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42_Input.h"
-#include "MLX42/MLX42_Int.h"
 #include "fdf.h"
 #include "libft.h"
-#include <GLFW/glfw3.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>

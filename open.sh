@@ -1,2 +1,2 @@
 #!/bin/bash
-cd ~/Documents/fdf/ && ./fdf maps/42-custom.fdf
+cd ~/Documents/fdf/ && ./fdf maps/t1-custom.fdf

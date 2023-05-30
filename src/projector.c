@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 23:26:29 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/30 11:27:37 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void center(t_fdf *fdf, t_point *point)
 
 void projector_init(t_fdf *fdf)
 {
-	fdf->projector.scalar = 10;
+	fdf->projector.scalar = 1;
 	fdf->projector.amplitude = .03;
 	fdf->projector.angle = 1.6;
 }

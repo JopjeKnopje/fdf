@@ -39,12 +39,13 @@ Dynamic | slow
 - [ ] Only draw on user input.
 - [ ] Rainbow gradient background.
 - [ ] Instead of gnl just read a shit ton of data from the map.
-- [ ] Only calculate the pixels that are viewable.
-- [ ] Optimize line drawing's drawing direction based on which point is in the screen. 
 - [ ] Resize window.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
 - [ ] Weird color behaviour on linux.
+- [ ] For clearing the screen just memset into the pixel buffer.
+- [x] Only draw the pixels that are viewable.
+- [ ] Optimize line drawing's drawing direction based on which point is in the screen. 
 
 
 ## Resources

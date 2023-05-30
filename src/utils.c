@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 23:25:36 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/30 11:25:02 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ uint32_t	color_add_alpha(uint32_t c)
 	uint32_t	c_tmp;
 
 	c_tmp = c;
+	i = 0;
 	while (c_tmp)
 	{
 		c_tmp /= 16;
 		i++;
 	}
-	i = 0;
 	while (i < 8)
 	{
 		if (i >= 6)
