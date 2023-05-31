@@ -40,6 +40,7 @@ Dynamic | slow
 - [ ] Only draw on user input.
 - [ ] Rainbow gradient background.
 - [ ] Resize window.
+- [ ] min max window size.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
 - [x] Weird color behaviour on linux.
