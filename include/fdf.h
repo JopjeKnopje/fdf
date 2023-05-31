@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 00:00:59 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 01:23:11 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 #define COLOR_BACKGROUND 0x333333FF
 #define COLOR_POINT_DEFAULT 0x00AACFFF
 
+#define AMPLITUDE_STEP 0.01f
+#define SCALAR_STEP 0.1f
+
+#define ANGLE_STEP 0.01f
 
 
 typedef struct s_mat3x3
@@ -64,21 +68,22 @@ typedef struct s_projector
 {
 	float scalar;
 	float amplitude;
-	float angle_x;
-	float angle_y;
-	float angle_z;
-	t_mat3x3 identity_matrix;
-
+	t_mat3x3 id_matrix;
 } 	t_projector;
 
 typedef struct s_fdf
 {
 	t_map *map;
 	t_projector projector;
-
 	mlx_t *mlx;
 	mlx_image_t *image;
 }	t_fdf;
+
+
+typedef enum e_view {
+	VIEW_ORTHO,
+	VIEW_ISO,
+} t_view;
 
 typedef enum e_rotate_dir {
 	ROT_DIR_NEG = -1,
@@ -160,8 +165,11 @@ void 	fdf_put_pixel(t_fdf *fdf, t_point p);
 t_mat3x3	get_matrix_rotate_y(float angle);
 t_mat3x3	get_matrix_rotate_x(float angle);
 t_mat3x3	get_matrix_rotate_z(float angle);
-t_mat3x3	get_matrix_iso();
 t_mat3x3	get_matrix_ortho();
+t_mat3x3	get_matrix_iso();
+
+// view.c
+void view_select(t_fdf *fdf, t_view view);
 
 // rotate.c
 void rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);

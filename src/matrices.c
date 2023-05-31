@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/30 12:02:30 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/05/30 14:44:47 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/01 01:04:08 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,6 @@ t_mat3x3	get_matrix_rotate_z(float angle)
 	return (mat);
 }
 
-t_mat3x3	get_matrix_iso()
-{
-	const t_mat3x3 mat = {
-		{
-			{sqrt(3), 0, -sqrt(3)},
-			{1, 2, 1},
-			{sqrt(2), -sqrt(2), sqrt(2)},
-		}
-	};
-	return (mat);
-}
-
 t_mat3x3	get_matrix_ortho()
 {
 	const t_mat3x3 mat = {
@@ -68,6 +56,18 @@ t_mat3x3	get_matrix_ortho()
 			{1, 0, 0},
 			{0, 1, 0},
 			{0, 0, 0},
+		}
+	};
+	return (mat);
+}
+
+t_mat3x3	get_matrix_iso()
+{
+	const t_mat3x3 mat = {
+		{
+			{sqrt(3), 0, -sqrt(3)},
+			{1, 2, 1},
+			{sqrt(2), -sqrt(2), sqrt(2)},
 		}
 	};
 	return (mat);

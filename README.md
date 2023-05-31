@@ -58,6 +58,8 @@ Dynamic | slow
 - [ ] Segfault when resizing too quick.
 - [ ] Segfault when opening a max with scale too large for window. (only on mac)
 - [ ] Memset pixel clear
+- [ ] When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles,
+      It has to do with not having a Z-buffer.
 
 
 ## Resources

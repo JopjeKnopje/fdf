@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/31 23:08:41 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/01 01:12:06 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ SRCS = main.c \
 	   ui.c \
 	   draw.c \
 	   matrices.c \
-	   rotate.c
+	   rotate.c \
+	   view.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

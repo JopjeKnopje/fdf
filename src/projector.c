@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 00:15:56 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 01:21:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,21 @@ static void center(t_fdf *fdf, t_point *point)
 
 void projector_init(t_fdf *fdf)
 {
-	fdf->projector.scalar = 60;
-	fdf->projector.amplitude = .03;
-	fdf->projector.angle_x = 0.82;
-	fdf->projector.angle_y = -0.63;
-	fdf->projector.angle_z = 0.48;
-
-
-	ft_bzero(&fdf->projector.identity_matrix, sizeof(t_mat3x3));
-
-	fdf->projector.identity_matrix.data[0][0] = 1.00f;
-	fdf->projector.identity_matrix.data[1][1] = 1.00f;
+	fdf->projector.scalar = 20;
+	fdf->projector.amplitude = .02;
+	view_select(fdf, VIEW_ISO);
 }
 
 t_point projector(t_fdf *fdf, t_point point)
 {
 	t_point projected = point;
 
-
 	offset(fdf, &projected);
 	scale(fdf, &projected);
 
 	projected.z *= fdf->projector.amplitude;
-	projected = matmul(projected, fdf->projector.identity_matrix);
-	// projected = matmul(projected, get_matrix_rotate_x(fdf->projector.angle_x));
-	// projected = matmul(projected, get_matrix_rotate_y(fdf->projector.angle_y));
-	// projected = matmul(projected, get_matrix_rotate_z(fdf->projector.angle_z));
-
-	// projected = matmul(projected, get_matrix_ortho());
-	// projected = matmul(projected, get_matrix_iso());
+	projected = matmul(projected, fdf->projector.id_matrix);
 	center(fdf, &projected);
 
-
-	return projected;
+	return (projected);
 }
