@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 16:59:32 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 00:00:59 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ uint8_t		check_extension(const char *map, const char *ext);
 uint32_t 	color_add_alpha(uint32_t c);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_point matmul(t_point point, t_mat3x3 m);
+t_mat3x3 mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 
 // list.c
 int		lstsize(t_node *lst);
@@ -167,6 +168,7 @@ void rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
 
 // meuk.c
 void print_point(t_point point);
+void mat_print(t_mat3x3 m);
 void print_points(t_fdf *fdf);
 void print_points_arr(t_fdf *fdf);
 

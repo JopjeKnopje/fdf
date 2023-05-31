@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   utils.c                                            :+:    :+:            */
+/*   utils.c                                           :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 17:42:13 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/31 23:58:43 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include <stdint.h>
 #include <strings.h>
 
@@ -83,8 +84,29 @@ t_point matmul(t_point point, t_mat3x3 m)
 	return (point);
 }
 
-
 t_mat3x3 mat3x3mul(t_mat3x3 m1, t_mat3x3 m2)
 {
-	return (m1);
+	t_mat3x3 res;
+	int i;
+	int j;
+	int k;
+
+	ft_bzero(&res, sizeof(t_mat3x3));
+	i = 0;
+	while (i < 3) 
+	{
+		j = 0;
+		while (j < 3) 
+		{
+			k = 0;
+			while (k < 3) 
+			{
+				res.data[i][j] += m1.data[i][k] * m2.data[k][j];
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (res);
 }

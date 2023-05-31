@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                         :+:    :+:            */
+/*   graphics.c                                        :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 18:00:55 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/31 23:15:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MLX42/MLX42_Int.h"
 #include "fdf.h"
 #include "libft.h"
 #include <stdint.h>
@@ -19,31 +20,14 @@
 #include <MLX42/MLX42.h>
 #include <math.h>
 
-static int update_image(t_fdf *fdf, uint32_t width, uint32_t height)
-{
-	fdf->image = mlx_new_image(fdf->mlx, width, height);
-	if (!fdf->image)
-	{
-		mlx_close_window(fdf->mlx);
-		error_print(mlx_strerror(mlx_errno));
-		return (1);
-	}
-	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) == -1)
-	{
-		mlx_close_window(fdf->mlx);
-		error_print(mlx_strerror(mlx_errno));
-		return (1);
-	}
-	return (0);
-}
+
 
 static void	resize(int32_t width, int32_t height, void* param)
 {
 	t_fdf *fdf = param;
-	mlx_delete_image(fdf->mlx, fdf->image);
-	update_image(fdf, width, height);
+	printf("size %d,%d\n", width, height);
+	mlx_resize_image(fdf->image, width, height);
 }
-
 
 static void	hooks_init(t_fdf *fdf)
 {
@@ -61,8 +45,19 @@ int32_t	graphics_init(t_fdf *fdf)
 		error_print(mlx_strerror(mlx_errno));
 		return (1);
 	}
-	if (update_image(fdf, WIDTH, HEIGHT))
+	fdf->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	if (!fdf->image)
+	{
+		mlx_close_window(fdf->mlx);
+		error_print(mlx_strerror(mlx_errno));
 		return (1);
+	}
+	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) == -1)
+	{
+		mlx_close_window(fdf->mlx);
+		error_print(mlx_strerror(mlx_errno));
+		return (1);
+	}
 	hooks_init(fdf);
 	projector_init(fdf);
 	mlx_loop(fdf->mlx);

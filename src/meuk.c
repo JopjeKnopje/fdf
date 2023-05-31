@@ -32,3 +32,10 @@ void print_points_arr(t_fdf *fdf)
 		i++;
 	}
 }
+
+void mat_print(t_mat3x3 m)
+{
+	printf("[ %f %f %f ]\n", m.data[0][0], m.data[0][1], m.data[0][2]);
+	printf("[ %f %f %f ]\n", m.data[1][0], m.data[1][1], m.data[1][2]);
+	printf("[ %f %f %f ]\n", m.data[2][0], m.data[2][1], m.data[2][2]);
+}
