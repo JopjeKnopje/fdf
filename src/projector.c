@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 16:55:55 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/31 18:02:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ t_point projector(t_fdf *fdf, t_point point)
 
 	projected.z *= fdf->projector.amplitude;
 	projected = matmul(projected, fdf->projector.identity_matrix);
-	// projected = matmul(projected, get_matrix_rotate_x(fdf->projector.angle_x));
-	// projected = matmul(projected, get_matrix_rotate_y(fdf->projector.angle_y));
-	// projected = matmul(projected, get_matrix_rotate_z(fdf->projector.angle_z));
+	projected = matmul(projected, get_matrix_rotate_x(fdf->projector.angle_x));
+	projected = matmul(projected, get_matrix_rotate_y(fdf->projector.angle_y));
+	projected = matmul(projected, get_matrix_rotate_z(fdf->projector.angle_z));
 
 	// projected = matmul(projected, get_matrix_ortho());
 	// projected = matmul(projected, get_matrix_iso());

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   draw.c                                            :+:    :+:             */
+/*   draw.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/30 13:34:07 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/05/31 17:49:12 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,14 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	if (x + 1 < fdf->map->width)
 	{ 
 		points[1] = fdf->map->points[y * fdf->map->width + x + 1];
-		if (line_in_window(fdf, points[0], points[1]))
-		{
-			points[1] = projector(fdf, points[1]);
-			line_draw(fdf, points[0], points[1]);
-		}
+		points[1] = projector(fdf, points[1]);
+		line_draw(fdf, points[0], points[1]);
 	}
 	if (y + 1 < fdf->map->height)
 	{ 
 		points[2] = fdf->map->points[(y + 1) * fdf->map->width + x];
-		if (line_in_window(fdf, points[0], points[2]))
-		{
-			points[2] = projector(fdf, points[2]);
-			line_draw(fdf, points[0], points[2]);
-		}
+		points[2] = projector(fdf, points[2]);
+		line_draw(fdf, points[0], points[2]);
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/05/31 16:57:30 by joppe         ########   odam.nl          #
+#    Updated: 2023/05/31 17:59:51 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
-# CFLAGS = -g -fsanitize=address
+CFLAGS = -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast
 

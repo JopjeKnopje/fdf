@@ -42,7 +42,7 @@ Dynamic | slow
 - [ ] Resize window.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
-- [ ] Weird color behaviour on linux.
+- [x] Weird color behaviour on linux.
 - [ ] For clearing the screen just memset into the pixel buffer.
 - [ ] Dikke read buffer broer
 - [ ] Instead of gnl just read a shit ton of data from the map.

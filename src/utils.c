@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 17:02:02 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/31 17:42:13 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,7 @@ t_point matmul(t_point point, t_mat3x3 m)
 }
 
 
-t_mat3x3 mat3x3mul(t_point point, t_mat3x3 m)
+t_mat3x3 mat3x3mul(t_mat3x3 m1, t_mat3x3 m2)
 {
-	float px = point.x;
-	float py = point.y;
-	float pz = point.z;
-
-	point.x = (px * m.data[0][0]) + (py * m.data[0][1]) + (pz * m.data[0][2]);
-	point.y = (px * m.data[1][0]) + (py * m.data[1][1]) + (pz * m.data[1][2]);
-	point.z = (px * m.data[2][0]) + (py * m.data[2][1]) + (pz * m.data[2][2]);
-
-	return (point);
+	return (m1);
 }

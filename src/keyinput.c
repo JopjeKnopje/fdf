@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 17:00:06 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/31 17:42:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdio.h>
 
 #define AMPLITUDE_STEP 0.01;
+
+#define ANGLE_STEP 4.0
 
 void	key_hook(void *param)
 {
