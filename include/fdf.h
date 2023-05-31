@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/30 15:42:06 by joppe         ########   odam.nl         */
+/*   Updated: 2023/05/31 16:59:32 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,19 @@ typedef struct s_fdf
 	mlx_image_t *image;
 }	t_fdf;
 
+typedef enum e_rotate_dir {
+	ROT_DIR_NEG = -1,
+	ROT_DIR_POS = 1,
+} t_rotate_dir;
+
+typedef enum e_rotate_angle
+{
+	ROT_ANGLE_X,
+	ROT_ANGLE_Y,
+	ROT_ANGLE_Z,
+	ROT_ANGLE_COUNT,
+}	t_rotate_axis;
+
 typedef enum e_error
 {
 	ERR_ARGS_INVALID,
@@ -148,6 +161,9 @@ t_mat3x3	get_matrix_rotate_x(float angle);
 t_mat3x3	get_matrix_rotate_z(float angle);
 t_mat3x3	get_matrix_iso();
 t_mat3x3	get_matrix_ortho();
+
+// rotate.c
+void rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
 
 // meuk.c
 void print_point(t_point point);
