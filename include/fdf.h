@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 01:23:11 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 01:45:01 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_projector
 	float scalar;
 	float amplitude;
 	t_mat3x3 id_matrix;
+	t_mat3x3 saved_view;
 } 	t_projector;
 
 typedef struct s_fdf
@@ -83,6 +84,7 @@ typedef struct s_fdf
 typedef enum e_view {
 	VIEW_ORTHO,
 	VIEW_ISO,
+	VIEW_SAVED,
 } t_view;
 
 typedef enum e_rotate_dir {

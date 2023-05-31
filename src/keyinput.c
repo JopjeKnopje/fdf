@@ -6,10 +6,11 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 01:21:35 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 01:48:21 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MLX42/MLX42.h"
 #include "fdf.h"
 #include <stdio.h>
 
@@ -48,5 +49,12 @@ void	key_hook(void *param)
 		view_select(fdf, VIEW_ORTHO);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_2))
 		view_select(fdf, VIEW_ISO);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_3))
+	{
+		if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_SHIFT))
+			fdf->projector.saved_view = fdf->projector.id_matrix;
+		else
+			view_select(fdf, VIEW_SAVED);
+	}
 
 }

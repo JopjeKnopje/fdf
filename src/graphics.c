@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 23:15:50 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 01:42:31 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 static void	resize(int32_t width, int32_t height, void* param)
 {
 	t_fdf *fdf = param;
-	printf("size %d,%d\n", width, height);
 	mlx_resize_image(fdf->image, width, height);
 }
 
