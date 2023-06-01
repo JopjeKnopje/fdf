@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 02:05:16 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 02:10:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void scale(t_fdf *fdf, t_point *point)
 
 static void offset(t_fdf *fdf, t_point *point)
 {
-	point->x -= ((float) fdf->map->width / 2);
-	point->y -= ((float) fdf->map->height / 2);
+	point->x -= ((float) fdf->map->width / 2) - 0.5;
+	point->y -= ((float) fdf->map->height / 2) - 0.5;
 }
 
 static void center(t_fdf *fdf, t_point *point)
@@ -39,7 +39,7 @@ static void center(t_fdf *fdf, t_point *point)
 
 void projector_init(t_fdf *fdf)
 {
-	fdf->projector.scalar = 20;
+	fdf->projector.scalar = 90;
 	fdf->projector.amplitude = .02;
 	view_select(fdf, VIEW_ISO);
 }
