@@ -48,6 +48,7 @@ Dynamic | slow
 - [ ] Gradient on lines
 - [ ] Gradient on height
 - [ ] Save projection angles on number keys.
+- [ ] Add automatic rotate funcion.
 
 
 ## Issues

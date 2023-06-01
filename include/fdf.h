@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 01:45:01 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/01 02:40:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void key_hook(void *param);
 
 // ui.c
 void fps_hook(void *param);
+void print_angles(void *param);
 
 // draw.c
 void draw_hook(void *param);
