@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 02:40:13 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 00:09:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	hooks_init(t_fdf *fdf)
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
 	mlx_loop_hook(fdf->mlx, draw_hook, fdf);
-	mlx_loop_hook(fdf->mlx, print_angles, fdf);
+	// mlx_loop_hook(fdf->mlx, print_angles, fdf);
 	mlx_resize_hook(fdf->mlx, resize, fdf);
 }
 
@@ -58,6 +58,7 @@ int32_t	graphics_init(t_fdf *fdf)
 		error_print(mlx_strerror(mlx_errno));
 		return (1);
 	}
+	mlx_set_window_limit(fdf->mlx, WIDTH_MIN, HEIGHT_MIN, -1, -1);
 	hooks_init(fdf);
 	projector_init(fdf);
 	mlx_loop(fdf->mlx);

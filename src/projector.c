@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 02:10:57 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 00:30:11 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 #include <math.h>
 #include <stdio.h>
 
-
-
 static void scale(t_fdf *fdf, t_point *point)
 {
-	point->x *= fdf->projector.scalar;
-	point->y *= fdf->projector.scalar;
-	point->z *= fdf->projector.scalar;
+	point->x *= fdf->projector.active_view.scalar;
+	point->y *= fdf->projector.active_view.scalar;
+	point->z *= fdf->projector.active_view.scalar;
 }
 
 static void offset(t_fdf *fdf, t_point *point)
@@ -33,14 +31,12 @@ static void offset(t_fdf *fdf, t_point *point)
 
 static void center(t_fdf *fdf, t_point *point)
 {
-	point->x += (fdf->projector.scalar / 2) + ((float) fdf->image->width / 2) - (fdf->projector.scalar / 2);
-	point->y += (fdf->projector.scalar / 2) + ((float) fdf->image->height / 2) - (fdf->projector.scalar / 2);
+	point->x += ((float) fdf->image->width / 2) - fdf->projector.active_view.x_move;
+	point->y += ((float) fdf->image->height / 2) - fdf->projector.active_view.y_move;
 }
 
 void projector_init(t_fdf *fdf)
 {
-	fdf->projector.scalar = 90;
-	fdf->projector.amplitude = .02;
 	view_select(fdf, VIEW_ISO);
 }
 
@@ -51,8 +47,8 @@ t_point projector(t_fdf *fdf, t_point point)
 	offset(fdf, &projected);
 	scale(fdf, &projected);
 
-	projected.z *= fdf->projector.amplitude;
-	projected = matmul(projected, fdf->projector.id_matrix);
+	projected.z *= fdf->projector.active_view.amplitude;
+	projected = matmul(projected, fdf->projector.active_view.id_matrix);
 	center(fdf, &projected);
 
 	return (projected);

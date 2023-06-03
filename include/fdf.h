@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 02:40:05 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 00:28:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
+#define WIDTH_MIN 250
+#define HEIGHT_MIN 250
+
 #define WIDTH 1024
 #define HEIGHT 720
 
@@ -29,9 +33,8 @@
 #define COLOR_POINT_DEFAULT 0x00AACFFF
 
 #define AMPLITUDE_STEP 0.01f
-#define SCALAR_STEP 0.1f
-
 #define ANGLE_STEP 0.01f
+#define SCALAR_STEP 0.1f
 
 
 typedef struct s_mat3x3
@@ -64,12 +67,19 @@ typedef struct s_map
 	uint32_t height;
 }	t_map;
 
+typedef struct s_view
+{
+	t_mat3x3 id_matrix;
+	int32_t x_move;
+	int32_t y_move;
+	float	scalar;
+	float	amplitude;
+} t_view;
+
 typedef struct s_projector
 {
-	float scalar;
-	float amplitude;
-	t_mat3x3 id_matrix;
-	t_mat3x3 saved_view;
+	t_view active_view;
+	t_view saved_view;
 } 	t_projector;
 
 typedef struct s_fdf
@@ -81,11 +91,11 @@ typedef struct s_fdf
 }	t_fdf;
 
 
-typedef enum e_view {
+typedef enum e_views {
 	VIEW_ORTHO,
 	VIEW_ISO,
 	VIEW_SAVED,
-} t_view;
+} t_views;
 
 typedef enum e_rotate_dir {
 	ROT_DIR_NEG = -1,
@@ -161,18 +171,18 @@ void fps_hook(void *param);
 void print_angles(void *param);
 
 // draw.c
-void draw_hook(void *param);
+void	draw_hook(void *param);
 void 	fdf_put_pixel(t_fdf *fdf, t_point p);
 
 // matrices.c
-t_mat3x3	get_matrix_rotate_y(float angle);
-t_mat3x3	get_matrix_rotate_x(float angle);
-t_mat3x3	get_matrix_rotate_z(float angle);
-t_mat3x3	get_matrix_ortho();
-t_mat3x3	get_matrix_iso();
+const t_mat3x3	get_matrix_rotate_x(float angle);
+const t_mat3x3	get_matrix_rotate_y(float angle);
+const t_mat3x3	get_matrix_rotate_z(float angle);
+const t_mat3x3	get_matrix_ortho();
+const t_mat3x3	get_matrix_iso();
 
 // view.c
-void view_select(t_fdf *fdf, t_view view);
+void view_select(t_fdf *fdf, t_views view);
 
 // rotate.c
 void rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);

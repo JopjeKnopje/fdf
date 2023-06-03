@@ -6,14 +6,14 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/30 12:02:30 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/01 01:55:39 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/03 23:51:48 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-t_mat3x3	get_matrix_rotate_x(float angle)
+const t_mat3x3	get_matrix_rotate_x(float angle)
 {
 	const t_mat3x3 mat = {
 		{
@@ -25,7 +25,7 @@ t_mat3x3	get_matrix_rotate_x(float angle)
 	return (mat);
 }
 
-t_mat3x3	get_matrix_rotate_y(float angle)
+const t_mat3x3	get_matrix_rotate_y(float angle)
 {
 	const t_mat3x3 mat = {
 		{
@@ -37,7 +37,7 @@ t_mat3x3	get_matrix_rotate_y(float angle)
 	return (mat);
 }
 
-t_mat3x3	get_matrix_rotate_z(float angle)
+const t_mat3x3	get_matrix_rotate_z(float angle)
 {
 	const t_mat3x3 mat = {
 		{
@@ -49,7 +49,7 @@ t_mat3x3	get_matrix_rotate_z(float angle)
 	return (mat);
 }
 
-t_mat3x3	get_matrix_ortho()
+const t_mat3x3	get_matrix_ortho()
 {
 	const t_mat3x3 mat = {
 		{
@@ -61,7 +61,7 @@ t_mat3x3	get_matrix_ortho()
 	return (mat);
 }
 
-t_mat3x3	get_matrix_iso()
+const t_mat3x3	get_matrix_iso()
 {
 	const t_mat3x3 mat = {
 		{

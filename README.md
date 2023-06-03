@@ -38,7 +38,7 @@ Dynamic | slow
 - [ ] When there is no user input (so when the scene isn't changing do not update the graphics)
 - [ ] Double check if makefile MLX related rules function correctly 
 - [ ] Resize window.
-- [ ] min max window size.
+- [x] min max window size.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
 - [x] Weird color behaviour on linux.
@@ -47,7 +47,7 @@ Dynamic | slow
 - [ ] Spherical projection
 - [ ] Gradient on lines
 - [ ] Gradient on height
-- [ ] Save projection angles on number keys.
+- [x] Save projection angles on number keys.
 - [ ] Add automatic rotate funcion.
 
 

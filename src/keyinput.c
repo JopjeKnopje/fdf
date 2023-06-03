@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 02:02:53 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 00:30:28 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	key_hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-		fdf->projector.scalar += SCALAR_STEP;
+		fdf->projector.active_view.scalar += SCALAR_STEP;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
-		fdf->projector.scalar -= SCALAR_STEP;
+		fdf->projector.active_view.scalar -= SCALAR_STEP;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
-		fdf->projector.amplitude += AMPLITUDE_STEP;
+		fdf->projector.active_view.amplitude += AMPLITUDE_STEP;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))
-		fdf->projector.amplitude -= AMPLITUDE_STEP;
+		fdf->projector.active_view.amplitude -= AMPLITUDE_STEP;
 
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
 		rotate(fdf, ROT_ANGLE_X, ROT_DIR_POS);
@@ -52,9 +52,18 @@ void	key_hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_3))
 	{
 		if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_SHIFT))
-			fdf->projector.saved_view = fdf->projector.id_matrix;
+			fdf->projector.saved_view = fdf->projector.active_view;
 		else
 			view_select(fdf, VIEW_SAVED);
 	}
+
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
+		fdf->projector.active_view.y_move++;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
+		fdf->projector.active_view.y_move--;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
+		fdf->projector.active_view.x_move++;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
+		fdf->projector.active_view.x_move--;
 
 }
