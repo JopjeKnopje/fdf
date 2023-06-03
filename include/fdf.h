@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 00:28:50 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 00:43:44 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_projector
 typedef struct s_fdf
 {
 	t_map *map;
-	t_projector projector;
 	mlx_t *mlx;
+	t_projector projector;
 	mlx_image_t *image;
 }	t_fdf;
 
