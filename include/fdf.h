@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 00:43:44 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 01:40:59 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_fdf
 	mlx_image_t *image;
 }	t_fdf;
 
-
 typedef enum e_views {
 	VIEW_ORTHO,
 	VIEW_ISO,
@@ -118,13 +117,11 @@ typedef enum e_error
 	ERR_COUNT,
 }	t_error;
 
-
 const static char *ERROR_NAME[] = {
 	[ERR_ARGS_INVALID] = "Usage: ./fdf <map>",
 	[ERR_MAP_INVALID] = "Invalid map",
 	[ERR_MALLOC_FAILURE] = "Malloc failure",
 };
-
 
 // fdf.c
 int32_t		fdf(int32_t argc, const char* argv[]);
@@ -136,43 +133,43 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 uint8_t		check_extension(const char *map, const char *ext);
 uint32_t 	color_add_alpha(uint32_t c);
 uint32_t	list_to_arr(t_fdf *fdf);
-t_point matmul(t_point point, t_mat3x3 m);
-t_mat3x3 mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
+t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
+t_point		matmul(t_point point, t_mat3x3 m);
 
 // list.c
-int		lstsize(t_node *lst);
-t_node	*lstadd_back(t_node **lst, t_node *new);
-t_node	*lstlast(t_node *lst);
-t_node	*lstnew(t_point point);
+int			lstsize(t_node *lst);
+t_node		*lstadd_back(t_node **lst, t_node *new);
+t_node		*lstlast(t_node *lst);
+t_node		*lstnew(t_point point);
 
 // free.c
-void	free_split(char **s_split);
-void 	free_lst(t_node *lst);
+void		free_split(char **s_split);
+void		free_lst(t_node *lst);
 
 // graphics.c
-int32_t graphics_init(t_fdf *fdf);
+int32_t 	graphics_init(t_fdf *fdf);
 
 // line.c
-void line_draw(t_fdf *fdf, t_point p_start, t_point p_end);
+void		line_draw(t_fdf *fdf, t_point p_start, t_point p_end);
 
 // error.c
 uint32_t	error_message(t_error err);
 uint32_t 	error_print(const char *s);
 
 // projector.c
-t_point projector(t_fdf *fdf, t_point point);
-void projector_init(t_fdf *fdf);
+void		projector_init(t_fdf *fdf);
+t_point		projector(t_fdf *fdf, t_point point);
 
 // keyinput.c
-void key_hook(void *param);
+void		key_hook(void *param);
 
 // ui.c
-void fps_hook(void *param);
-void print_angles(void *param);
+void		fps_hook(void *param);
+void		print_angles(void *param);
 
 // draw.c
-void	draw_hook(void *param);
-void 	fdf_put_pixel(t_fdf *fdf, t_point p);
+void		draw_hook(void *param);
+void 		fdf_put_pixel(t_fdf *fdf, t_point p);
 
 // matrices.c
 const t_mat3x3	get_matrix_rotate_x(float angle);
@@ -182,15 +179,15 @@ const t_mat3x3	get_matrix_ortho();
 const t_mat3x3	get_matrix_iso();
 
 // view.c
-void view_select(t_fdf *fdf, t_views view);
+void		view_select(t_fdf *fdf, t_views view);
 
 // rotate.c
-void rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
+void		rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
 
 // meuk.c
-void print_point(t_point point);
-void mat_print(t_mat3x3 m);
-void print_points(t_fdf *fdf);
-void print_points_arr(t_fdf *fdf);
+void	print_point(t_point point);
+void	mat_print(t_mat3x3 m);
+void	print_points(t_fdf *fdf);
+void	print_points_arr(t_fdf *fdf);
 
 #endif

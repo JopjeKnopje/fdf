@@ -6,10 +6,11 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/01 01:37:24 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/04 01:44:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MLX42/MLX42.h"
 #include "fdf.h"
 #include <math.h>
 #include <stdint.h>

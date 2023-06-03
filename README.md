@@ -58,6 +58,7 @@ Dynamic | slow
 - [ ] Memset pixel clear
 - [ ] When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles,
       It has to do with not having a Z-buffer.
+- [ ] Pixels being draw at `x` 0
 
 
 ## Resources
