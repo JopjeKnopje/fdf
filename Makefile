@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/04 01:36:40 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/04 21:28:19 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = fdf
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw -lm
-	RUN_CMD = ./$(NAME) maps/42-custom1.fdf
+	RUN_CMD = ./$(NAME) maps/42-custom.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
