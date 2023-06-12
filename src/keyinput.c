@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 00:30:28 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 15:02:16 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	key_hook(void *param)
 		else
 			view_select(fdf, VIEW_SAVED);
 	}
-
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 		fdf->projector.active_view.y_move++;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))

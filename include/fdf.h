@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 01:40:59 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 19:37:39 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,16 @@ typedef struct s_map
 
 	t_point *points;
 
+	const char *name;
+	uint32_t delta_z;
 	uint32_t width;
 	uint32_t height;
 }	t_map;
+
+typedef struct s_colorinfo {
+	
+	
+} t_colorinfo;
 
 typedef struct s_view
 {
@@ -74,6 +81,7 @@ typedef struct s_view
 	int32_t y_move;
 	float	scalar;
 	float	amplitude;
+	t_colorinfo color_info;
 } t_view;
 
 typedef struct s_projector
@@ -135,6 +143,7 @@ uint32_t 	color_add_alpha(uint32_t c);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 t_point		matmul(t_point point, t_mat3x3 m);
+uint32_t	map_find_delta_z(t_fdf *fdf);
 
 // list.c
 int			lstsize(t_node *lst);
@@ -183,6 +192,9 @@ void		view_select(t_fdf *fdf, t_views view);
 
 // rotate.c
 void		rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
+
+// color.c
+void color_init(t_fdf *fdf);
 
 // meuk.c
 void	print_point(t_point point);

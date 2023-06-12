@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 01:15:38 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 19:36:31 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ static void center(t_fdf *fdf, t_point *point)
 
 void projector_init(t_fdf *fdf)
 {
+	fdf->map->delta_z = map_find_delta_z(fdf);
 	view_select(fdf, VIEW_ISO);
+	color_init(fdf);
 }
 
 t_point projector(t_fdf *fdf, t_point point)

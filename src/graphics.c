@@ -6,11 +6,10 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/12 12:56:57 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/12 16:05:37 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/MLX42_Int.h"
 #include "fdf.h"
 #include "libft.h"
 #include <stdint.h>
@@ -25,6 +24,7 @@
 static void	resize(int32_t width, int32_t height, void* param)
 {
 	t_fdf *fdf = param;
+	// TODO Error checking.
 	mlx_resize_image(fdf->image, width, height);
 }
 
@@ -39,7 +39,7 @@ static void	hooks_init(t_fdf *fdf)
 
 int32_t	graphics_init(t_fdf *fdf)
 {
-	fdf->mlx = mlx_init(WIDTH, HEIGHT, TITLE, true);
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, fdf->map->name, true);
 	if (!fdf->mlx)
 	{
 		error_print(mlx_strerror(mlx_errno));

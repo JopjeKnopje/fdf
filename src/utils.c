@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/31 23:58:43 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 16:02:25 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,24 @@ t_mat3x3 mat3x3mul(t_mat3x3 m1, t_mat3x3 m2)
 		i++;
 	}
 	return (res);
+}
+
+uint32_t map_find_delta_z(t_fdf *fdf)
+{
+	int i;
+	int32_t max;
+	int32_t min;
+
+	i = 0;
+	max = 0;
+	min = 0;
+	while (i < fdf->map->width * fdf->map->height) 
+	{
+		if (fdf->map->points[i].z < min)
+			min = fdf->map->points[i].z;
+		else if (fdf->map->points[i].z > max)
+			max = fdf->map->points[i].z;
+		i++;
+	}
+	return (abs(max - min));
 }

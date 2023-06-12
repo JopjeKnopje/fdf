@@ -49,6 +49,7 @@ Dynamic | slow
 - [ ] Gradient on height
 - [x] Save projection angles on number keys.
 - [ ] Add automatic rotate funcion.
+- [ ] Add screensaver mode (like a dvd player has).
 
 
 ## Issues
@@ -59,7 +60,7 @@ Dynamic | slow
 - [ ] When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles,
       It has to do with not having a Z-buffer.
 - [x] Pixels being draw at `x`.
-
+- [?] Endianness check in get_color();
 
 ## Resources
 * https://clintbellanger.net/articles/isometric_math/

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 21:40:43 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 16:05:11 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ uint32_t	parser(t_fdf *fdf, const char *map)
 	if (list_to_arr(fdf))
 		return (1);
 	close(fd);
+	fdf->map->name = map;
 	return (0);
 }

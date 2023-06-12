@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/12 14:27:42 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/12 14:51:15 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void draw_clear(t_fdf *fdf)
 
 static bool line_in_window(t_fdf *fdf, t_point p1, t_point p2)
 {
-	return ((p1.x >= 0 && p1.x <= fdf->image->width && p1.y >= 0 && p1.y <= fdf->image->height) 
-			&& (p2.x >= 0 && p2.x <= fdf->image->width && p2.y >= 0 && p2.y <= fdf->image->height));
+	return ((p1.x >= 0 && p1.x < fdf->image->width && p1.y >= 0 && p1.y < fdf->image->height)
+			&& (p2.x >= 0 && p2.x < fdf->image->width && p2.y >= 0 && p2.y < fdf->image->height));
 }
 
 static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
@@ -46,12 +46,14 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	{ 
 		points[1] = fdf->map->points[y * fdf->map->width + x + 1];
 		points[1] = projector(fdf, points[1]);
+		// if (line_in_window(fdf, points[0], points[1]))
 		line_draw(fdf, points[0], points[1]);
 	}
 	if (y + 1 < fdf->map->height)
 	{ 
 		points[2] = fdf->map->points[(y + 1) * fdf->map->width + x];
 		points[2] = projector(fdf, points[2]);
+		// if (line_in_window(fdf, points[0], points[2]))
 		line_draw(fdf, points[0], points[2]);
 	}
 }
