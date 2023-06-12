@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 21:32:06 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 12:56:57 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	hooks_init(t_fdf *fdf)
 	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
 	mlx_loop_hook(fdf->mlx, draw_hook, fdf);
-	mlx_loop_hook(fdf->mlx, print_angles, fdf);
+	// mlx_loop_hook(fdf->mlx, print_angles, fdf);
 	mlx_resize_hook(fdf->mlx, resize, fdf);
 }
 

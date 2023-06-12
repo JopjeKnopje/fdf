@@ -38,7 +38,7 @@ Dynamic | slow
 - [ ] When there is no user input (so when the scene isn't changing do not update the graphics)
 - [ ] Double check if makefile MLX related rules function correctly 
 - [ ] Resize window.
-- [x] min max window size.
+- [x] Min max window size.
 - [ ] FPS Counter in screen.
 - [ ] Support multiple projections in an enum that we can pass to the projector.
 - [x] Weird color behaviour on linux.
@@ -53,12 +53,12 @@ Dynamic | slow
 
 ## Issues
 - [x] Only draw the pixels that are viewable.
-- [ ] Segfault when resizing too quick.
-- [ ] Segfault when opening a max with scale too large for window. (only on mac)
+- [?] Segfault when resizing too quick.
+- [x] Segfault when opening a max with scale too large for window. (only on mac)
 - [ ] Memset pixel clear
 - [ ] When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles,
       It has to do with not having a Z-buffer.
-- [ ] Pixels being draw at `x` 0
+- [x] Pixels being draw at `x`.
 
 
 ## Resources

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 21:28:54 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/12 14:27:34 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void view_iso(t_projector *p)
 {
+	// TODO work out these values into one matrix
 	p->active_view.id_matrix = mat3x3mul(p->active_view.id_matrix, get_matrix_iso());
 	p->active_view.id_matrix = mat3x3mul(p->active_view.id_matrix, get_matrix_rotate_x(1.58));
 }
