@@ -62,6 +62,7 @@ Dynamic | slow
 - [x] Pixels being draw at `x`.
 - [?] Endianness check in get_color();
 - [ ] Colors in map don't correspond to their hex value.
+- [ ] Use union for colors to get rid of `get_color_x` functions.
 
 ## Resources
 * https://clintbellanger.net/articles/isometric_math/
