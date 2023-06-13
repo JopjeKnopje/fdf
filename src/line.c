@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   line.c                                            :+:    :+:             */
+/*   line.c                                             :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 19:26:50 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 20:54:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	int32_t sy = increment(y_end - y_start > 0);
 
 	uint32_t step = 0;
-
 	int32_t err = 0;
 
-	uint32_t len = sqrt((dx*dx + dy*dy));
+	const uint32_t len = sqrt((dx*dx + dy*dy));
 
 	if (dx > dy)
 	{
@@ -63,7 +62,7 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 		tmp.y = y_start;
 		tmp.x = x_start;
 		// TODO find min/max z values, for the color cap.
-		tmp.color = color_interpolate(p_start.color, p_end.color, step, len);
+		tmp.color = color_gradient(p_start.color, p_end.color, step, len);
 		fdf_put_pixel(fdf, tmp);
 		if (dx > dy)
 		{

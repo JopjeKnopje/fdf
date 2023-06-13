@@ -45,7 +45,7 @@ Dynamic | slow
 - [ ] For clearing the screen just memset into the pixel buffer.
 - [ ] Instead of gnl just read a shit ton of data from the map.
 - [ ] Spherical projection
-- [ ] Gradient on lines
+- [x] Gradient on lines
 - [ ] Gradient on height
 - [x] Save projection angles on number keys.
 - [ ] Add automatic rotate funcion.
