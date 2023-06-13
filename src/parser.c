@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                          :+:    :+:             */
+/*   parser.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 16:55:29 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 21:09:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,19 @@ static uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-static uint32_t	parse_color(const char *s)
+static t_rgba	parse_color(const char *s)
 {
-	uint32_t	color;
+	t_rgba	color;
 	char		*delim;
 
 	delim = ft_strchr(s, ',');
 	if (delim)
-		color = color_add_alpha(ft_atoi_hex(delim + 1));
+	{
+		color.value = ft_atoi_hex(delim + 1);
+		color = color_add_alpha(color);
+	}
 	else
-		color = COLOR_POINT_DEFAULT;
+		color.value = COLOR_POINT_DEFAULT;
 	return (color);
 }
 

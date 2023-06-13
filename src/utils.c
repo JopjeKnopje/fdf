@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   utils.c                                           :+:    :+:             */
+/*   utils.c                                            :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/12 16:02:25 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 21:09:01 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@ uint8_t	check_extension(const char *map, const char *ext)
 	return (!ft_strncmp((map + map_len - ext_len), ext, ext_len));
 }
 
-uint32_t	color_add_alpha(uint32_t c)
+t_rgba	color_add_alpha(t_rgba c)
 {
 	uint32_t	i;
-	uint32_t	c_tmp;
+	t_rgba	c_tmp;
 
 	c_tmp = c;
 	i = 0;
-	while (c_tmp)
+	while (c_tmp.value)
 	{
-		c_tmp /= 16;
+		c_tmp.value /= 16;
 		i++;
 	}
 	while (i < 8)
 	{
 		if (i >= 6)
-			c = c << 4 | 0xF;
+			c.value = c.value << 4 | 0xF;
 		else
-			c = c << 4 | 0x0;
+			c.value = c.value << 4 | 0x0;
 		i++;
 	}
 	return (c);

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 20:55:54 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/13 21:10:59 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@
 #define ANGLE_STEP 0.01f
 #define SCALAR_STEP 0.1f
 
+typedef union s_rgba
+{
+	uint32_t	value;
+	struct
+	{
+		uint8_t	a;
+		uint8_t	b;
+		uint8_t	g;
+		uint8_t	r;
+	};
+}	t_rgba;
+
 
 typedef struct s_mat3x3
 {
@@ -44,10 +56,10 @@ typedef struct s_mat3x3
 
 typedef struct s_point
 {
-	float x;
-	float y;
-	float z;
-	int32_t color;
+	float	x;
+	float	y;
+	float	z;
+	t_rgba 	color;
 }	t_point;
 
 typedef struct s_node
@@ -139,7 +151,7 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
-uint32_t 	color_add_alpha(uint32_t c);
+t_rgba		color_add_alpha(t_rgba c);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 t_point		matmul(t_point point, t_mat3x3 m);
@@ -195,7 +207,7 @@ void		rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
 
 // color.c
 void color_init(t_fdf *fdf);
-uint32_t color_gradient(uint32_t c_start, uint32_t c_end, uint32_t step, int32_t len);
+t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
 
 // meuk.c
 void	print_point(t_point point);

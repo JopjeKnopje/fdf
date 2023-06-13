@@ -6,8 +6,8 @@
 void print_point(t_point point)
 {
 	printf("x: %f, y: %f, z: %f", point.x, point.y, point.z);
-	if (point.color)
-		printf(" c: %x", point.color);
+	if (point.color.value != COLOR_POINT_DEFAULT)
+		printf(" c: %x", point.color.value);
 	printf("\n");
 
 }
