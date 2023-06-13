@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   line.c                                             :+:    :+:            */
+/*   line.c                                            :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 09:34:15 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/13 14:06:49 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	int32_t sx = increment(x_end - x_start > 0);
 	int32_t sy = increment(y_end - y_start > 0);
 
-	int32_t dz = p_start.z - p_end.z;
 	uint32_t step = 0;
 
 	int32_t err = 0;

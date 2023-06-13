@@ -61,6 +61,7 @@ Dynamic | slow
       It has to do with not having a Z-buffer.
 - [x] Pixels being draw at `x`.
 - [?] Endianness check in get_color();
+- [ ] Colors in map don't correspond to their hex value.
 
 ## Resources
 * https://clintbellanger.net/articles/isometric_math/

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/12 14:51:15 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 11:27:37 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void draw_wireframe(t_fdf *fdf)
 	}
 }
 
+
 void fdf_put_pixel(t_fdf *fdf, t_point p)
 {
 	if (p.x >= 0 && p.x < fdf->image->width && p.y >= 0 && p.y < fdf->image->height)
@@ -88,4 +89,3 @@ void draw_hook(void *param)
 	draw_clear(fdf);
 	draw_wireframe(fdf);
 }
-
