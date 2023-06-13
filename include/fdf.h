@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/12 19:37:39 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 09:09:46 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ void		rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
 
 // color.c
 void color_init(t_fdf *fdf);
+uint32_t color_interpolate(uint32_t c_start, uint32_t c_end, uint32_t step, int32_t len);
 
 // meuk.c
 void	print_point(t_point point);
