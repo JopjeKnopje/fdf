@@ -40,7 +40,7 @@ Dynamic | slow
 - [ ] Resize window.
 - [x] Min max window size.
 - [ ] FPS Counter in screen.
-- [ ] Support multiple projections in an enum that we can pass to the projector.
+- [x] Support multiple projections in an enum that we can pass to the projector.
 - [x] Weird color behaviour on linux.
 - [ ] For clearing the screen just memset into the pixel buffer.
 - [ ] Instead of gnl just read a shit ton of data from the map.
@@ -50,6 +50,7 @@ Dynamic | slow
 - [x] Save projection angles on number keys.
 - [ ] Add automatic rotate funcion.
 - [ ] Add screensaver mode (like a dvd player has).
+- [ ] Switch between gradient for height and gradient for actual map color values.
 
 
 ## Issues
@@ -62,17 +63,21 @@ Dynamic | slow
 - [x] Pixels being draw at `x`.
 - [?] Endianness check in get_color();
 - [ ] Colors in map don't correspond to their hex value.
-- [ ] Use union for colors to get rid of `get_color_x` functions.
+- [x] Use union for colors to get rid of `get_color_x` functions.
 
 ## Resources
+### Projection
 * https://clintbellanger.net/articles/isometric_math/
 * https://en.wikipedia.org/wiki/Rotation_matrix
 * https://en.wikipedia.org/wiki/3D_projection
-
 
 * https://stackoverflow.com/questions/39440390/deforming-plane-mesh-to-sphere
 * http://paulbourke.net/geometry/transformationprojection/
 
 
-### Math bs
+### Color union
+* https://www.flipcode.com/archives/Using_a_Union_for_Packed_Color_Values.shtml
+
+### Faster hypotenuse for color gradient.
 * https://stackoverflow.com/questions/3506404/fast-hypotenuse-algorithm-for-embedded-processor
+
