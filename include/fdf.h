@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 21:10:59 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/13 21:19:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,6 @@ typedef struct s_map
 	uint32_t height;
 }	t_map;
 
-typedef struct s_colorinfo {
-	
-	
-} t_colorinfo;
-
 typedef struct s_view
 {
 	t_mat3x3 id_matrix;
@@ -93,7 +88,6 @@ typedef struct s_view
 	int32_t y_move;
 	float	scalar;
 	float	amplitude;
-	t_colorinfo color_info;
 } t_view;
 
 typedef struct s_projector
