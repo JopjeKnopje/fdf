@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 19:20:58 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 19:26:50 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,15 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 
 	int32_t err = 0;
 
-	uint32_t len;
+	uint32_t len = sqrt((dx*dx + dy*dy));
 
 	if (dx > dy)
 	{
 		err = (dy - dx) / 2;
-		len = ((sqrt(2) - 1) * dy) + dx;
 	}
 	else
 	{
 		err = (dx - dy) / 2;
-		len = ((sqrt(2) - 1) * dx) + dy;
 	}
 	while (x_start != x_end || y_start != y_end)
 	{

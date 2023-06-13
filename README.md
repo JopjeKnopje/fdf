@@ -72,3 +72,7 @@ Dynamic | slow
 
 * https://stackoverflow.com/questions/39440390/deforming-plane-mesh-to-sphere
 * http://paulbourke.net/geometry/transformationprojection/
+
+
+### Math bs
+* https://stackoverflow.com/questions/3506404/fast-hypotenuse-algorithm-for-embedded-processor

@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/13 19:22:19 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 19:30:25 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ uint32_t color_interpolate(uint32_t c_start, uint32_t c_end, uint32_t step, int3
 	float fraction = 0.0f;
 
 	// printf("fraction %f\n", fraction);
-	printf("len %d\n", len);
+	// printf("len %d\n", len);
 
 	fraction = step * increment_step;
 	
