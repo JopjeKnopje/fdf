@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 09:09:46 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/13 16:57:17 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define TITLE "Super awesome lines bruv"
 
 #define COLOR_BACKGROUND 0x333333FF
-#define COLOR_POINT_DEFAULT 0x00AACFFF
+#define COLOR_POINT_DEFAULT 0xffAACFFF
 
 #define AMPLITUDE_STEP 0.01f
 #define ANGLE_STEP 0.01f

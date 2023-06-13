@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/13 12:17:28 by jboeve        ########   odam.nl          #
+#    Updated: 2023/06/13 16:56:33 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
 	RUN_CMD = open -a terminal ./open.sh
+	# RUN_CMD = ./$(NAME) maps/42-custom2.fdf
 endif
 
 

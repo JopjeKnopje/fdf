@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 14:18:10 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 14:21:34 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void view_select(t_fdf *fdf, t_views view)
 	};
 
 	view_reset(&fdf->projector);
-	// fdf->projector.active_view.scalar = (float) fdf->image->width / (fdf->map->width * 2) * 0.8f;
-	fdf->projector.active_view.scalar = 10.0/*  */f;
+	fdf->projector.active_view.scalar = (float) fdf->image->width / (fdf->map->width * 2) * 0.8f;
+	// fdf->projector.active_view.scalar = 10.0;
 	(*views[view])(&fdf->projector);
 }

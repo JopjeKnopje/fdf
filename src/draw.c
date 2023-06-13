@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 11:27:37 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/13 18:39:52 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,20 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color);
 }
 
+void draw_test(t_fdf *fdf)
+{
+	t_point points[] = {
+		{20, 20, 0, 0xfa0f00ff},
+		{60, 120, 0, 0x00ffffff},
+	};
+
+	line_draw(fdf, points[0], points[1]);
+}
+
 void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
 	draw_clear(fdf);
-	draw_wireframe(fdf);
+	// draw_wireframe(fdf);
+	draw_test(fdf);
 }
