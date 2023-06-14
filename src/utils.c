@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/14 18:03:09 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/14 18:48:59 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,15 @@ uint8_t	check_extension(const char *map, const char *ext)
 
 static uint32_t 	char_count(const char *s, const char c)
 {
-	uint32_t count = 0;
-	int i = 0;
+	uint32_t	count;
+	int			i;
+
+	i = 0;
+	count = 0;
+	while (s[i] == ' ')
+		i++;
+	if (s[i] == '0' && (s[i + 1] == 'x' || s[i + 1] == 'X'))
+		i = 2;
 	while (s[i])
 	{
 		if (s[count] == c)
@@ -44,18 +51,18 @@ static uint32_t 	char_count(const char *s, const char c)
 	return (count);
 }
 
-
 t_rgba	color_add_alpha(const char *s)
 {
+	t_rgba		c;
 	uint32_t	i;
 	uint32_t	tmp;
-	t_rgba		c;
+	uint32_t	count;
 
+	count = 0;
 	tmp = ft_atoi_hex(s);
 	c.value = tmp;
-
-	const uint32_t count = char_count(s + 2, '0');
-	printf("count %d\n", count);
+	if (ft_strlen(s) > 2)
+		count = char_count(s + 2, '0');
 
 	i = 8 - count;
 	while (tmp)
@@ -63,10 +70,8 @@ t_rgba	color_add_alpha(const char *s)
 		tmp /= 16;
 		i--;
 	}
-	printf("len %d\n", i);
 	c.value <<= i * 4;
 	c.a = 0xFF;
-	printf("after %x\n", c.value);
 	return (c);
 }
 

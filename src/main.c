@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/14 17:39:11 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/14 19:01:27 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,44 @@
 #include <math.h>
 
 
-t_rgba	parse_color(const char *s);
 
 int32_t	main(int32_t argc, const char *argv[])
 {
-	const char *inputs[] = {
-		"123,0xff",
-		"0,0xff00",
-		"0,0xff00ffff",
-		"0,0xff00ff",
-		"0,0x000000ff",
-		"0,0x00aa00ff",
-		0,
-	};
+	// const char *inputs[] = {
+	// 	"0,0x30fc03FF",
+	// 	"123,0xff",
+	// 	"0,0xff00",
+	// 	"0,0xff00ffff",
+	// 	"0,0xff00ff",
+	// 	"0,0x000000ff",
+	// 	"0,0x00aa00ff",
+	// 	0,
+	// };
+	//
+	// const char *outputs[] = {
+	// 	"0x30fc03FF",
+	// 	"0xff0000ff",
+	// 	"0xff0000ff",
+	// 	"0xff00ffff",
+	// 	"0xff00ffff",
+	// 	"0x000000ff",
+	// 	"0x00aa00ff",
+	// 	"0x00aa00ff",
+	// 	0,
+	// };
+	//
+	// int i = 0;
+	// while (inputs[i])
+	// {
+	// 	t_rgba c = parse_color(inputs[i]);
+	// 	uint32_t expected = ft_atoi_hex(outputs[i]);
+	// 	if (expected != c.value)
+	// 		printf("FAILED \t[%d] | input [%s] | expected: %x | result: %x\n", i, inputs[i], expected, c.value);
+	// 	else
+	// 		printf("passed \t[%d] | input [%s] | expected: %x | result: %x\n", i, inputs[i], expected, c.value);
+	// 	i++;
+	// }
+	// t_rgba c;
 
-	const char *outputs[] = {
-		"0xff0000ff",
-		"0xff0000ff",
-		"0xff00ffff",
-		"0xff00ffff",
-		"0x000000ff",
-		"0x00aa00ff",
-		0,
-	};
-
-	int i = 0;
-	while (inputs[i])
-	{
-		t_rgba c = parse_color(inputs[i]);
-		// printf("[%s] \t-> \t[%x]\n", inputs[i], c.value);	
-		uint32_t expected = ft_atoi_hex(outputs[i]);
-		if (expected != c.value)
-			printf("FAILED \t[%d] | input [%s] | expected: %x | result: %x\n", i, inputs[i], expected, c.value);
-		i++;
-	}
-
-	// return (fdf(argc, argv));
+	return (fdf(argc, argv));
 }

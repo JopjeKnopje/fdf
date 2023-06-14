@@ -2,6 +2,7 @@
 
 #include "fdf.h"
 #include <stdint.h>
+#include <stdio.h>
 
 void print_point(t_point point)
 {
@@ -38,4 +39,9 @@ void mat_print(t_mat3x3 m)
 	printf("[ %f %f %f ]\n", m.data[0][0], m.data[0][1], m.data[0][2]);
 	printf("[ %f %f %f ]\n", m.data[1][0], m.data[1][1], m.data[1][2]);
 	printf("[ %f %f %f ]\n", m.data[2][0], m.data[2][1], m.data[2][2]);
+}
+
+void print_color(t_rgba c)
+{
+	printf("hex %08x | r: %d, g: %d, b: %d, a: %d\n", c.value, c.r, c.g, c.b, c.a);
 }
