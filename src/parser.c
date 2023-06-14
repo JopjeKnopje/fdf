@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 21:09:40 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/14 10:23:35 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-static t_rgba	parse_color(const char *s)
+// static t_rgba	parse_color(const char *s)
+t_rgba	parse_color(const char *s)
 {
 	t_rgba	color;
 	char		*delim;
+
 
 	delim = ft_strchr(s, ',');
 	if (delim)

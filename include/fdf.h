@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 21:19:00 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/14 09:56:21 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@
 #define WIDTH 1024
 #define HEIGHT 720
 
-#define TITLE "Super awesome lines bruv"
-
 #define COLOR_BACKGROUND 0x333333FF
-#define COLOR_POINT_DEFAULT 0xffAACFFF
+#define COLOR_POINT_DEFAULT 0x0e75ebFF
 
 #define AMPLITUDE_STEP 0.01f
 #define ANGLE_STEP 0.01f
@@ -41,10 +39,10 @@ typedef union s_rgba
 	uint32_t	value;
 	struct
 	{
-		uint8_t	a;
-		uint8_t	b;
-		uint8_t	g;
 		uint8_t	r;
+		uint8_t	g;
+		uint8_t	b;
+		uint8_t	a;
 	};
 }	t_rgba;
 
