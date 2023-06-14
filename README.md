@@ -28,6 +28,16 @@ Dynamic | slow
 * gnl the map file
 
 
+### Color values map
+
+#### The colors values in the map
+* `0xaabbccdd` with the layout 0x[RED][GREEN][BLUE][ALPHA]
+
+#### In little endian it should look like
+* `0xaabbccdd` with the layout 0x[ALPHA][BLUE][GREEN][RED]
+
+#### In big endian it should look like
+* `0xaabbccdd` with the layout 0x[RED][GREEN][BLUE][ALPHA]
 
 
 

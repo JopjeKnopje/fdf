@@ -43,5 +43,5 @@ void mat_print(t_mat3x3 m)
 
 void print_color(t_rgba c)
 {
-	printf("hex %08x | r: %d, g: %d, b: %d, a: %d\n", c.value, c.r, c.g, c.b, c.a);
+	printf("hex %08x | r: %x, g: %x, b: %x, a: %x\n", c.value, c.r, c.g, c.b, c.a);
 }

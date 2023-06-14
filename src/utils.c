@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   utils.c                                           :+:    :+:             */
+/*   utils.c                                            :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/14 18:48:59 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/14 20:03:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-#include <i386/limits.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <strings.h>
@@ -70,7 +69,12 @@ t_rgba	color_add_alpha(const char *s)
 		tmp /= 16;
 		i--;
 	}
+#ifdef OS_MAC
 	c.value <<= i * 4;
+#else
+	c.value >>= i * 4;
+#endif
+
 	c.a = 0xFF;
 	return (c);
 }
