@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   utils.c                                            :+:    :+:            */
+/*   utils.c                                           :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/13 21:09:01 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/14 18:03:09 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+#include <i386/limits.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <strings.h>
 
 uint8_t	check_extension(const char *map, const char *ext)
@@ -27,26 +29,44 @@ uint8_t	check_extension(const char *map, const char *ext)
 	return (!ft_strncmp((map + map_len - ext_len), ext, ext_len));
 }
 
-t_rgba	color_add_alpha(t_rgba c)
+static uint32_t 	char_count(const char *s, const char c)
+{
+	uint32_t count = 0;
+	int i = 0;
+	while (s[i])
+	{
+		if (s[count] == c)
+			count++;
+		else
+		 	return (count);
+		i++;
+	}
+	return (count);
+}
+
+
+t_rgba	color_add_alpha(const char *s)
 {
 	uint32_t	i;
-	t_rgba	c_tmp;
+	uint32_t	tmp;
+	t_rgba		c;
 
-	c_tmp = c;
-	i = 0;
-	while (c_tmp.value)
+	tmp = ft_atoi_hex(s);
+	c.value = tmp;
+
+	const uint32_t count = char_count(s + 2, '0');
+	printf("count %d\n", count);
+
+	i = 8 - count;
+	while (tmp)
 	{
-		c_tmp.value /= 16;
-		i++;
+		tmp /= 16;
+		i--;
 	}
-	while (i < 8)
-	{
-		if (i >= 6)
-			c.value = c.value << 4 | 0xF;
-		else
-			c.value = c.value << 4 | 0x0;
-		i++;
-	}
+	printf("len %d\n", i);
+	c.value <<= i * 4;
+	c.a = 0xFF;
+	printf("after %x\n", c.value);
 	return (c);
 }
 

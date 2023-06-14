@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   color.c                                            :+:    :+:            */
+/*   color.c                                           :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/13 21:12:45 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/14 16:55:58 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static uint8_t get_color_a(uint32_t c)
 
 uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
 {
-	uint32_t c = (ar + (br - ar) * fracton);
-	return (c << shift);
+	return ((uint32_t) (ar + (br - ar) * fracton) << shift);
 }
 
 // Takes c_start and c_end. 
@@ -66,9 +65,14 @@ t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
 	fraction = step * increment_step;
 	
 	t_rgba color;
-	color.value	= 	(uint32_t) ((c_end.r - c_start.r) * fraction + c_start.r) << 0 |
-					(uint32_t) ((c_end.g - c_start.g) * fraction + c_start.g) << 8 |
-					(uint32_t) ((c_end.b - c_start.b) * fraction + c_start.b) << 16 |
-					(uint32_t) ((c_end.a - c_start.a) * fraction + c_start.a) << 24;
+	// color.value	= 	(uint32_t) ((c_end.r - c_start.r) * fraction + c_start.r) << 0 |
+	// 				(uint32_t) ((c_end.g - c_start.g) * fraction + c_start.g) << 8 |
+	// 				(uint32_t) ((c_end.b - c_start.b) * fraction + c_start.b) << 16 |
+	// 				(uint32_t) ((c_end.a - c_start.a) * fraction + c_start.a) << 24;
+
+	color.value	= 	interpolate_chan(c_start.r, c_end.r, 0, fraction) |
+				 	interpolate_chan(c_start.g, c_end.g, 8, fraction) |
+				 	interpolate_chan(c_start.b, c_end.b, 16, fraction) |
+				 	interpolate_chan(c_start.a, c_end.a, 24, fraction);
 	return (color);
 }

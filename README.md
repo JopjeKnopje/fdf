@@ -37,7 +37,7 @@ Dynamic | slow
 - [ ] Some sort of optimization where it doens't draw the pixels that are already there?
 - [ ] When there is no user input (so when the scene isn't changing do not update the graphics)
 - [ ] Double check if makefile MLX related rules function correctly 
-- [ ] Resize window.
+- [ ] Resize window. 
 - [x] Min max window size.
 - [ ] FPS Counter in screen.
 - [x] Support multiple projections in an enum that we can pass to the projector.
@@ -51,6 +51,7 @@ Dynamic | slow
 - [ ] Add automatic rotate funcion.
 - [ ] Add screensaver mode (like a dvd player has).
 - [ ] Switch between gradient for height and gradient for actual map color values.
+- [ ] Rainbow colors.
 
 
 ## Issues
@@ -82,3 +83,5 @@ Dynamic | slow
 ### Faster hypotenuse for color gradient.
 * https://stackoverflow.com/questions/3506404/fast-hypotenuse-algorithm-for-embedded-processor
 
+### Colors
+* https://krazydad.com/tutorials/makecolors.php

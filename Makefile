@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/13 16:56:33 by jboeve        ########   odam.nl          #
+#    Updated: 2023/06/14 16:43:32 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
-	RUN_CMD = open -a terminal ./open.sh
-	# RUN_CMD = ./$(NAME) maps/42-custom2.fdf
+	# RUN_CMD = open -a terminal ./open.sh
+	RUN_CMD = ./$(NAME) maps/42-custom2.fdf
+	CFLAGS = -DOS_MAC
 endif
 
 
@@ -32,7 +33,7 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
-CFLAGS = -g -fsanitize=address
+CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast
 

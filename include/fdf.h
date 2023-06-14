@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/14 09:56:21 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/14 17:31:11 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,25 @@
 #define HEIGHT 720
 
 #define COLOR_BACKGROUND 0x333333FF
-#define COLOR_POINT_DEFAULT 0x0e75ebFF
+#define COLOR_POINT_DEFAULT 0x0E75EBFF
 
 #define AMPLITUDE_STEP 0.01f
 #define ANGLE_STEP 0.01f
 #define SCALAR_STEP 0.1f
 
+#ifdef OS_MAC
+typedef union s_rgba
+{
+	uint32_t	value;
+	struct
+	{
+		uint8_t	a;
+		uint8_t	b;
+		uint8_t	g;
+		uint8_t	r;
+	};
+}	t_rgba;
+#else 
 typedef union s_rgba
 {
 	uint32_t	value;
@@ -45,6 +58,8 @@ typedef union s_rgba
 		uint8_t	a;
 	};
 }	t_rgba;
+#endif
+	
 
 
 typedef struct s_mat3x3
@@ -143,7 +158,7 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
-t_rgba		color_add_alpha(t_rgba c);
+t_rgba	color_add_alpha(const char *s);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 t_point		matmul(t_point point, t_mat3x3 m);
