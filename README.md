@@ -77,6 +77,14 @@ Dynamic | slow
 - [x] Use union for colors to get rid of `get_color_x` functions.
 - [?] Color union endianness?
 
+## Todo for next time
+
+- [ ] Continue working on whack ass colors
+- [ ] Black white gradient
+- [ ] Linedrawing optimization
+- [ ] Sidebar
+
+
 ## Resources
 ### Projection
 * https://clintbellanger.net/articles/isometric_math/
