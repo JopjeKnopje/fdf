@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/14 19:07:37 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/15 15:38:37 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 #define WIDTH 1024
 #define HEIGHT 720
 
-#define COLOR_BACKGROUND 0xAAAAAAFF
-#define COLOR_POINT_DEFAULT 0xFFFFFFFF
+#define COLOR_BACKGROUND 0x333333FF
+#define COLOR_POINT_DEFAULT 0xCCCCCCFF
 
 #define AMPLITUDE_STEP 0.01f
 #define ANGLE_STEP 0.01f
@@ -158,7 +158,7 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
-t_rgba	color_add_alpha(const char *s);
+t_rgba		color_add_alpha(const char *s);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 t_point		matmul(t_point point, t_mat3x3 m);

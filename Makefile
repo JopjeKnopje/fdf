@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/14 19:41:58 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/15 15:29:05 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SRCS = main.c \
 	   matrices.c \
 	   rotate.c \
 	   view.c \
-	   color.c
+	   color.c \
+	   tests.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
