@@ -28,25 +28,12 @@ Dynamic | slow
 * gnl the map file
 
 
-### Color values map
-
-#### The colors values in the map
-* `0xaabbccdd` with the layout 0x[RED][GREEN][BLUE][ALPHA]
-
-#### In little endian it should look like
-* `0xaabbccdd` with the layout 0x[ALPHA][BLUE][GREEN][RED]
-
-#### In big endian it should look like
-* `0xaabbccdd` with the layout 0x[RED][GREEN][BLUE][ALPHA]
-
-
 
 # TODO
 ## Features
 - [x] Read norm about global static const char arrays.
 - [ ] Some sort of optimization where it doens't draw the pixels that are already there?
-- [ ] When there is no user input (so when the scene isn't changing do not update the graphics)
-- [ ] Double check if makefile MLX related rules function correctly 
+- [x] Double check if makefile MLX related rules function correctly 
 - [ ] Resize window. 
 - [x] Min max window size.
 - [ ] FPS Counter in screen.
@@ -56,36 +43,34 @@ Dynamic | slow
 - [ ] Instead of gnl just read a shit ton of data from the map.
 - [ ] Spherical projection
 - [x] Gradient on lines
-- [ ] Gradient on height
 - [x] Save projection angles on number keys.
 - [ ] Add automatic rotate funcion.
 - [ ] Add screensaver mode (like a dvd player has).
 - [ ] Switch between gradient for height and gradient for actual map color values.
+- [ ] Gradient on height
 - [ ] Rainbow colors.
+- [ ] Z-buffer to prevent "When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles".
+- [ ] Perspective camera.
+
 
 
 ## Issues
 - [x] Only draw the pixels that are viewable.
-- [?] Segfault when resizing too quick.
 - [x] Segfault when opening a max with scale too large for window. (only on mac)
-- [ ] Memset pixel clear
-- [ ] When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles,
-      It has to do with not having a Z-buffer.
-- [x] Pixels being draw at `x`.
-- [?] Endianness check in get_color();
-- [ ] Colors in map don't correspond to their hex value.
+- [x] Pixels being draw at `x = 0`.
+- [x] Colors in map don't correspond to their hex value on linux.
 - [x] Use union for colors to get rid of `get_color_x` functions.
-- [?] Color union endianness?
-- [ ] Check the interpolate function bitshift value on mac.
 - [ ] Map does weird stuff on spaces see `weird_map.fdf`
+- [?] Segfault when resizing too quick.
+- [?] Color union endianness?
 
 ## Todo for next time
 
-- [ ] Continue working on whack ass colors
 - [ ] Black white gradient
 - [ ] Linedrawing optimization
 - [ ] Sidebar
 - [ ] Don't use jumptable in `view select`.
+- [ ] Check the interpolate function bitshift value on mac.
 
 
 ## Resources
