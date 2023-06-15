@@ -77,6 +77,7 @@ Dynamic | slow
 - [x] Use union for colors to get rid of `get_color_x` functions.
 - [?] Color union endianness?
 - [ ] Check the interpolate function bitshift value on mac.
+- [ ] Map does weird stuff on spaces see `weird_map.fdf`
 
 ## Todo for next time
 

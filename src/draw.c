@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 19:38:35 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 20:48:07 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ void draw_square(t_fdf *fdf, t_point p, uint32_t size, uint32_t count)
 		y = 0;
 		while (y < size)
 		{
-			tmp.x = x + ((uint32_t) (count / fdf->map->width) * size) + padding * (count / fdf->map->width) + offset;
-			tmp.y = y + ((count % fdf->map->height) * size) + padding * (count % fdf->map->width) + offset;
+			tmp.x = x + ((uint32_t) (count / fdf->map->width) * size) + padding * (uint32_t)(count / fdf->map->width) + offset;
+			tmp.y = y + ((count % fdf->map->height) * size) + padding * (count % fdf->map->height) + offset;
 			fdf_put_pixel(fdf, tmp);
 			y++;
 		}
@@ -155,7 +155,7 @@ void draw_test1(t_fdf *fdf)
 		y = 0;
 		while (y < fdf->map->height)
 		{
-			draw_square(fdf, fdf->map->points[(y) * fdf->map->width + x], 40, count);
+			draw_square(fdf, fdf->map->points[y * fdf->map->width + x], 40, count);
 			count++;
 			y++;
 		}

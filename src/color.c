@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/15 18:55:49 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 22:36:46 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // For every step in line increment color value with `step`
 
 #include "fdf.h"
+#include "libft.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -43,7 +44,6 @@ uint32_t 	char_count_rev(const char *s, const char c)
 	uint32_t		count = 0;
 
 	i = ft_strlen(s) - 1;
-	printf("len %d\n", i);
 	while (s[i] == c)
 	{
 		count++;
@@ -59,12 +59,30 @@ t_rgba	color_add_alpha(const char *s)
 	const uint32_t pre_space = char_count(s, '0');
 	const uint32_t post_space = char_count_rev(s, '0');
 
-	printf("pre_space %d | post_space %d\n", pre_space, post_space);
-
 	c.value = ft_atoi_hex(s);
-	c.value <<= NIBBLE * pre_space;
-	c.value >>= NIBBLE * post_space;
-	c.value = htonl(c.value);
+
+	printf("------------------------------\n");
+	printf("%s -> %x\n", s, c.value);
+	printf("pre_space %d | post_space %d\n", pre_space, post_space);
+	// c.value = htonl(c.value);
+
+	//0xff = 255 
+	//0xff00 = 65280
+
+	// c.value <<= NIBBLE * pre_space;
+	// c.value >>= NIBBLE * post_space;
+	int i = 6 - pre_space;
+	uint32_t tmp = c.value;
+	while (tmp)
+	{
+		tmp /= 16;
+		i--;
+	}
+
+	c.value <<= NIBBLE * i;
+
+
+	c.value <<= NIBBLE * 2;
 	c.a = 0xff;
 
 	print_color(c);
