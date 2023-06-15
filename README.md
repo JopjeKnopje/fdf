@@ -51,6 +51,9 @@ Dynamic | slow
 - [ ] Rainbow colors.
 - [ ] Z-buffer to prevent "When loading t1 for example some lines don't get drawn and seem to dissapear at certain angles".
 - [ ] Perspective camera.
+- [ ] Calculate the initial size of the wireframe so it fits perfectly in the window (also do this on resize).
+- [ ] Mouse dragging to move wireframe.
+
 
 
 
@@ -66,9 +69,9 @@ Dynamic | slow
 
 ## Todo for next time
 
-- [ ] Black white gradient
-- [ ] Linedrawing optimization
+- [x] Linedrawing optimization
 - [ ] Sidebar
+- [ ] Black white gradient
 - [ ] Don't use jumptable in `view select`.
 - [ ] Check the interpolate function bitshift value on mac.
 
