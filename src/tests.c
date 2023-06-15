@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/15 15:27:25 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 17:58:27 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 18:47:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,6 @@ void run_tests()
 	test_colors_mac();
 #else
 	// test_colors_linux();
-	// test_colors_linux1();
-	test_unions();
+	test_colors_linux1();
 #endif
 }

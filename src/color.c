@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/15 17:32:19 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 18:55:49 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,59 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
-void color_init(t_fdf *fdf)
+// static uint32_t 	char_count(const char *s, const char c)
+uint32_t 	char_count(const char *s, const char c)
 {
-	// fdf->projector.active_view.color_info;
+	uint32_t		i;
+
+	i = 0;
+	while (*s == ' ')
+		s++;
+	if (*s == '0' && (*(s + 1) == 'x' || *(s + 1) == 'X'))
+		s += 2;
+	while (s[i] == c)
+		i++;
+	return (i);
 }
 
-static uint32_t get_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+// static uint32_t 	char_count_rev(const char *s, const char c)
+uint32_t 	char_count_rev(const char *s, const char c)
 {
-	return (a << 24 | b << 16 | g << 8 | r);
+	uint32_t		i;
+	uint32_t		count = 0;
+
+	i = ft_strlen(s) - 1;
+	printf("len %d\n", i);
+	while (s[i] == c)
+	{
+		count++;
+		i--;
+	}
+	return (count);
 }
 
-
-static uint8_t get_color_r(uint32_t c)
+t_rgba	color_add_alpha(const char *s)
 {
+	t_rgba c;
+	const uint32_t NIBBLE = 4;
+	const uint32_t pre_space = char_count(s, '0');
+	const uint32_t post_space = char_count_rev(s, '0');
+
+	printf("pre_space %d | post_space %d\n", pre_space, post_space);
+
+	c.value = ft_atoi_hex(s);
+	c.value <<= NIBBLE * pre_space;
+	c.value >>= NIBBLE * post_space;
+	c.value = htonl(c.value);
+	c.a = 0xff;
+
+	print_color(c);
+	
 	return (c);
 }
 
-static uint8_t get_color_g(uint32_t c)
-{
-	return (c >> 8);
-}
-
-static uint8_t get_color_b(uint32_t c)
-{
-	return (c >> 16);
-}
-
-static uint8_t get_color_a(uint32_t c)
-{
-	return (c >> 24);
-}
 
 uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
 {

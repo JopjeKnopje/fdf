@@ -43,9 +43,5 @@ void mat_print(t_mat3x3 m)
 
 void print_color(t_rgba c)
 {
-#ifdef OS_MAC
-	printf("hex %x | r: %x, g: %x, b: %x, a: %x\n", c.value, c.r, c.g, c.b, c.a);
-#else
-	printf("hex %x | a: %x, b: %x, g: %x, r: %x\n", c.value, c.a, c.b, c.g, c.r);
-#endif
+	printf("hex %x | r: %x (%d), g: %x (%d), b: %x (%d), a: %x (%d)\n", c.value, c.r, c.r, c.g, c.g, c.b, c.g, c.a, c.a);
 }

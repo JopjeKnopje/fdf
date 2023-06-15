@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 18:00:24 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 18:55:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <strings.h>
-#include <arpa/inet.h>
 
 uint8_t	check_extension(const char *map, const char *ext)
 {
@@ -27,60 +26,6 @@ uint8_t	check_extension(const char *map, const char *ext)
 	if (map_len < ext_len + 1)
 		return (0);
 	return (!ft_strncmp((map + map_len - ext_len), ext, ext_len));
-}
-
-static uint32_t 	char_count(const char *s, const char c)
-{
-	uint32_t		i;
-
-	i = 0;
-	while (*s == ' ')
-		s++;
-	if (*s == '0' && (*(s + 1) == 'x' || *(s + 1) == 'X'))
-		s += 2;
-	while (s[i] == c)
-		i++;
-	return (i);
-}
-
-static uint32_t 	char_count_rev(const char *s, const char c)
-{
-	uint32_t		i;
-	uint32_t		count = 0;
-
-	i = ft_strlen(s) - 1;
-	printf("len %d\n", i);
-	while (s[i] == c)
-	{
-		count++;
-		i--;
-	}
-	return (count);
-}
-
-// uint32_t hex_rev(uint32_t n)
-// {
-//     return ((n >> 24) & 0xff) | ((n << 8) & 0xff0000) | ((n >> 8) & 0xff00) | ((n << 24) & 0xff000000);
-// }
-
-t_rgba	color_add_alpha(const char *s)
-{
-	t_rgba c;
-	const uint32_t NIBBLE = 4;
-	const uint32_t pre_space = char_count(s, '0');
-	const uint32_t post_space = char_count_rev(s, '0');
-
-	printf("pre_space %d | post_space %d\n", pre_space, post_space);
-
-	c.value = ft_atoi_hex(s);
-	c.value <<= NIBBLE * pre_space;
-	c.value >>= NIBBLE * post_space;
-	c.value = htonl(c.value);
-	c.a = 0xff;
-
-	print_color(c);
-	
-	return (c);
 }
 
 uint32_t	list_to_arr(t_fdf *fdf)

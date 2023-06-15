@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 18:06:53 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 19:38:35 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,61 @@ void draw_test(t_fdf *fdf)
 	};
 
 	line_draw(fdf, points1[0], points1[1]);
+}
+
+void draw_square(t_fdf *fdf, t_point p, uint32_t size, uint32_t count)
+{
+	uint32_t x;
+	uint32_t y;
+	const uint32_t padding = 16;
+	const uint32_t offset = padding * 4;
+
+	t_point tmp;
+
+	tmp.color = p.color;
+
+	x = 0;
+	while (x < size)
+	{
+		y = 0;
+		while (y < size)
+		{
+			tmp.x = x + ((uint32_t) (count / fdf->map->width) * size) + padding * (count / fdf->map->width) + offset;
+			tmp.y = y + ((count % fdf->map->height) * size) + padding * (count % fdf->map->width) + offset;
+			fdf_put_pixel(fdf, tmp);
+			y++;
+		}
+		x++;
+	}
+}
+
+void draw_test1(t_fdf *fdf)
+{
+	uint32_t x;
+	uint32_t y;
+ 	uint32_t count = 0; 
+
+	x = 0;
+	while (x < fdf->map->width)
+	{
+		y = 0;
+		while (y < fdf->map->height)
+		{
+			draw_square(fdf, fdf->map->points[(y) * fdf->map->width + x], 40, count);
+			count++;
+			y++;
+		}
+		x++;
+	}
 
 }
+
 
 void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
 	draw_clear(fdf);
-	draw_wireframe(fdf);
- 	draw_test(fdf);
+	// draw_wireframe(fdf);
+ // 	draw_test(fdf);
+ 	draw_test1(fdf);
 }

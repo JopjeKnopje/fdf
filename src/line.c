@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 17:31:09 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 18:55:22 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ static int32_t increment(int32_t val)
 		return (1);
 	return (-1);
 }
-
-
-
 
 void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 {
