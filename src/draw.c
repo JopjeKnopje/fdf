@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/14 19:07:31 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/15 18:06:53 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,40 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color.value);
 }
 
+t_rgba test_colors_linux1();
+
 void draw_test(t_fdf *fdf)
 {
+	uint32_t point_count = 10;
 	t_point points[] = {
-		{20, 20, 0, 0xfa0f00ff},
-		{60, 120, 0, 0xaaffffff},
+		{20, 20, 0, 0xff0000ff},
+		{80, 120, 0, 0xff0000ff},
+		{120, 20, 0, 0x00ff00ff},
+		{180, 120, 0, 0x00ff00ff},
+		{220, 20, 0, 0x0000ffff},
+		{280, 120, 0, 0x0000ffff},
+		{320, 20, 0, 0xff0000ff},
+		{380, 120, 0, 0x00ff00ff},
+		{400, 20, 0, 0xff0000ff},
+		{460, 120, 0, 0x0000ffff},
 	};
 
-	line_draw(fdf, points[0], points[1]);
+	int i = 0;
+	while (point_count) 
+	{
+		line_draw(fdf, points[i], points[i + 1]);
+		point_count -= 2;
+		i += 2;
+	}
+
+	t_point points1[] =
+	{
+		{20, 220, 0, test_colors_linux1()},
+		{120, 220, 0, test_colors_linux1()},
+	};
+
+	line_draw(fdf, points1[0], points1[1]);
+
 }
 
 void draw_hook(void *param)
@@ -97,5 +123,5 @@ void draw_hook(void *param)
 	t_fdf *fdf = param;
 	draw_clear(fdf);
 	draw_wireframe(fdf);
-	// draw_test(fdf);
+ 	draw_test(fdf);
 }

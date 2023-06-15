@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 15:38:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 17:32:03 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 #define ANGLE_STEP 0.01f
 #define SCALAR_STEP 0.1f
 
-#ifdef OS_MAC
+// #ifdef OS_MAC
 typedef union s_rgba
 {
 	uint32_t	value;
@@ -46,19 +46,19 @@ typedef union s_rgba
 		uint8_t	r;
 	};
 }	t_rgba;
-#else 
-typedef union s_rgba
-{
-	uint32_t	value;
-	struct
-	{
-		uint8_t	r;
-		uint8_t	g;
-		uint8_t	b;
-		uint8_t	a;
-	};
-}	t_rgba;
-#endif
+// #else 
+// typedef union s_rgba
+// {
+// 	uint32_t	value;
+// 	struct
+// 	{
+// 		uint8_t	r;
+// 		uint8_t	g;
+// 		uint8_t	b;
+// 		uint8_t	a;
+// 	};
+// }	t_rgba;
+// #endif
 	
 
 

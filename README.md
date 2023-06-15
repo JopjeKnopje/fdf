@@ -76,6 +76,7 @@ Dynamic | slow
 - [ ] Colors in map don't correspond to their hex value.
 - [x] Use union for colors to get rid of `get_color_x` functions.
 - [?] Color union endianness?
+- [ ] Check the interpolate function bitshift value on mac.
 
 ## Todo for next time
 

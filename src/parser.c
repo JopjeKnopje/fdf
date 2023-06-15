@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                           :+:    :+:            */
+/*   parser.c                                          :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/14 19:39:29 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/15 16:17:25 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ t_rgba	parse_color(const char *s)
 	if (delim && delim + 1)
 	{
 		color = color_add_alpha(delim + 1);
+		// print_color(color);
 	}
 	else
 		color.value = COLOR_POINT_DEFAULT;
-	print_color(color);
 	return (color);
 }
 
