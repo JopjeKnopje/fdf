@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/15 18:55:22 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 00:44:19 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	{
 		tmp.y = y_start;
 		tmp.x = x_start;
-		// TODO find min/max z values, for the color cap.
 		tmp.color = color_gradient(p_start.color, p_end.color, step, len);
 		fdf_put_pixel(fdf, tmp);
 		if (dx > dy)

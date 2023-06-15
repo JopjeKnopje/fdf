@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/16 00:18:26 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 00:39:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,7 @@
 #include <sys/types.h>
 #include <math.h>
 
-
-void run_tests();
-
-
 int32_t	main(int32_t argc, const char *argv[])
 {
-	// run_tests();
 	return (fdf(argc, argv));
 }

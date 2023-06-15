@@ -85,6 +85,7 @@ Dynamic | slow
 - [ ] Black white gradient
 - [ ] Linedrawing optimization
 - [ ] Sidebar
+- [ ] Don't use jumptable in `view select`.
 
 
 ## Resources

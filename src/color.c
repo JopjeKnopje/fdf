@@ -6,25 +6,13 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/16 00:18:06 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 00:43:49 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-// Find min and max `z` values
-// Map min and max to 0 -> 255 called `step`
-// For every step in line increment color value with `step`
-
 #include "fdf.h"
-#include "libft.h"
-#include <netinet/in.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <arpa/inet.h>
 
-// static uint32_t 	char_count(const char *s, const char c)
-uint32_t 	char_count(const char *s, const char c)
+static uint32_t 	char_count(const char *s, const char c)
 {
 	uint32_t		i;
 
@@ -57,7 +45,6 @@ t_rgba	color_add_alpha(const char *s)
 	c.value <<= NIBBLE * i;
 	c.a = 0xff;
 
-	print_color(c);
 	return (c);
 }
 
@@ -68,12 +55,12 @@ uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
 
 t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
 {
+	t_rgba color;
 	const float increment_step = 1.0f / len;
 	float fraction = 0.0f;
 
 	fraction = step * increment_step;
 	
-	t_rgba color;
 	// color.value	= 	interpolate_chan(c_start.r, c_end.r, 0, fraction) |
 	// 			 	interpolate_chan(c_start.g, c_end.g, 8, fraction) |
 	// 			 	interpolate_chan(c_start.b, c_end.b, 16, fraction) |
