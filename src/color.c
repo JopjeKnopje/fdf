@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/15 22:36:46 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 00:18:06 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "fdf.h"
 #include "libft.h"
+#include <netinet/in.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -37,41 +38,15 @@ uint32_t 	char_count(const char *s, const char c)
 	return (i);
 }
 
-// static uint32_t 	char_count_rev(const char *s, const char c)
-uint32_t 	char_count_rev(const char *s, const char c)
-{
-	uint32_t		i;
-	uint32_t		count = 0;
-
-	i = ft_strlen(s) - 1;
-	while (s[i] == c)
-	{
-		count++;
-		i--;
-	}
-	return (count);
-}
-
 t_rgba	color_add_alpha(const char *s)
 {
 	t_rgba c;
 	const uint32_t NIBBLE = 4;
-	const uint32_t pre_space = char_count(s, '0');
-	const uint32_t post_space = char_count_rev(s, '0');
+	const uint32_t skip = char_count(s, '0');
 
 	c.value = ft_atoi_hex(s);
 
-	printf("------------------------------\n");
-	printf("%s -> %x\n", s, c.value);
-	printf("pre_space %d | post_space %d\n", pre_space, post_space);
-	// c.value = htonl(c.value);
-
-	//0xff = 255 
-	//0xff00 = 65280
-
-	// c.value <<= NIBBLE * pre_space;
-	// c.value >>= NIBBLE * post_space;
-	int i = 6 - pre_space;
+	int i = 8 - skip;
 	uint32_t tmp = c.value;
 	while (tmp)
 	{
@@ -80,23 +55,17 @@ t_rgba	color_add_alpha(const char *s)
 	}
 
 	c.value <<= NIBBLE * i;
-
-
-	c.value <<= NIBBLE * 2;
 	c.a = 0xff;
 
 	print_color(c);
-	
 	return (c);
 }
-
 
 uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
 {
 	return ((uint32_t) (ar + (br - ar) * fracton) << shift);
 }
 
-// Takes c_start and c_end. 
 t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
 {
 	const float increment_step = 1.0f / len;
