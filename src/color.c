@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/17 00:18:17 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 00:42:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,9 @@ t_rgba get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, flo
 {
 	if (fdf->projector.active_view.color_mode == COLOR_MODE_HEIGHT)
 	{
-		// find the c_start and c_end of the current line.
-		// take the z 
+		const float total_z_height = abs(fdf->map->max_z) + abs(fdf->map->min_z);
 
-		const float total_z_height = abs(fdf->map->max_z) - abs(fdf->map->min_z);
-
-		// const t_rgba C_END = { .value = 0xffffffff};
-		// const t_rgba C_START = { .value = 0x000000ff};
+		printf("total_z_height %f\n", total_z_height);
 
 		const t_rgba C_END = { .value = 0x00ffffff};
 		const t_rgba C_START = { .value = 0xff00ffff};
@@ -61,14 +57,9 @@ t_rgba get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, flo
 		t_rgba start_l = color_gradient(C_START, C_END, start_z, total_z_height);
 		t_rgba end_l = color_gradient(C_START, C_END, end_z, total_z_height);
 
-		// print_color(start_l);
-		// print_color(end_l);
-
+		print_color(start_l);
 
 		t_rgba c = color_gradient(start_l, end_l, step, len);
-
-
-		// printf("start_z %f end_z %f\n", start_z, end_z);
 
 		return c;
 

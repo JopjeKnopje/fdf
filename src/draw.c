@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 22:16:52 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 00:35:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,55 @@ void fdf_put_pixel(t_fdf *fdf, t_point p)
 		mlx_put_pixel(fdf->image, p.x, p.y, p.color.value);
 }
 
+void draw_square(t_fdf *fdf, t_point p, uint32_t size, uint32_t count)
+{
+	uint32_t x;
+	uint32_t y;
+	const uint32_t padding = 16;
+	const uint32_t offset = padding * 4;
+
+	t_point tmp;
+
+	tmp.color = p.color;
+
+	x = 0;
+	while (x < size)
+	{
+		y = 0;
+		while (y < size)
+		{
+			tmp.x = x + ((uint32_t) (count / fdf->map->width) * size) + padding * (uint32_t)(count / fdf->map->width) + offset;
+			tmp.y = y + ((count % fdf->map->height) * size) + padding * (count % fdf->map->height) + offset;
+			fdf_put_pixel(fdf, tmp);
+			y++;
+		}
+		x++;
+	}
+}
+
+void draw_color_squares(t_fdf *fdf)
+{
+	t_point p = {
+		.x = 20,
+		.y = 20,
+		.z = 20,
+		.color = 0xff00ffff,
+	};
+	draw_square(fdf, p, 20, 1);
+	t_point p1 = {
+		.x = 20,
+		.y = 20,
+		.z = 20,
+		.color = 0x00ffffff,
+	};
+	draw_square(fdf, p1, 20, 2);
+
+}
+
 void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
 	draw_clear(fdf);
 	draw_wireframe(fdf);
+	draw_color_squares(fdf);
 }
