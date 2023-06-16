@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
+/*                                                       ::::::::             */
 /*   parser.c                                          :+:    :+:             */
-/*                                                     +:+                    */
-/*   By: joppe <jboeve@student.codam.nl>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 02:14:52 by joppe         ########   odam.nl         */
+/*                                                    +:+                     */
+/*   By: joppe <jboeve@student.codam.nl>             +#+                      */
+/*                                                  +#+                       */
+/*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
+/*   Updated: 2023/06/16 22:26:02 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include <assert.h>
+#include <limits.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -34,20 +35,17 @@ static uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-static t_rgba	parse_color(t_map *map, const char *s)
+static float parse_z(t_map *map, const char *s)
 {
-	t_rgba	color;
-	char	*delim;
+	float z;
 
-	delim = ft_strchr(s, ',');
-	if (delim && delim + 1)
-	{
-		color = color_add_alpha(delim + 1);
-		map->has_colors = true;
-	}
-	else
-		color.value = COLOR_POINT_DEFAULT;
-	return (color);
+	z = ft_atoi(s);
+
+	if (z > map->max_z)
+		map->max_z = z;
+	if (map->min_z)
+		map->min_z = z;
+	return (z);
 }
 
 static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
@@ -64,7 +62,7 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	{
 		point.x = i;
 		point.y = line_count;
-		point.z = ft_atoi(split[i]);
+		point.z = parse_z(fdf->map, split[i]);
 		point.color = parse_color(fdf->map, split[i]);
 		if (!fdf->map->points_list)
 		{
@@ -81,13 +79,23 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	return (0);
 }
 
+static uint8_t map_init(t_fdf *fdf)
+{
+	fdf->map = ft_calloc(1, sizeof(t_map));
+	if (!fdf->map)
+		return (0);
+
+	fdf->map->min_z = INT_MAX;
+	fdf->map->max_z = INT_MIN;
+	return (1);
+}
+
 static uint8_t	read_map(t_fdf *fdf, int fd)
 {
 	int		i;
 	char	*line;
 
-	fdf->map = ft_calloc(1, sizeof(t_map));
-	if (!fdf->map)
+	if (!map_init(fdf))
 		return (error_message(ERR_MALLOC_FAILURE));
 	i = 0;
 	line = get_next_line(fd);
@@ -120,6 +128,6 @@ uint32_t	parser(t_fdf *fdf, const char *map)
 	if (list_to_arr(fdf))
 		return (1);
 	close(fd);
-	fdf->map->name = map;
+	fdf->map->name = ft_strrchr(map, '/') + 1;
 	return (0);
 }

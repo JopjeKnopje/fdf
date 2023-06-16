@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 02:05:21 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 22:16:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/types.h>
 
 static void draw_clear(t_fdf *fdf)
 {
 	const uint32_t size = fdf->image->width * fdf->image->height;
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -45,19 +46,17 @@ static void draw_lines(t_fdf *fdf, uint32_t x, uint32_t y)
 	{ 
 		points[1] = fdf->map->points[y * fdf->map->width + x + 1];
 		points[1] = projector(fdf, points[1]);
-		if (points_in_window(fdf->image, points[0], points[1]))
-			line_draw(fdf, points[0], points[1]);
+			if (points_in_window(fdf->image, points[0], points[1]))
+				line_draw(fdf, points[0], points[1]);
 	}
 	if (y + 1 < fdf->map->height)
 	{ 
 		points[2] = fdf->map->points[(y + 1) * fdf->map->width + x];
 		points[2] = projector(fdf, points[2]);
-		if (points_in_window(fdf->image, points[0], points[2]))
-			line_draw(fdf, points[0], points[2]);
+			if (points_in_window(fdf->image, points[0], points[2]))
+				line_draw(fdf, points[0], points[2]);
 	}
 }
-
-
 
 static void draw_wireframe(t_fdf *fdf)
 {

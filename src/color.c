@@ -6,11 +6,13 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/16 02:41:03 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 23:18:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
+#include <stdint.h>
 
 
 static uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
@@ -41,12 +43,35 @@ t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
 }
 
 
-t_rgba get_color(t_fdf *fdf, t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
+t_rgba get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, float start_z, float end_z)
 {
 	if (fdf->projector.active_view.color_mode == COLOR_MODE_HEIGHT)
 	{
-		c_start.value = 0xff00ffff;
-		c_end.value = 0x00ffffff;
+		// find the c_start and c_end of the current line.
+		// take the z 
+
+		const float total_z_height = abs(fdf->map->max_z) - abs(fdf->map->min_z);
+		const float step_total = 1.0f / total_z_height;
+
+
+		const t_rgba C_END = { .value = 0xffffffff};
+		const t_rgba C_START = { .value = 0x000000ff};
+
+		t_rgba start_l = color_gradient(C_START, C_END, step_total * start_z, total_z_height);
+		t_rgba end_l = color_gradient(C_START, C_END, step_total * end_z, total_z_height);
+
+		float fraction = 0.9f;
+
+		t_rgba c = color_gradient(start_l, end_l, step, len);
+
+
+		// printf("start_z %f end_z %f\n", start_z, end_z);
+
+		return c;
+
 	}
-	return color_gradient(c_start, c_end, step, len);
+	else {
+		return color_gradient(g.c1, g.c2, step, len);
+	
+	}
 }

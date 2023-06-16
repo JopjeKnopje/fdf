@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 02:41:18 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 23:20:58 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	uint32_t step = 0;
 	int32_t err = 0;
 
-	const uint32_t len = sqrt((dx*dx + dy*dy));
+	const uint32_t len = sqrt(dx*dx + dy*dy);
+	t_color_gradient grad;
+	grad.c1 = p_start.color;
+	grad.c2 = p_end.color;
 
 	if (dx > dy)
 	{
@@ -54,12 +57,13 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	{
 		err = (dx - dy) / 2;
 	}
+	if (p_start.actual_z || p_end.actual_z)
+		printf("line: start_z %f end_z %f\n", p_start.actual_z, p_end.actual_z);
 	while (x_start != x_end || y_start != y_end)
 	{
 		tmp.y = y_start;
 		tmp.x = x_start;
-		// tmp.color = color_gradient(p_start.color, p_end.color, step, len);
-		tmp.color = get_color(fdf, p_start.color, p_end.color, step, len);
+		tmp.color = get_color(fdf, grad, step, len, p_start.actual_z, p_end.actual_z);
 		fdf_put_pixel(fdf, tmp);
 		if (dx > dy)
 		{
