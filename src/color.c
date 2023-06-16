@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/17 01:03:16 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:07:02 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ t_rgba get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, flo
 
 		start_z += abs(fdf->map->min_z);
 		end_z += abs(fdf->map->min_z);
+
+		// printf("min_z %d\n", fdf->map->min_z);
+		// printf("start_z %f | end_z %f\n", start_z, end_z);
+
+
 
 		t_rgba start_l = color_gradient(C_START, C_END, start_z, total_z_height);
 		t_rgba end_l = color_gradient(C_START, C_END, end_z, total_z_height);

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 22:26:02 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:06:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static float parse_z(t_map *map, const char *s)
 
 	if (z > map->max_z)
 		map->max_z = z;
-	if (map->min_z)
+	if (z < map->min_z)
 		map->min_z = z;
 	return (z);
 }
