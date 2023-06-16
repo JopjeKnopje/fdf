@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 01:37:54 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:51:37 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 
 
-# define COLOR_BACKGROUND_UI 0xaaaaaa77
+# define COLOR_BACKGROUND_UI 0x44444466
 # define COLOR_BACKGROUND 0x333333ff
 # define COLOR_POINT_DEFAULT 0xCCCCCCFF
 

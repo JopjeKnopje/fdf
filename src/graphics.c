@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 01:43:01 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:49:39 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void	resize(int32_t width, int32_t height, void* param)
 	t_fdf *fdf = param;
 	// TODO Error checking.
 	mlx_resize_image(fdf->image, width, height);
+	if (width < DIM_UI_WIDTH)
+		mlx_resize_image(fdf->ui_image, width, height);
+	else
+		mlx_resize_image(fdf->ui_image, DIM_UI_WIDTH, height);
 }
 
 static void	hooks_init(t_fdf *fdf)
