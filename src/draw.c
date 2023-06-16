@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 00:35:15 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 00:52:31 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,6 @@ void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
 	draw_clear(fdf);
-	draw_wireframe(fdf);
 	draw_color_squares(fdf);
+	draw_wireframe(fdf);
 }
