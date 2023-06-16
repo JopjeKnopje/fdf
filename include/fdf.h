@@ -6,33 +6,28 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 22:42:10 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:37:54 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include "libft.h"
-#include <MLX42/MLX42.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include "libft.h"
+# include <MLX42/MLX42.h>
+# include <stdio.h>
+# include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 
-#define WIDTH_MIN 250
-#define HEIGHT_MIN 250
+# define COLOR_BACKGROUND_UI 0xaaaaaa77
+# define COLOR_BACKGROUND 0x333333ff
+# define COLOR_POINT_DEFAULT 0xCCCCCCFF
 
-#define WIDTH 1024
-#define HEIGHT 720
-
-#define COLOR_BACKGROUND 0x333333ff
-#define COLOR_POINT_DEFAULT 0xCCCCCCFF
-
-#define AMPLITUDE_STEP 0.01f
-#define ANGLE_STEP 0.01f
-#define SCALAR_STEP 0.1f
+# define AMPLITUDE_STEP 0.01f
+# define ANGLE_STEP 0.01f
+# define SCALAR_STEP 0.1f
 
 typedef union s_rgba
 {
@@ -45,6 +40,19 @@ typedef union s_rgba
 		uint8_t	r;
 	};
 }	t_rgba;
+
+// very cursed
+typedef enum e_dimensions {
+	DIM_WINDOW_WIDTH = 1024,
+	DIM_WINDOW_HEIGHT = 720,
+	DIM_UI_WIDTH = 250,
+	DIM_UI_HEIGHT = DIM_WINDOW_HEIGHT,
+	// DIM_VIEWPORT_WIDTH = DIM_WINDOW_WIDTH - DIM_UI_WIDTH,
+	// DIM_VIEWPORT_HEIGHT = DIM_WINDOW_HEIGHT,
+	DIM_VIEWPORT_WIDTH = DIM_WINDOW_WIDTH,
+	DIM_VIEWPORT_HEIGHT = DIM_WINDOW_HEIGHT,
+
+} t_dimensions;
 
 typedef enum e_color_mode {
 	COLOR_MODE_MAP,
@@ -117,6 +125,7 @@ typedef struct s_fdf
 	mlx_t *mlx;
 	t_projector projector;
 	mlx_image_t *image;
+	mlx_image_t *ui_image;
 }	t_fdf;
 
 typedef enum e_views {

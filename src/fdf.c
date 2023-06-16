@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/17 14:34:42 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/16 23:13:19 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:15:41 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int32_t	fdf(int32_t argc, const char *argv[])
 	if (parser(&fdf, argv[1]))
 		return (1);
 	if (graphics_init(&fdf))
+	{
+		fdf_cleanup(&fdf);
 		return (1);
+	}
 	fdf_cleanup(&fdf);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 00:52:31 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:32:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 #include <string.h>
 #include <sys/types.h>
 
-static void draw_clear(t_fdf *fdf)
+static void draw_clear(mlx_image_t *image, uint32_t c)
 {
-	const uint32_t size = fdf->image->width * fdf->image->height;
+	const uint32_t size = image->width * image->height;
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
- 		mlx_put_pixel(fdf->image, i, 0, COLOR_BACKGROUND);
+ 		mlx_put_pixel(image, i, 0, c);
 		i++;
 	}
 }
@@ -130,7 +130,8 @@ void draw_color_squares(t_fdf *fdf)
 void draw_hook(void *param)
 {
 	t_fdf *fdf = param;
-	draw_clear(fdf);
+	draw_clear(fdf->image, COLOR_BACKGROUND);
+	draw_clear(fdf->ui_image, COLOR_BACKGROUND_UI);
 	draw_color_squares(fdf);
 	draw_wireframe(fdf);
 }

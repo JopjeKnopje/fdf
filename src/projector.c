@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 23:22:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:42:13 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void offset(t_fdf *fdf, t_point *point)
 
 static void center(t_fdf *fdf, t_point *point)
 {
-	point->x += ((float) fdf->image->width / 2) - fdf->projector.active_view.x_move;
+	point->x += ((float) fdf->image->width / 2) - fdf->projector.active_view.x_move + ((float) fdf->ui_image->width / 2);
 	point->y += ((float) fdf->image->height / 2) - fdf->projector.active_view.y_move;
 }
 

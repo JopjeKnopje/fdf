@@ -82,6 +82,7 @@ So instead of implementing this and probably facing more endianness related issu
 - [ ] Black white gradient
 - [ ] In `view_saved` just memcopy.
 - [ ] Sidebar
+- [ ] look at the `t_color_gradient` struct?!?!?!?
 - [?] Don't use jumptable in `view select`.
 - [ ] Check the interpolate function bitshift value on mac.
 
