@@ -28,22 +28,32 @@ Dynamic | slow
 * gnl the map file
 
 
+### Clearing screen performance
+#### Test map `42-custom2.fdf`
+* Using a while loop for each pixel 400-450 fps
+* Using ft_memset 390-440 fps
+* Using memset 1800-2100 fps WTFFF??! (colors are incorrect tho because of the 1 byte thing).
+* Using a memset32 820-920 pretty good :)
+
+So instead of implementing this and probably facing more endianness related issues, lets just use the white loop. Since this stuff is like 5% percent of the actual performance on bigger maps.
+
+
 
 # TODO
 ## Features
 - [x] Read norm about global static const char arrays.
-- [ ] Some sort of optimization where it doens't draw the pixels that are already there?
 - [x] Double check if makefile MLX related rules function correctly 
-- [ ] Resize window. 
+- [x] Resize window. 
 - [x] Min max window size.
-- [ ] FPS Counter in screen.
 - [x] Support multiple projections in an enum that we can pass to the projector.
 - [x] Weird color behaviour on linux.
+- [x] Gradient on lines
+- [x] Save projection angles on number keys.
+- [x] Linedrawing optimization
+- [ ] FPS Counter in screen.
 - [ ] For clearing the screen just memset into the pixel buffer.
 - [ ] Instead of gnl just read a shit ton of data from the map.
 - [ ] Spherical projection
-- [x] Gradient on lines
-- [x] Save projection angles on number keys.
 - [ ] Add automatic rotate funcion.
 - [ ] Add screensaver mode (like a dvd player has).
 - [ ] Switch between gradient for height and gradient for actual map color values.
@@ -69,10 +79,10 @@ Dynamic | slow
 
 ## Todo for next time
 
-- [x] Linedrawing optimization
-- [ ] Sidebar
 - [ ] Black white gradient
-- [ ] Don't use jumptable in `view select`.
+- [ ] In `view_saved` just memcopy.
+- [ ] Sidebar
+- [?] Don't use jumptable in `view select`.
 - [ ] Check the interpolate function bitshift value on mac.
 
 
@@ -94,3 +104,11 @@ Dynamic | slow
 
 ### Colors
 * https://krazydad.com/tutorials/makecolors.php
+
+
+### Sidenotes
+* vaporwave type beat colors 
+`
+c_start.value = 0xff00ffff;
+c_end.value = 0x00ffffff;
+`

@@ -6,16 +6,14 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 01:14:56 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 02:05:21 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/MLX42.h"
-#include "MLX42/MLX42_Int.h"
 #include "fdf.h"
-#include "libft.h"
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 static void draw_clear(t_fdf *fdf)
 {
@@ -25,7 +23,7 @@ static void draw_clear(t_fdf *fdf)
 	i = 0;
 	while (i < size)
 	{
-		mlx_put_pixel(fdf->image, i, 0, COLOR_BACKGROUND);
+ 		mlx_put_pixel(fdf->image, i, 0, COLOR_BACKGROUND);
 		i++;
 	}
 }

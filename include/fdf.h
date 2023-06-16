@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 00:58:22 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 02:40:58 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "libft.h"
 #include <MLX42/MLX42.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -27,7 +28,7 @@
 #define WIDTH 1024
 #define HEIGHT 720
 
-#define COLOR_BACKGROUND 0x333333FF
+#define COLOR_BACKGROUND 0x333333ff
 #define COLOR_POINT_DEFAULT 0xCCCCCCFF
 
 #define AMPLITUDE_STEP 0.01f
@@ -45,6 +46,11 @@ typedef union s_rgba
 		uint8_t	r;
 	};
 }	t_rgba;
+
+typedef enum e_color_mode {
+	COLOR_MODE_MAP,
+	COLOR_MODE_HEIGHT,
+} t_color_mode;
 
 typedef struct s_mat3x3
 {
@@ -76,6 +82,7 @@ typedef struct s_map
 	uint32_t delta_z;
 	uint32_t width;
 	uint32_t height;
+	bool has_colors;
 }	t_map;
 
 typedef struct s_view
@@ -85,6 +92,7 @@ typedef struct s_view
 	int32_t y_move;
 	float	scalar;
 	float	amplitude;
+	t_color_mode color_mode;
 } t_view;
 
 typedef struct s_projector
@@ -142,7 +150,6 @@ uint32_t 	parser(t_fdf *fdf, const char *map);
 
 // utils.c
 uint8_t		check_extension(const char *map, const char *ext);
-t_rgba		color_add_alpha(const char *s);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 t_point		matmul(t_point point, t_mat3x3 m);
@@ -197,8 +204,11 @@ void		view_select(t_fdf *fdf, t_views view);
 void		rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
 
 // color.c
-void color_init(t_fdf *fdf);
-t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
+t_rgba	color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
+t_rgba get_color(t_fdf *fdf, t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
+
+// parser_color.c
+t_rgba	color_add_alpha(const char *s);
 
 // meuk.c
 void	print_point(t_point point);

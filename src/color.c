@@ -6,52 +6,18 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/16 00:43:49 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 02:41:03 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static uint32_t 	char_count(const char *s, const char c)
-{
-	uint32_t		i;
 
-	i = 0;
-	while (*s == ' ')
-		s++;
-	if (*s == '0' && (*(s + 1) == 'x' || *(s + 1) == 'X'))
-		s += 2;
-	while (s[i] == c)
-		i++;
-	return (i);
-}
-
-t_rgba	color_add_alpha(const char *s)
-{
-	t_rgba c;
-	const uint32_t NIBBLE = 4;
-	const uint32_t skip = char_count(s, '0');
-
-	c.value = ft_atoi_hex(s);
-
-	int i = 8 - skip;
-	uint32_t tmp = c.value;
-	while (tmp)
-	{
-		tmp /= 16;
-		i--;
-	}
-
-	c.value <<= NIBBLE * i;
-	c.a = 0xff;
-
-	return (c);
-}
-
-uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
+static uint32_t interpolate_chan(uint8_t ar, uint8_t br, uint8_t shift, float fracton)
 {
 	return ((uint32_t) (ar + (br - ar) * fracton) << shift);
 }
+
 
 t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
 {
@@ -72,4 +38,15 @@ t_rgba color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
 				 	interpolate_chan(c_start.a, c_end.a, 0, fraction);
 
 	return (color);
+}
+
+
+t_rgba get_color(t_fdf *fdf, t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len)
+{
+	if (fdf->projector.active_view.color_mode == COLOR_MODE_HEIGHT)
+	{
+		c_start.value = 0xff00ffff;
+		c_end.value = 0x00ffffff;
+	}
+	return color_gradient(c_start, c_end, step, len);
 }

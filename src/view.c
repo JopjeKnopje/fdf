@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 00:48:22 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 02:39:58 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void view_saved(t_projector *p)
 	p->active_view.scalar = p->saved_view.scalar;
 	p->active_view.amplitude = p->saved_view.amplitude;
 	p->active_view.id_matrix = p->saved_view.id_matrix;
+	p->active_view.color_mode = p->saved_view.color_mode;
 }
 
 static void view_reset(t_projector *p)
@@ -42,6 +43,7 @@ static void view_reset(t_projector *p)
 	p->active_view.x_move = 0;
 	p->active_view.y_move = 0;
 	p->active_view.amplitude = .02;
+	p->active_view.color_mode = COLOR_MODE_HEIGHT;
 }
 
 void view_select(t_fdf *fdf, t_views view)

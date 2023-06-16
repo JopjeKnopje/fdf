@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:47:41 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 00:40:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 02:14:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static uint8_t	open_map(const char *map)
 	return (fd);
 }
 
-static t_rgba	parse_color(const char *s)
+static t_rgba	parse_color(t_map *map, const char *s)
 {
 	t_rgba	color;
 	char	*delim;
@@ -43,6 +43,7 @@ static t_rgba	parse_color(const char *s)
 	if (delim && delim + 1)
 	{
 		color = color_add_alpha(delim + 1);
+		map->has_colors = true;
 	}
 	else
 		color.value = COLOR_POINT_DEFAULT;
@@ -64,7 +65,7 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.x = i;
 		point.y = line_count;
 		point.z = ft_atoi(split[i]);
-		point.color = parse_color(split[i]);
+		point.color = parse_color(fdf->map, split[i]);
 		if (!fdf->map->points_list)
 		{
 			fdf->map->points_list = lstnew(point);
