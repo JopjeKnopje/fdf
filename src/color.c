@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/16 23:18:15 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 00:18:17 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,19 @@ t_rgba get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, flo
 		// take the z 
 
 		const float total_z_height = abs(fdf->map->max_z) - abs(fdf->map->min_z);
-		const float step_total = 1.0f / total_z_height;
 
+		// const t_rgba C_END = { .value = 0xffffffff};
+		// const t_rgba C_START = { .value = 0x000000ff};
 
-		const t_rgba C_END = { .value = 0xffffffff};
-		const t_rgba C_START = { .value = 0x000000ff};
+		const t_rgba C_END = { .value = 0x00ffffff};
+		const t_rgba C_START = { .value = 0xff00ffff};
 
-		t_rgba start_l = color_gradient(C_START, C_END, step_total * start_z, total_z_height);
-		t_rgba end_l = color_gradient(C_START, C_END, step_total * end_z, total_z_height);
+		t_rgba start_l = color_gradient(C_START, C_END, start_z, total_z_height);
+		t_rgba end_l = color_gradient(C_START, C_END, end_z, total_z_height);
 
-		float fraction = 0.9f;
+		// print_color(start_l);
+		// print_color(end_l);
+
 
 		t_rgba c = color_gradient(start_l, end_l, step, len);
 

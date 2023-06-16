@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 23:21:32 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 23:22:37 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ t_point projector(t_fdf *fdf, t_point point)
 {
 	t_point projected = point;
 
+	projected.actual_z = point.z;
+
 	offset(fdf, &projected);
 	scale(fdf, &projected);
 
+
 	projected.z *= fdf->projector.active_view.amplitude;
-	projected.actual_z = projected.z;
 	projected = matmul(projected, fdf->projector.active_view.id_matrix);
 	center(fdf, &projected);
 

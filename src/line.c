@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 23:20:58 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/16 23:59:21 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	{
 		err = (dx - dy) / 2;
 	}
-	if (p_start.actual_z || p_end.actual_z)
-		printf("line: start_z %f end_z %f\n", p_start.actual_z, p_end.actual_z);
+	// if (p_start.actual_z || p_end.actual_z)
+	// 	printf("line: start_z %f end_z %f\n", p_start.actual_z, p_end.actual_z);
 	while (x_start != x_end || y_start != y_end)
 	{
 		tmp.y = y_start;
