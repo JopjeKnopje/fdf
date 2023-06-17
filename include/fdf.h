@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 02:00:18 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 02:46:50 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,23 @@ typedef struct s_projector
 	t_view saved_view;
 } 	t_projector;
 
+
+typedef mlx_image_t mlx_string_image_t ;
+
+typedef struct s_ui
+{
+	mlx_image_t *image;
+	mlx_string_image_t *fps_image;
+	uint32_t fps;
+} t_ui;
+
 typedef struct s_fdf
 {
 	t_map *map;
 	mlx_t *mlx;
 	t_projector projector;
 	mlx_image_t *image;
-	mlx_image_t *ui_image;
+	t_ui ui;
 }	t_fdf;
 
 typedef enum e_views {

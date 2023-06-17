@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 02:00:13 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 02:55:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,42 @@ void print_angles(void *param)
 	printf("x: %.3f°, y: %.3f°, z: %.3f°\n", x, y, z);
 }
 
+
+static void ui_draw_fps(t_fdf *fdf)
+{
+	char *s = "FPS: ";
+	char *fps = ft_itoa(fdf->ui.fps);
+	s = ft_strjoin(s, fps);
+	if (fdf->ui.fps_image)
+	{
+		mlx_delete_image(fdf->mlx, fdf->ui.fps_image);
+	}
+	fdf->ui.fps_image = mlx_put_string(fdf->mlx, s, 20, 20);
+	free(s);
+	free(fps);
+}
+
 void	fps_hook(void *param)
 {
-	static int		fps = 0;
+	t_fdf *fdf;
+
+	fdf = param;
 	static double	time_old = 0;
 
 	if (mlx_get_time() - time_old >= 1)
 	{
 		time_old = mlx_get_time();
-		printf("FPS: %d\n", fps);
-		fps = 0;
+		printf("FPS: %d\n", fdf->ui.fps);
+		ui_draw_fps(fdf);
+		fdf->ui.fps = 0;
 	}
 	else
-		fps++;
+		fdf->ui.fps++;
 }
+
+
 
 void ui_draw(t_fdf *fdf)
 {
-
+	;
 }
