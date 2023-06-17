@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/04 00:22:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 02:00:13 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,7 @@ void	fps_hook(void *param)
 		fps++;
 }
 
+void ui_draw(t_fdf *fdf)
+{
+
+}

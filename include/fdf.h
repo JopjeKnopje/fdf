@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 01:51:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 02:00:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ uint8_t		check_extension(const char *map, const char *ext);
 uint32_t	list_to_arr(t_fdf *fdf);
 t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2);
 t_point		matmul(t_point point, t_mat3x3 m);
+uint8_t 	points_in_window(mlx_image_t *image, t_point p1, t_point p2);
 
 // list.c
 int			lstsize(t_node *lst);
@@ -202,7 +203,7 @@ void		key_hook(void *param);
 
 // ui.c
 void		fps_hook(void *param);
-void		print_angles(void *param);
+void 		ui_draw(t_fdf *fdf);
 
 // draw.c
 void		draw_hook(void *param);
@@ -227,6 +228,9 @@ t_rgba get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, flo
 
 // parser_color.c
 t_rgba	parse_color(t_map *map, const char *s);
+
+// wireframe.c
+void wireframe_draw(t_fdf *fdf);
 
 // meuk.c
 void	print_point(t_point point);

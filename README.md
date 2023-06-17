@@ -63,6 +63,7 @@ So instead of implementing this and probably facing more endianness related issu
 - [ ] Perspective camera.
 - [ ] Calculate the initial size of the wireframe so it fits perfectly in the window (also do this on resize).
 - [ ] Mouse dragging to move wireframe.
+- [ ] Draw square for all the point colors.
 
 
 

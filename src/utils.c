@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 22:26:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/17 01:55:25 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,10 @@ t_mat3x3 mat3x3mul(t_mat3x3 m1, t_mat3x3 m2)
 		i++;
 	}
 	return (res);
+}
+
+uint8_t points_in_window(mlx_image_t *image, t_point p1, t_point p2)
+{
+	return ((p1.x >= 0 && p1.x < image->width && p1.y >= 0 && p1.y < image->height)
+		|| (p2.x >= 0 && p2.x < image->width && p2.y >= 0 && p2.y < image->height));
 }

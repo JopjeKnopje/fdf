@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/17 01:41:53 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/17 01:59:27 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ SRCS = main.c \
 	   rotate.c \
 	   view.c \
 	   color.c \
-	   parser_color.c
+	   parser_color.c \
+	   wireframe.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
