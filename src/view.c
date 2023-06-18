@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 19:15:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 23:57:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ static void view_ortho(t_projector *p)
 
 static void view_saved(t_projector *p)
 {
-	p->active_view.x_move = p->saved_view.x_move;
-	p->active_view.y_move = p->saved_view.y_move;
-	p->active_view.scalar = p->saved_view.scalar;
-	p->active_view.amplitude = p->saved_view.amplitude;
-	p->active_view.id_matrix = p->saved_view.id_matrix;
-	p->active_view.color_mode = p->saved_view.color_mode;
+	// p->active_view.x_move = p->saved_view.x_move;
+	// p->active_view.y_move = p->saved_view.y_move;
+	// p->active_view.scalar = p->saved_view.scalar;
+	// p->active_view.amplitude = p->saved_view.amplitude;
+	// p->active_view.id_matrix = p->saved_view.id_matrix;
+	// p->active_view.color_mode = p->saved_view.color_mode;
+	ft_memcpy(&p->active_view, &p->saved_view, sizeof(t_view));
+
 }
 
 static void view_reset(t_projector *p)
