@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 01:41:09 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 19:15:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void view_reset(t_projector *p)
 	p->active_view.y_move = 0;
 	p->active_view.amplitude = .02;
 	p->active_view.color_mode = COLOR_MODE_HEIGHT;
+	// p->active_view.color_mode = COLOR_MODE_MAP;
 }
 
 void view_select(t_fdf *fdf, t_views view)

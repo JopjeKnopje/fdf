@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 00:29:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 23:02:34 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 19:20:46 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,23 @@ void	free_lst(t_node *lst)
 		free(tmp);
 	}
 }
+
+static void free_ui_texts(t_ui *ui)
+{
+	int i;
+	i = 0;
+
+	while (i < TEXT_COUNT) 
+	{
+		free(ui->texts[i].s);
+		i++;
+	}
+}
+
+void	free_fdf(t_fdf *fdf)
+{
+	free(fdf->map->points);
+	free(fdf->map);
+	free_ui_texts(&fdf->ui);
+}
+

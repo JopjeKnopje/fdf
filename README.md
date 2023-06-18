@@ -77,12 +77,13 @@ So instead of implementing this and probably facing more endianness related issu
 - [ ] Map does weird stuff on spaces see `weird_map.fdf`
 - [?] Segfault when resizing too quick.
 - [?] Color union endianness?
+- [ ] Calculating the gradient in `COLOR_MODE_HEIGHT` is pretty slow.
 
 ## Todo for next time
 
-- [ ] Black white gradient
-- [ ] In `view_saved` just memcopy.
 - [ ] Sidebar
+- [x] Black white gradient
+- [ ] In `view_saved` just memcopy.
 - [ ] look at the `t_color_gradient` struct?!?!?!?
 - [?] Don't use jumptable in `view select`.
 - [ ] Check the interpolate function bitshift value on mac.

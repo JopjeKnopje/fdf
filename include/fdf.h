@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 02:46:50 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 20:42:01 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define ANGLE_STEP 0.01f
 # define SCALAR_STEP 0.1f
 
+# define UI_TEXT_COUNT 2
+
+# define FONT_HEIGHT 20
+
 typedef union s_rgba
 {
 	uint32_t	value;
@@ -47,8 +51,6 @@ typedef enum e_dimensions {
 	DIM_WINDOW_HEIGHT = 720,
 	DIM_UI_WIDTH = 250,
 	DIM_UI_HEIGHT = DIM_WINDOW_HEIGHT,
-	// DIM_VIEWPORT_WIDTH = DIM_WINDOW_WIDTH - DIM_UI_WIDTH,
-	// DIM_VIEWPORT_HEIGHT = DIM_WINDOW_HEIGHT,
 	DIM_VIEWPORT_WIDTH = DIM_WINDOW_WIDTH,
 	DIM_VIEWPORT_HEIGHT = DIM_WINDOW_HEIGHT,
 
@@ -59,7 +61,8 @@ typedef enum e_color_mode {
 	COLOR_MODE_HEIGHT,
 } t_color_mode;
 
-typedef struct s_color_gradient
+
+typedef union s_color_gradient
 {
 	t_rgba	c[2];
 	struct
@@ -122,10 +125,23 @@ typedef struct s_projector
 
 typedef mlx_image_t mlx_string_image_t ;
 
+typedef enum e_texts {
+	TEXT_FPS,
+	TEXT_SCALAR,
+	TEXT_COUNT,
+} t_texts;
+
+typedef struct s_text_image {
+	mlx_image_t *image;
+	uint32_t	x;
+	uint32_t	y;
+	char		*s;
+} t_text_image;
+
 typedef struct s_ui
 {
 	mlx_image_t *image;
-	mlx_string_image_t *fps_image;
+	t_text_image texts[UI_TEXT_COUNT];
 	uint32_t fps;
 } t_ui;
 
@@ -193,6 +209,7 @@ t_node		*lstnew(t_point point);
 // free.c
 void		free_split(char **s_split);
 void		free_lst(t_node *lst);
+void		free_fdf(t_fdf *fdf);
 
 // graphics.c
 int32_t 	graphics_init(t_fdf *fdf);
@@ -213,6 +230,7 @@ void		key_hook(void *param);
 
 // ui.c
 void		fps_hook(void *param);
+void		ui_init(t_fdf *fdf);
 void 		ui_draw(t_fdf *fdf);
 
 // draw.c
@@ -241,6 +259,10 @@ t_rgba	parse_color(t_map *map, const char *s);
 
 // wireframe.c
 void wireframe_draw(t_fdf *fdf);
+
+// text.c
+void text_set(t_text_image *text, char *s);
+void text_draw(mlx_t *mlx, t_text_image *text);
 
 // meuk.c
 void	print_point(t_point point);

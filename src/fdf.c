@@ -6,17 +6,12 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/17 14:34:42 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/17 02:43:04 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 18:45:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	fdf_cleanup(t_fdf *fdf)
-{
-	free(fdf->map->points);
-	free(fdf->map);
-}
 
 int32_t	fdf(int32_t argc, const char *argv[])
 {
@@ -29,9 +24,9 @@ int32_t	fdf(int32_t argc, const char *argv[])
 		return (1);
 	if (graphics_init(&fdf))
 	{
-		fdf_cleanup(&fdf);
+		free_fdf(&fdf);
 		return (1);
 	}
-	fdf_cleanup(&fdf);
+	free_fdf(&fdf);
 	return (0);
 }
