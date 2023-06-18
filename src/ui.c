@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 20:40:56 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 23:45:46 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ void ui_init(t_fdf *fdf)
 		if (i == TEXT_FPS)
 			t->s = ft_strdup("FPS: 0");
 		else if (i == TEXT_SCALAR)
-			t->s = ft_strdup("SCLAR: ");
+			t->s = ft_strdup("SCALAR: 123");
+		else if (i == TEXT_AMPLITUDE)
+			t->s = ft_strdup("AMPLITUDE: 123");
 		i++;
 	}
 }

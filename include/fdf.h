@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 20:42:01 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 23:45:24 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define ANGLE_STEP 0.01f
 # define SCALAR_STEP 0.1f
 
-# define UI_TEXT_COUNT 2
+# define UI_TEXT_COUNT 3
 
 # define FONT_HEIGHT 20
 
@@ -128,6 +128,7 @@ typedef mlx_image_t mlx_string_image_t ;
 typedef enum e_texts {
 	TEXT_FPS,
 	TEXT_SCALAR,
+	TEXT_AMPLITUDE,
 	TEXT_COUNT,
 } t_texts;
 

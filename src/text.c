@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/18 19:07:46 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 20:07:49 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/18 23:46:47 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void text_draw(mlx_t *mlx, t_text_image *text)
 	{
 		mlx_delete_image(mlx, text->image);
 	}
-	if (text->s)
-	{
-		text->image = mlx_put_string(mlx, text->s, text->x, text->y);
-	}
+	printf("text_draw [%s] %d %d\n", text->s, text->x, text->y);
+	text->image = mlx_put_string(mlx, text->s, text->x, text->y);
 }
