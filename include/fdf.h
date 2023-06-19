@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 23:48:02 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:54:24 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ typedef enum e_texts {
 	TEXT_COLOR_MODE,
 	TEXT_SCALAR,
 	TEXT_AMPLITUDE,
+	TEXT_MAP_WIDTH,
+	TEXT_MAP_HEIGHT,
 	TEXT_COUNT,
 } t_texts;
 
@@ -316,6 +318,7 @@ t_rgba	parse_color(t_map *map, const char *s);
 void wireframe_draw(t_fdf *fdf);
 
 // text.c
+void text_set_num(t_text_image *text, char *s_base, int32_t n);
 void text_set(t_text_image *text, char *s);
 void text_draw(mlx_t *mlx, t_text_image *text);
 

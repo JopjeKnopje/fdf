@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 23:47:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:54:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ static void setup_text(t_fdf *fdf)
 			t->s = ft_strdup("Amplitude: 0");
 		else if (i == TEXT_VIEW && !t->s)
 			t->s = ft_strdup("View: 0");
+		else if (i == TEXT_MAP_WIDTH)
+			t->s = ft_strdup("Map width: 0");
+		else if (i == TEXT_MAP_HEIGHT)
+			t->s = ft_strdup("Map height: 0");
 		i++;
 	}
 }
@@ -99,6 +103,8 @@ void ui_init(t_fdf *fdf)
 	view = &fdf->projector.active_view;
 	setup_text(fdf);
 	setup_text_controls(fdf);
+	text_set_num(&fdf->ui.texts[TEXT_MAP_WIDTH], "Map width: ", fdf->map->width);
+	text_set_num(&fdf->ui.texts[TEXT_MAP_HEIGHT], "Map height: ", fdf->map->height);
 	view_cylce_color_mode(fdf, 0);
 	view_scale(fdf, view, 0);
 	view_move(fdf, view, 0, 0);
