@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 10:57:23 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 11:25:46 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 static void	resize(int32_t width, int32_t height, void* param)
 {
 	t_fdf *fdf = param;
-	// TODO Error checking.
 	mlx_resize_image(fdf->image, width, height);
 	if (width < DIM_UI_WIDTH)
 		mlx_resize_image(fdf->ui.image, width, height);

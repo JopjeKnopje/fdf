@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:09:24 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 11:33:24 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,7 @@ void text_set(t_text_image *text, char *s);
 void text_draw(mlx_t *mlx, t_text_image *text);
 
 // meuk.c
+void print_text(t_text_image *t);
 void	print_point(t_point point);
 void	mat_print(t_mat3x3 m);
 void	print_points(t_fdf *fdf);

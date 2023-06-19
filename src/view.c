@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:07:57 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 11:38:47 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,15 @@ static void view_reset(t_projector *p)
 	p->active_view.x_move = 0;
 	p->active_view.y_move = 0;
 	p->active_view.amplitude = .02;
-	p->active_view.color_mode = COLOR_MODE_MAP;
+	p->active_view.color_mode = COLOR_MODE_COUNT;
 }
 
 void view_cylce_color_mode(t_fdf *fdf)
 {
-	if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.1)
-	{
-		fdf->projector.active_view.color_mode++;
-		if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
-			fdf->projector.active_view.color_mode = 0;
-		timer_start(fdf->timers[TIMER_VIEW_INPUT]);
-		text_set(&fdf->ui.texts[TEXT_VIEW], ft_strdup(VIEW_NAMES[fdf->projector.view_mode]));
-	}
+	fdf->projector.active_view.color_mode++;
+	if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
+		fdf->projector.active_view.color_mode = 0;
+	text_set(&fdf->ui.texts[TEXT_VIEW], ft_strdup(VIEW_NAMES[fdf->projector.view_mode]));
 }
 
 void view_select(t_fdf *fdf, t_views view)

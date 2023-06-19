@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 10:59:04 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 11:38:59 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ void 	key_hook3(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->projector.active_view.x_move--;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_G))
-		view_cylce_color_mode(fdf);
-
+	{
+		if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.2)
+		{
+			view_cylce_color_mode(fdf);
+			timer_start(fdf->timers[TIMER_VIEW_INPUT]);
+		}
+	}
 }

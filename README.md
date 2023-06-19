@@ -84,6 +84,7 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
+- [ ] Speed-up big maps.
 - [ ] Sidebar
 - [ ] Check the interpolate function bitshift value on mac.
 

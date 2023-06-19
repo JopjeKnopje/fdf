@@ -45,3 +45,9 @@ void print_color(t_rgba c)
 {
 	printf("hex %x | r: %x (%d), g: %x (%d), b: %x (%d), a: %x (%d)\n", c.value, c.r, c.r, c.g, c.g, c.b, c.g, c.a, c.a);
 }
+
+
+void print_text(t_text_image *t)
+{
+	printf("x %d y %d s %s\n", t->x, t->y, t->s);
+}
