@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                        :+:    :+:             */
+/*   keyinput.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 12:00:34 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 12:33:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42.h"
 #include "fdf.h"
 #include "timer.h"
+#include <math.h>
 #include <stdio.h>
 
 void	key_hook1(void *param)
@@ -63,9 +64,9 @@ void 	key_hook2(void *param)
 			view_select(fdf, VIEW_SAVED);
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->projector.active_view.y_move++;
+		fdf->projector.active_view.y_move += 1 / fdf->projector.active_view.scalar;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->projector.active_view.y_move--;
+		fdf->projector.active_view.y_move -= 1 / fdf->projector.active_view.scalar;
 }
 void 	key_hook3(void *param)
 {

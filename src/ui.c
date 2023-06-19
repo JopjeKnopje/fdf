@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                              :+:    :+:             */
+/*   ui.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:58:18 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 12:52:05 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	void draw_text_images(t_fdf *fdf)
 	i = 0;
 	while (i < TEXT_COUNT)
 	{
-		text_draw(fdf->mlx, &fdf->ui.texts[i]);
+		text_draw(fdf->mlx, &(fdf->ui.texts[i]));
 		i++;
 	}
 }
@@ -60,7 +60,7 @@ void ui_init(t_fdf *fdf)
 		t->y = 20 + (FONT_HEIGHT * i) + 20 * i;
 		if (i == TEXT_FPS)
 			t->s = ft_strdup("FPS: 0");
-		else if (i == TEXT_SCALAR)
+		if (i == TEXT_SCALAR)
 			t->s = ft_strdup("Scalar: 123");
 		else if (i == TEXT_AMPLITUDE)
 			t->s = ft_strdup("Amplitude: 123");
