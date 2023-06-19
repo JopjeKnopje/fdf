@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:38:59 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 12:00:34 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	key_hook1(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-		fdf->projector.active_view.scalar += SCALAR_STEP;
+		fdf->projector.active_view.scalar += SCALAR_STEP * fdf->projector.active_view.scalar / 2;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
-		fdf->projector.active_view.scalar -= SCALAR_STEP;
+		fdf->projector.active_view.scalar -= SCALAR_STEP * fdf->projector.active_view.scalar / 2;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
 		fdf->projector.active_view.amplitude += AMPLITUDE_STEP;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))

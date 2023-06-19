@@ -6,11 +6,12 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:32:57 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 11:58:18 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -40,7 +41,7 @@ static	void draw_text_images(t_fdf *fdf)
 	i = 0;
 	while (i < TEXT_COUNT)
 	{
-		text_draw(fdf->mlx, &(fdf->ui.texts[i]));
+		text_draw(fdf->mlx, &fdf->ui.texts[i]);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 20:40:22 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 11:54:42 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void draw_hook(void *param)
 	t_fdf *fdf = param;
 	draw_clear(fdf->image, COLOR_BACKGROUND);
 	draw_clear(fdf->ui.image, COLOR_BACKGROUND_UI);
-	ui_draw(fdf);
 	wireframe_draw(fdf);
+	ui_draw(fdf);
 }
