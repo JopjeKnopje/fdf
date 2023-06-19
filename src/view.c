@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view.c                                            :+:    :+:             */
+/*   view.c                                             :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 18:02:57 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 19:29:58 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void view_cylce_color_mode(t_fdf *fdf)
 void view_save(t_projector *p)
 {
 	ft_memcpy(&p->saved_view, &p->active_view, sizeof(t_view));
-
 }
 
 void view_select(t_fdf *fdf, t_views view)

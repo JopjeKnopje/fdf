@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                        :+:    :+:             */
+/*   graphics.c                                         :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 18:25:42 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 20:11:48 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ static void	resize(int32_t width, int32_t height, void* param)
 
 static void	hooks_init(t_fdf *fdf)
 {
-	mlx_loop_hook(fdf->mlx, key_hook_move, fdf);
-	mlx_loop_hook(fdf->mlx, key_hook_view, fdf);
-	mlx_loop_hook(fdf->mlx, key_hook3, fdf);
+	mlx_loop_hook(fdf->mlx, key_hook, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
 	mlx_loop_hook(fdf->mlx, draw_hook, fdf);
 	mlx_resize_hook(fdf->mlx, resize, fdf);
@@ -84,8 +82,8 @@ int32_t	graphics_init(t_fdf *fdf)
 		return (1);
 	hooks_init(fdf);
 	timers_init(fdf);
-	ui_init(fdf);
 	projector_init(fdf);
+	ui_init(fdf);
 	mlx_loop(fdf->mlx);
 	mlx_terminate(fdf->mlx);
 	return (EXIT_SUCCESS);

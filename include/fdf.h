@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 18:25:42 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 19:31:31 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,9 +248,7 @@ void		projector_init(t_fdf *fdf);
 t_point		projector(t_fdf *fdf, t_point point);
 
 // keyinput.c
-void	key_hook_move(void *param);
-void	key_hook_view(void *param);
-void	key_hook3(void *param);
+void	key_hook(void *param);
 
 // ui.c
 void		fps_hook(void *param);
@@ -275,10 +273,10 @@ void view_save(t_projector *p);
 
 
 // view_translations.c
-void view_scale(t_view *view, t_direction dir);
-void view_amplitude(t_view *view, t_direction dir);
-void view_move(t_view *view, t_axis axis, t_direction dir);
-void view_rotate(t_view *view, t_axis axis, t_direction dir);
+void view_scale(t_fdf *fdf, t_view *view, t_direction dir);
+void view_amplitude(t_fdf *fdf, t_view *view, t_direction dir);
+void view_move(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir);
+void view_rotate(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir);
 
 // rotate.c
 void		rotate(t_fdf *fdf, t_axis axis, t_direction dir);

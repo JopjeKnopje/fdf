@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   projector.c                                       :+:    :+:             */
+/*   projector.c                                        :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:38:30 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 20:02:04 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void center(t_fdf *fdf, t_point *point)
 void projector_init(t_fdf *fdf)
 {
 	view_select(fdf, VIEW_ISO);
-	view_cylce_color_mode(fdf);
 }
 
 t_point projector(t_fdf *fdf, t_point point)
