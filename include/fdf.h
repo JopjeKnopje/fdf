@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 12:50:28 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 13:33:14 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,13 @@ typedef struct s_projector
 {
 	t_view active_view;
 	t_view saved_view;
-	t_views view_mode;
 } 	t_projector;
 
-
-typedef mlx_image_t mlx_string_image_t ;
 
 typedef enum e_texts {
 	TEXT_FPS,
 	TEXT_VIEW,
+	TEXT_COLOR_MODE,
 	TEXT_SCALAR,
 	TEXT_AMPLITUDE,
 	TEXT_COUNT,
@@ -144,6 +142,7 @@ typedef enum e_texts {
 
 typedef enum e_timers {
 	TIMER_VIEW_INPUT,
+	TIMER_RENDER_TEXT,
 	TIMER_COUNT,
 } t_timers;
 
@@ -152,7 +151,7 @@ typedef struct s_text_image {
 	uint32_t	x;
 	uint32_t	y;
 	char		*s;
-	uint32_t	drawn;
+	bool 		redraw;
 } t_text_image;
 
 typedef struct s_ui
@@ -204,6 +203,11 @@ const static char *VIEW_NAMES[] = {
 	[VIEW_ORTHO] = "View: Orthographic",
 	[VIEW_ISO] = "View: Isometric",
 	[VIEW_SAVED] = "View: Saved",
+};
+
+const static char *COLOR_MODE_NAMES[] = {
+	[COLOR_MODE_MAP] = "Colormode: Map",
+	[COLOR_MODE_HEIGHT] = "Colormode: Height",
 };
 
 // fdf.c

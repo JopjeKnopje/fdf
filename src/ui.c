@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                               :+:    :+:            */
+/*   ui.c                                              :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 12:52:05 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 13:25:53 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+#include "timer.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -56,22 +57,19 @@ void ui_init(t_fdf *fdf)
 	while (i < TEXT_COUNT)
 	{
 		t = &fdf->ui.texts[i];
-		t->x = 20;
-		t->y = 20 + (FONT_HEIGHT * i) + 20 * i;
+		t->x = 25;
+		t->y = 20 + (FONT_HEIGHT * i) + 10 * i;
+		t->redraw = 1;
 		if (i == TEXT_FPS)
 			t->s = ft_strdup("FPS: 0");
 		if (i == TEXT_SCALAR)
-			t->s = ft_strdup("Scalar: 123");
+			t->s = ft_strdup("Scalar: 0");
 		else if (i == TEXT_AMPLITUDE)
-			t->s = ft_strdup("Amplitude: 123");
+			t->s = ft_strdup("Amplitude: 0");
 		else if (i == TEXT_VIEW)
-			t->s = ft_strdup("View: 123");
+			t->s = ft_strdup("View: 0");
 		i++;
 	}
-	print_text(&fdf->ui.texts[TEXT_FPS]);
-	print_text(&fdf->ui.texts[TEXT_VIEW]);
-	print_text(&fdf->ui.texts[TEXT_SCALAR]);
-	print_text(&fdf->ui.texts[TEXT_AMPLITUDE]);
 }
 
 void ui_draw(t_fdf *fdf)
