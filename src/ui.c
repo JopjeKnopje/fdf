@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 20:15:37 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 20:31:21 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "timer.h"
 #include <math.h>
+#include <stdint.h>
 #include <stdio.h>
 
 void	fps_hook(void *param)
@@ -71,12 +72,31 @@ static void setup_text(t_fdf *fdf)
 	}
 }
 
+static void setup_text_controls(t_fdf *fdf)
+{
+	t_text_image	*t;
+	uint32_t		i;
+	const uint32_t 	offset = fdf->ui.texts[TEXT_COUNT - 1].y;
+
+	i = 0;
+	while (i < CONTROL_TEXT_COUNT)
+	{
+		t = &fdf->ui.texts[i];
+		t->x = 25;
+		t->y = offset + (FONT_HEIGHT * i) + 10 * i;
+		t->redraw = 1;
+		t->s = ft_strdup(CONTROL_TEXT_CONTENT[i]);
+		i++;
+	}
+}
+
 void ui_init(t_fdf *fdf)
 {
 	t_view *view;
 
 	view = &fdf->projector.active_view;
 	setup_text(fdf);
+	setup_text_controls(fdf);
 	view_cylce_color_mode(fdf);
 	view_scale(fdf, view, 0);
 	view_move(fdf, view, 0, 0);

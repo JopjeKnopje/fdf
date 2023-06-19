@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 19:31:31 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 20:28:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,27 @@ typedef enum e_texts {
 	TEXT_AMPLITUDE,
 	TEXT_COUNT,
 } t_texts;
+
+typedef enum e_control_texts {
+	CONTROL_TEXT_ROTATE_X,
+	CONTROL_TEXT_ROTATE_Y,
+	CONTROL_TEXT_ROTATE_Z,
+	CONTROL_TEXT_MOVE_X,
+	CONTROL_TEXT_MOVE_Y,
+	CONTROL_TEXT_VIEWS,
+	CONTROL_TEXT_SAVE_VIEW,
+	CONTROL_TEXT_COUNT,
+} t_control_texts;
+
+const static char *CONTROL_TEXT_CONTENT[] = {
+	[CONTROL_TEXT_ROTATE_X] = "Rotate X-axis: A/D",
+	[CONTROL_TEXT_ROTATE_Y] = "Rotate Y-axis: a/D",
+	[CONTROL_TEXT_ROTATE_Z] = "Rotate Z-axis: A/D",
+	[CONTROL_TEXT_MOVE_X] = "Move X-axis: left/right",
+	[CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up/down",
+	[CONTROL_TEXT_VIEWS] = "Views: 1/2/3",
+	[CONTROL_TEXT_SAVE_VIEW] = "Save view: Shift + 3",
+};
 
 typedef enum e_timers {
 	TIMER_VIEW_INPUT,
