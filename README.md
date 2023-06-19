@@ -85,6 +85,7 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
+- [ ] Update `colormode` `scalar` and `amplitude` when changing view.
 - [ ] Speed-up big maps.
 - [ ] Check the interpolate function bitshift value on mac.
 
