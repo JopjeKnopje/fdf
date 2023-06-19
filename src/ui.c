@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                              :+:    :+:             */
+/*   ui.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 23:45:46 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 09:12:34 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
+#include <stdio.h>
 
 void print_angles(void *param)
 {
@@ -37,7 +38,7 @@ void	fps_hook(void *param)
 	if (mlx_get_time() - time_old >= 1)
 	{
 		time_old = mlx_get_time();
-		printf("FPS: %d\n", fdf->ui.fps);
+		// printf("FPS: %d\n", fdf->ui.fps);
 
 		fps = ft_itoa(fdf->ui.fps);
 		text_set(&fdf->ui.texts[TEXT_FPS], ft_strjoin("FPS: ", fps));
