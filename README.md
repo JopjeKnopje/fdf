@@ -54,10 +54,11 @@ So instead of implementing this and probably facing more endianness related issu
 - [x] In `view_saved` just memcopy.
 - [x] Don't use jumptable in `view select`.
 - [x] FPS Counter in screen.
-- [x] Gradient on height
+- [x] Gradient on height.
+- [x] Sidebar.
 - [ ] For clearing the screen just memset into the pixel buffer.
 - [ ] Instead of gnl just read a shit ton of data from the map.
-- [ ] Spherical projection
+- [ ] Spherical projection.
 - [ ] Add automatic rotate funcion.
 - [ ] Add screensaver mode (like a dvd player has).
 - [ ] Switch between gradient for height and gradient for actual map color values.
@@ -85,7 +86,6 @@ So instead of implementing this and probably facing more endianness related issu
 ## Todo for next time
 
 - [ ] Speed-up big maps.
-- [ ] Sidebar
 - [ ] Check the interpolate function bitshift value on mac.
 
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view_translations.c                                :+:    :+:            */
+/*   view_translations.c                               :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/19 17:22:23 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/19 20:06:49 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:15:17 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void view_scale(t_fdf *fdf, t_view *view, t_direction dir)
 	text_set(&fdf->ui.texts[TEXT_SCALAR], ft_strjoin("Scalar: ", s));
 	free(s);
 }
-
 
 void view_amplitude(t_fdf *fdf, t_view *view, t_direction dir)
 {

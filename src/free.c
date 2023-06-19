@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   free.c                                             :+:    :+:            */
+/*   free.c                                            :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 00:29:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 20:19:27 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 21:43:02 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void free_ui_texts(t_ui *ui)
 	int i;
 	i = 0;
 
-	while (i < TEXT_COUNT) 
+	while (i < TEXT_COUNT + CONTROL_TEXT_COUNT) 
 	{
 		free(ui->texts[i].s);
 		i++;

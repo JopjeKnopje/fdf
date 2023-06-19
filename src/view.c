@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view.c                                             :+:    :+:            */
+/*   view.c                                            :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 19:29:58 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:43:51 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void view_reset(t_projector *p)
 }
 
 
-void view_cylce_color_mode(t_fdf *fdf)
+void view_cylce_color_mode(t_fdf *fdf, t_direction dir)
 {
-	fdf->projector.active_view.color_mode++;
+	fdf->projector.active_view.color_mode += dir;
 	if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
 		fdf->projector.active_view.color_mode = 0;
 	text_set(&fdf->ui.texts[TEXT_COLOR_MODE], ft_strdup(COLOR_MODE_NAMES[fdf->projector.active_view.color_mode]));

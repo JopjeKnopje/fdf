@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                         :+:    :+:            */
+/*   keyinput.c                                        :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 19:39:38 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:24:56 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void 	key_hook_misc(t_fdf	*fdf)
 	{
 		if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.2)
 		{
-			view_cylce_color_mode(fdf);
+			view_cylce_color_mode(fdf, DIR_POSTIVE);
 			timer_start(fdf->timers[TIMER_VIEW_INPUT]);
 		}
 	}

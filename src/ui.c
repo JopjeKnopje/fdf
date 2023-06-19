@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                               :+:    :+:            */
+/*   ui.c                                              :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 20:31:21 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:47:20 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	void draw_text_images(t_fdf *fdf)
 	uint32_t	i;
 
 	i = 0;
-	while (i < TEXT_COUNT)
+	while (i < TEXT_COUNT + CONTROL_TEXT_COUNT)
 	{
 		text_draw(fdf->mlx, &(fdf->ui.texts[i]));
 		i++;
@@ -76,14 +76,16 @@ static void setup_text_controls(t_fdf *fdf)
 {
 	t_text_image	*t;
 	uint32_t		i;
-	const uint32_t 	offset = fdf->ui.texts[TEXT_COUNT - 1].y;
+	const uint32_t 	offset = fdf->ui.texts[TEXT_COUNT - 1].y + FONT_HEIGHT;
 
 	i = 0;
 	while (i < CONTROL_TEXT_COUNT)
 	{
-		t = &fdf->ui.texts[i];
+		t = &fdf->ui.texts[i + TEXT_COUNT];
 		t->x = 25;
-		t->y = offset + (FONT_HEIGHT * i) + 10 * i;
+		t->y = offset + (FONT_HEIGHT * 3) + (FONT_HEIGHT * i) + 10 * i;
+		if (i >= CONTROL_TEXT_ROTATE_X)
+			t->y += FONT_HEIGHT;
 		t->redraw = 1;
 		t->s = ft_strdup(CONTROL_TEXT_CONTENT[i]);
 		i++;
@@ -97,7 +99,7 @@ void ui_init(t_fdf *fdf)
 	view = &fdf->projector.active_view;
 	setup_text(fdf);
 	setup_text_controls(fdf);
-	view_cylce_color_mode(fdf);
+	view_cylce_color_mode(fdf, 0);
 	view_scale(fdf, view, 0);
 	view_move(fdf, view, 0, 0);
 	view_amplitude(fdf, view, 0);

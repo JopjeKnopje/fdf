@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 20:28:45 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 23:48:02 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef union s_rgba
 typedef enum e_dimensions {
 	DIM_WINDOW_WIDTH = 1024,
 	DIM_WINDOW_HEIGHT = 720,
-	DIM_UI_WIDTH = 250,
+	DIM_UI_WIDTH = 280,
 	DIM_UI_HEIGHT = DIM_WINDOW_HEIGHT,
 	DIM_VIEWPORT_WIDTH = DIM_WINDOW_WIDTH,
 	DIM_VIEWPORT_HEIGHT = DIM_WINDOW_HEIGHT,
@@ -141,24 +141,26 @@ typedef enum e_texts {
 } t_texts;
 
 typedef enum e_control_texts {
+	CONTROL_TEXT_VIEWS,
+	CONTROL_TEXT_SAVE_VIEW,
+	CONTROL_TEXT_COLORMODE,
 	CONTROL_TEXT_ROTATE_X,
 	CONTROL_TEXT_ROTATE_Y,
 	CONTROL_TEXT_ROTATE_Z,
 	CONTROL_TEXT_MOVE_X,
 	CONTROL_TEXT_MOVE_Y,
-	CONTROL_TEXT_VIEWS,
-	CONTROL_TEXT_SAVE_VIEW,
 	CONTROL_TEXT_COUNT,
-} t_control_texts;
+}	t_control_texts;
 
 const static char *CONTROL_TEXT_CONTENT[] = {
-	[CONTROL_TEXT_ROTATE_X] = "Rotate X-axis: A/D",
-	[CONTROL_TEXT_ROTATE_Y] = "Rotate Y-axis: a/D",
-	[CONTROL_TEXT_ROTATE_Z] = "Rotate Z-axis: A/D",
-	[CONTROL_TEXT_MOVE_X] = "Move X-axis: left/right",
-	[CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up/down",
-	[CONTROL_TEXT_VIEWS] = "Views: 1/2/3",
-	[CONTROL_TEXT_SAVE_VIEW] = "Save view: Shift + 3",
+	[CONTROL_TEXT_VIEWS] = "Views: 1|2|3",
+	[CONTROL_TEXT_SAVE_VIEW] = "Save view: Shift+3",
+	[CONTROL_TEXT_COLORMODE] = "Cycle colormode: G",
+	[CONTROL_TEXT_ROTATE_X] = "Rotate X-axis: W|S",
+	[CONTROL_TEXT_ROTATE_Y] = "Rotate Y-axis: Q|E",
+	[CONTROL_TEXT_ROTATE_Z] = "Rotate Z-axis: A|D",
+	[CONTROL_TEXT_MOVE_X] = "Move X-axis: left|right",
+	[CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up|down",
 };
 
 typedef enum e_timers {
@@ -177,7 +179,7 @@ typedef struct s_text_image {
 typedef struct s_ui
 {
 	mlx_image_t *image;
-	t_text_image texts[TEXT_COUNT];
+	t_text_image texts[TEXT_COUNT + CONTROL_TEXT_COUNT];
 	uint32_t fps;
 } t_ui;
 
@@ -275,6 +277,7 @@ void	key_hook(void *param);
 void		fps_hook(void *param);
 void		ui_init(t_fdf *fdf);
 void 		ui_draw(t_fdf *fdf);
+void ui_update_texts(t_fdf *fdf);
 
 // draw.c
 void		draw_hook(void *param);
@@ -288,7 +291,7 @@ const t_mat3x3	get_matrix_ortho();
 const t_mat3x3	get_matrix_iso();
 
 // view.c
-void view_cylce_color_mode(t_fdf *fdf);
+void view_cylce_color_mode(t_fdf *fdf, t_direction dir);
 void		view_select(t_fdf *fdf, t_views view);
 void view_save(t_projector *p);
 
