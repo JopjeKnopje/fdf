@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/19 12:44:26 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/19 17:26:50 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
-CFLAGS += -g -fsanitize=address
+# CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
-# CFLAGS = -Ofast
+# CFLAGS = -Ofast -flto -march=native
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
@@ -57,6 +57,7 @@ SRCS = main.c \
 	   matrices.c \
 	   rotate.c \
 	   view.c \
+	   view_translations.c \
 	   color.c \
 	   parser_color.c \
 	   wireframe.c \

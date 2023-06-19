@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/18 19:07:46 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 13:23:10 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 17:18:52 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void text_set(t_text_image *text, char *s)
 void text_draw(mlx_t *mlx, t_text_image *text)
 {
 	if (!text->redraw)
-		return;	
+		return ;	
 	if (text->image)
 	{ 
 		mlx_delete_image(mlx, text->image);

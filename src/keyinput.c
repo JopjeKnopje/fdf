@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                         :+:    :+:            */
+/*   keyinput.c                                        :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 12:33:40 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 17:37:40 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,34 @@ void	key_hook1(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-		fdf->projector.active_view.scalar += SCALAR_STEP * fdf->projector.active_view.scalar / 2;
+		view_scale(&fdf->projector.active_view, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
-		fdf->projector.active_view.scalar -= SCALAR_STEP * fdf->projector.active_view.scalar / 2;
+		view_scale(&fdf->projector.active_view, DIR_NEGATIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
-		fdf->projector.active_view.amplitude += AMPLITUDE_STEP;
+		view_amplitude(&fdf->projector.active_view, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))
-		fdf->projector.active_view.amplitude -= AMPLITUDE_STEP;
+		view_amplitude(&fdf->projector.active_view, DIR_NEGATIVE);
 
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		rotate(fdf, ROT_ANGLE_X, ROT_DIR_POS);
+		rotate(fdf, ROT_ANGLE_X, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		rotate(fdf, ROT_ANGLE_X, ROT_DIR_NEG);
+		rotate(fdf, ROT_ANGLE_X, DIR_NEGATIVE);
 
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		rotate(fdf, ROT_ANGLE_Y, ROT_DIR_NEG);
+		rotate(fdf, ROT_ANGLE_Y, DIR_NEGATIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		rotate(fdf, ROT_ANGLE_Y, ROT_DIR_POS);
+		rotate(fdf, ROT_ANGLE_Y, DIR_POSTIVE);
 }
+
 void 	key_hook2(void *param)
 {
 	t_fdf	*fdf;
 
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		rotate(fdf, ROT_ANGLE_Z, ROT_DIR_POS);
+		rotate(fdf, ROT_ANGLE_Z, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		rotate(fdf, ROT_ANGLE_Z, ROT_DIR_NEG);
+		rotate(fdf, ROT_ANGLE_Z, DIR_NEGATIVE);
 
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1))
 		view_select(fdf, VIEW_ORTHO);
@@ -64,9 +65,12 @@ void 	key_hook2(void *param)
 			view_select(fdf, VIEW_SAVED);
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->projector.active_view.y_move += 1 / fdf->projector.active_view.scalar;
+	{
+		fdf->projector.active_view.y_move += fdf->projector.active_view.scalar;
+		view_move(&fdf->projector.active_view, DIR_POSTIVE);
+	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->projector.active_view.y_move -= 1 / fdf->projector.active_view.scalar;
+		fdf->projector.active_view.y_move -= fdf->projector.active_view.scalar;
 }
 void 	key_hook3(void *param)
 {

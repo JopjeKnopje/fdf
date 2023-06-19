@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 13:33:14 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 17:30:33 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ typedef enum e_texts {
 
 typedef enum e_timers {
 	TIMER_VIEW_INPUT,
-	TIMER_RENDER_TEXT,
 	TIMER_COUNT,
 } t_timers;
 
@@ -172,12 +171,12 @@ typedef struct s_fdf
 }	t_fdf;
 
 
-typedef enum e_rotate_dir {
-	ROT_DIR_NEG = -1,
-	ROT_DIR_POS = 1,
-} t_rotate_dir;
+typedef enum e_direction {
+	DIR_NEGATIVE = -1,
+	DIR_POSTIVE = 1,
+} t_direction;
 
-typedef enum e_rotate_angle
+typedef enum e_rotate_axis
 {
 	ROT_ANGLE_X,
 	ROT_ANGLE_Y,
@@ -273,8 +272,15 @@ const t_mat3x3	get_matrix_iso();
 void view_cylce_color_mode(t_fdf *fdf);
 void		view_select(t_fdf *fdf, t_views view);
 
+
+// view_translations.c
+void view_scale(t_view *view, t_direction dir);
+void view_amplitude(t_view *view, t_direction dir);
+void view_move(t_view *view, t_direction dir);
+void view_rotate(t_view *view, t_rotate_axis axis, t_direction dir);
+
 // rotate.c
-void		rotate(t_fdf *fdf, t_rotate_axis axis, t_rotate_dir dir);
+void		rotate(t_fdf *fdf, t_rotate_axis axis, t_direction dir);
 
 // color.c
 t_rgba	color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
