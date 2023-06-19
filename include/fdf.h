@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 09:11:17 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 09:42:54 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "timer.h"
 
 
 # define COLOR_BACKGROUND_UI 0x44444466
@@ -29,9 +30,9 @@
 # define ANGLE_STEP 0.01f
 # define SCALAR_STEP 0.1f
 
-# define UI_TEXT_COUNT 3
-
 # define FONT_HEIGHT 20
+
+
 
 typedef union s_rgba
 {
@@ -59,6 +60,7 @@ typedef enum e_dimensions {
 typedef enum e_color_mode {
 	COLOR_MODE_MAP,
 	COLOR_MODE_HEIGHT,
+	COLOR_MODE_COUNT,
 } t_color_mode;
 
 
@@ -132,6 +134,11 @@ typedef enum e_texts {
 	TEXT_COUNT,
 } t_texts;
 
+typedef enum e_timers {
+	TIMER_VIEW_INPUT,
+	TIMER_COUNT,
+} t_timers;
+
 typedef struct s_text_image {
 	mlx_image_t *image;
 	uint32_t	x;
@@ -142,7 +149,7 @@ typedef struct s_text_image {
 typedef struct s_ui
 {
 	mlx_image_t *image;
-	t_text_image texts[UI_TEXT_COUNT];
+	t_text_image texts[TEXT_COUNT];
 	uint32_t fps;
 } t_ui;
 
@@ -150,6 +157,7 @@ typedef struct s_fdf
 {
 	t_map *map;
 	mlx_t *mlx;
+	t_timer *timers[TIMER_COUNT];
 	t_projector projector;
 	mlx_image_t *image;
 	t_ui ui;

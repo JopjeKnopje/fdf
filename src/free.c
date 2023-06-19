@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   free.c                                            :+:    :+:             */
+/*   free.c                                             :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 00:29:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 19:20:46 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 09:51:55 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "timer.h"
 #include <stdlib.h>
 
 void	free_split(char **s_split)
@@ -50,10 +51,23 @@ static void free_ui_texts(t_ui *ui)
 	}
 }
 
+static void free_timers(t_timer **timers)
+{
+	int i;
+
+	i = 0;
+	while (i < TIMER_COUNT) 
+	{
+		timer_free(timers[i]);
+		i++;
+	}
+}
+
 void	free_fdf(t_fdf *fdf)
 {
 	free(fdf->map->points);
 	free(fdf->map);
 	free_ui_texts(&fdf->ui);
+	free_timers(fdf->timers);
 }
 

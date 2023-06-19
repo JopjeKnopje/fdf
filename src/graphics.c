@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                        :+:    :+:             */
+/*   graphics.c                                         :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/18 19:42:12 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 09:42:36 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+#include "timer.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,6 +58,17 @@ static uint8_t create_image(mlx_t *mlx, mlx_image_t **image, uint32_t width, uin
 	return 1;
 }
 
+static void timers_init(t_fdf *fdf)
+{
+	int i = 0;
+
+	while (i < TIMER_COUNT) 
+	{
+		fdf->timers[i] = timer_init(mlx_get_time);
+		i++;
+	}
+}
+
 int32_t	graphics_init(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init(DIM_WINDOW_WIDTH, DIM_WINDOW_HEIGHT, fdf->map->name, true);
@@ -70,6 +82,7 @@ int32_t	graphics_init(t_fdf *fdf)
 	if (!create_image(fdf->mlx, &fdf->ui.image, DIM_UI_WIDTH, DIM_UI_HEIGHT))
 		return (1);
 	hooks_init(fdf);
+	timers_init(fdf);
 	ui_init(fdf);
 	projector_init(fdf);
 	mlx_loop(fdf->mlx);

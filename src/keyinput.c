@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                        :+:    :+:             */
+/*   keyinput.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/12 15:02:16 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 09:44:11 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42.h"
 #include "fdf.h"
+#include "timer.h"
 #include <stdio.h>
 
 void	key_hook(void *param)
@@ -64,5 +65,16 @@ void	key_hook(void *param)
 		fdf->projector.active_view.x_move++;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->projector.active_view.x_move--;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_G))
+	{ 
+		if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.1)
+		{
+			fdf->projector.active_view.color_mode++;
+			if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
+				fdf->projector.active_view.color_mode = 0;
+			timer_start(fdf->timers[TIMER_VIEW_INPUT]);
+
+		}
+	}
 
 }

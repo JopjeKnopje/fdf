@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                          :+:    :+:              #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/18 19:08:46 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/19 09:19:27 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,12 +60,14 @@ SRCS = main.c \
 	   color.c \
 	   parser_color.c \
 	   wireframe.c \
-	   text.c
+	   text.c \
+	   timer.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
 HEADER_DIR = include
-HEADERS = fdf.h
+HEADERS = fdf.h \
+		  timer.h
 HEADERS := $(addprefix $(HEADER_DIR)/, $(HEADERS))
 
 OBJ_DIR = obj
