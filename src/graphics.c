@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 11:25:46 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 18:25:42 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	resize(int32_t width, int32_t height, void* param)
 
 static void	hooks_init(t_fdf *fdf)
 {
-	mlx_loop_hook(fdf->mlx, key_hook1, fdf);
-	mlx_loop_hook(fdf->mlx, key_hook2, fdf);
+	mlx_loop_hook(fdf->mlx, key_hook_move, fdf);
+	mlx_loop_hook(fdf->mlx, key_hook_view, fdf);
 	mlx_loop_hook(fdf->mlx, key_hook3, fdf);
 	mlx_loop_hook(fdf->mlx, fps_hook, fdf);
 	mlx_loop_hook(fdf->mlx, draw_hook, fdf);

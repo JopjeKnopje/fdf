@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/19 17:26:50 by jboeve        ########   odam.nl          #
+#    Updated: 2023/06/19 18:50:49 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ SRCS = main.c \
 	   ui.c \
 	   draw.c \
 	   matrices.c \
-	   rotate.c \
 	   view.c \
 	   view_translations.c \
 	   color.c \

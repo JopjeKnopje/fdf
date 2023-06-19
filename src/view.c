@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 17:22:12 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 18:02:57 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,19 @@ static void view_reset(t_projector *p)
 	p->active_view.color_mode = COLOR_MODE_COUNT;
 }
 
+
 void view_cylce_color_mode(t_fdf *fdf)
 {
 	fdf->projector.active_view.color_mode++;
 	if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
 		fdf->projector.active_view.color_mode = 0;
 	text_set(&fdf->ui.texts[TEXT_COLOR_MODE], ft_strdup(COLOR_MODE_NAMES[fdf->projector.active_view.color_mode]));
+}
+
+void view_save(t_projector *p)
+{
+	ft_memcpy(&p->saved_view, &p->active_view, sizeof(t_view));
+
 }
 
 void view_select(t_fdf *fdf, t_views view)

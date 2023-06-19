@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 17:30:33 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 18:25:42 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,11 +178,11 @@ typedef enum e_direction {
 
 typedef enum e_rotate_axis
 {
-	ROT_ANGLE_X,
-	ROT_ANGLE_Y,
-	ROT_ANGLE_Z,
-	ROT_ANGLE_COUNT,
-}	t_rotate_axis;
+	AXIS_X,
+	AXIS_Y,
+	AXIS_Z,
+	AXIS_COUNT,
+}	t_axis;
 
 typedef enum e_error
 {
@@ -248,8 +248,8 @@ void		projector_init(t_fdf *fdf);
 t_point		projector(t_fdf *fdf, t_point point);
 
 // keyinput.c
-void	key_hook1(void *param);
-void	key_hook2(void *param);
+void	key_hook_move(void *param);
+void	key_hook_view(void *param);
 void	key_hook3(void *param);
 
 // ui.c
@@ -271,16 +271,17 @@ const t_mat3x3	get_matrix_iso();
 // view.c
 void view_cylce_color_mode(t_fdf *fdf);
 void		view_select(t_fdf *fdf, t_views view);
+void view_save(t_projector *p);
 
 
 // view_translations.c
 void view_scale(t_view *view, t_direction dir);
 void view_amplitude(t_view *view, t_direction dir);
-void view_move(t_view *view, t_direction dir);
-void view_rotate(t_view *view, t_rotate_axis axis, t_direction dir);
+void view_move(t_view *view, t_axis axis, t_direction dir);
+void view_rotate(t_view *view, t_axis axis, t_direction dir);
 
 // rotate.c
-void		rotate(t_fdf *fdf, t_rotate_axis axis, t_direction dir);
+void		rotate(t_fdf *fdf, t_axis axis, t_direction dir);
 
 // color.c
 t_rgba	color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
