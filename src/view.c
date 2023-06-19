@@ -6,29 +6,11 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 09:37:52 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 09:57:45 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <math.h>
-
-static void view_iso(t_projector *p)
-{
-	p->active_view.id_matrix = get_matrix_iso();
-}
-
-
-static void view_ortho(t_projector *p)
-{
-	(void) p;
-}
-
-static void view_saved(t_projector *p)
-{
-	ft_memcpy(&p->active_view, &p->saved_view, sizeof(t_view));
-
-}
 
 static void view_reset(t_projector *p)
 {
@@ -44,13 +26,11 @@ static void view_reset(t_projector *p)
 
 void view_select(t_fdf *fdf, t_views view)
 {
-	void (*views[3])(t_projector *p) = {
-		&view_ortho,
-		&view_iso,
-		&view_saved,
-	};
-
 	view_reset(&fdf->projector);
 	fdf->projector.active_view.scalar = (float) fdf->image->width / (fdf->map->width * 2) * 0.58f;
-	(*views[view])(&fdf->projector);
+
+	if (view == VIEW_ISO)
+		fdf->projector.active_view.id_matrix = get_matrix_iso();
+	else if (view == VIEW_SAVED)
+		ft_memcpy(&fdf->projector.active_view, &fdf->projector.saved_view, sizeof(t_view));
 }
