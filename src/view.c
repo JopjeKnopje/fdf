@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view.c                                             :+:    :+:            */
+/*   view.c                                            :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 09:57:45 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 11:07:57 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 
 static void view_reset(t_projector *p)
 {
@@ -22,6 +23,18 @@ static void view_reset(t_projector *p)
 	p->active_view.y_move = 0;
 	p->active_view.amplitude = .02;
 	p->active_view.color_mode = COLOR_MODE_MAP;
+}
+
+void view_cylce_color_mode(t_fdf *fdf)
+{
+	if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.1)
+	{
+		fdf->projector.active_view.color_mode++;
+		if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
+			fdf->projector.active_view.color_mode = 0;
+		timer_start(fdf->timers[TIMER_VIEW_INPUT]);
+		text_set(&fdf->ui.texts[TEXT_VIEW], ft_strdup(VIEW_NAMES[fdf->projector.view_mode]));
+	}
 }
 
 void view_select(t_fdf *fdf, t_views view)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 09:42:54 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 11:09:24 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ typedef struct s_map
 	uint32_t height;
 }	t_map;
 
+typedef enum e_views {
+	VIEW_ORTHO,
+	VIEW_ISO,
+	VIEW_SAVED,
+} t_views;
+
 typedef struct s_view
 {
 	t_mat3x3 id_matrix;
@@ -122,6 +128,7 @@ typedef struct s_projector
 {
 	t_view active_view;
 	t_view saved_view;
+	t_views view_mode;
 } 	t_projector;
 
 
@@ -129,6 +136,7 @@ typedef mlx_image_t mlx_string_image_t ;
 
 typedef enum e_texts {
 	TEXT_FPS,
+	TEXT_VIEW,
 	TEXT_SCALAR,
 	TEXT_AMPLITUDE,
 	TEXT_COUNT,
@@ -163,11 +171,6 @@ typedef struct s_fdf
 	t_ui ui;
 }	t_fdf;
 
-typedef enum e_views {
-	VIEW_ORTHO,
-	VIEW_ISO,
-	VIEW_SAVED,
-} t_views;
 
 typedef enum e_rotate_dir {
 	ROT_DIR_NEG = -1,
@@ -190,10 +193,16 @@ typedef enum e_error
 	ERR_COUNT,
 }	t_error;
 
-const static char *ERROR_NAME[] = {
+const static char *ERROR_NAMES[] = {
 	[ERR_ARGS_INVALID] = "Usage: ./fdf <map>",
 	[ERR_MAP_INVALID] = "Invalid map",
 	[ERR_MALLOC_FAILURE] = "Malloc failure",
+};
+
+const static char *VIEW_NAMES[] = {
+	[VIEW_ORTHO] = "View: Orthographic",
+	[VIEW_ISO] = "View: Isometric",
+	[VIEW_SAVED] = "View: Saved",
 };
 
 // fdf.c
@@ -235,7 +244,9 @@ void		projector_init(t_fdf *fdf);
 t_point		projector(t_fdf *fdf, t_point point);
 
 // keyinput.c
-void		key_hook(void *param);
+void	key_hook1(void *param);
+void	key_hook2(void *param);
+void	key_hook3(void *param);
 
 // ui.c
 void		fps_hook(void *param);
@@ -254,6 +265,7 @@ const t_mat3x3	get_matrix_ortho();
 const t_mat3x3	get_matrix_iso();
 
 // view.c
+void view_cylce_color_mode(t_fdf *fdf);
 void		view_select(t_fdf *fdf, t_views view);
 
 // rotate.c

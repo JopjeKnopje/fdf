@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/16 21:17:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/17 15:56:05 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/19 11:01:55 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint32_t	error_message(t_error err)
 {
-	return (error_print(ERROR_NAME[err]));
+	return (error_print(ERROR_NAMES[err]));
 }
 
 uint32_t	error_print(const char *s)

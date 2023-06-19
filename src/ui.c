@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                               :+:    :+:            */
+/*   ui.c                                              :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 09:12:34 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 11:09:35 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ void ui_init(t_fdf *fdf)
 		if (i == TEXT_FPS)
 			t->s = ft_strdup("FPS: 0");
 		else if (i == TEXT_SCALAR)
-			t->s = ft_strdup("SCALAR: 123");
+			t->s = ft_strdup("Scalar: 123");
 		else if (i == TEXT_AMPLITUDE)
-			t->s = ft_strdup("AMPLITUDE: 123");
+			t->s = ft_strdup("Amplitude: 123");
+		else if (i == TEXT_VIEW)
+			t->s = ft_strdup("View: 123");
 		i++;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                         :+:    :+:            */
+/*   keyinput.c                                        :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 09:44:11 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/19 10:59:04 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "timer.h"
 #include <stdio.h>
 
-void	key_hook(void *param)
+void	key_hook1(void *param)
 {
 	t_fdf	*fdf;
 
@@ -40,7 +40,12 @@ void	key_hook(void *param)
 		rotate(fdf, ROT_ANGLE_Y, ROT_DIR_NEG);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
 		rotate(fdf, ROT_ANGLE_Y, ROT_DIR_POS);
+}
+void 	key_hook2(void *param)
+{
+	t_fdf	*fdf;
 
+	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
 		rotate(fdf, ROT_ANGLE_Z, ROT_DIR_POS);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
@@ -61,20 +66,17 @@ void	key_hook(void *param)
 		fdf->projector.active_view.y_move++;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
 		fdf->projector.active_view.y_move--;
+}
+void 	key_hook3(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
 		fdf->projector.active_view.x_move++;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
 		fdf->projector.active_view.x_move--;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_G))
-	{ 
-		if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.1)
-		{
-			fdf->projector.active_view.color_mode++;
-			if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
-				fdf->projector.active_view.color_mode = 0;
-			timer_start(fdf->timers[TIMER_VIEW_INPUT]);
-
-		}
-	}
+		view_cylce_color_mode(fdf);
 
 }
