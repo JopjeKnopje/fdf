@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/20 13:44:59 by jboeve        ########   odam.nl          #
+#    Updated: 2023/06/20 23:04:51 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SRCS = main.c \
 	   text.c \
 	   parser.c \
 	   parser_color.c \
-	   parser_utils.c
+	   parser_utils.c \
+	   math.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   fdf.h                                             :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 17:33:09 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:04:32 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,9 @@ void			wireframe_draw(t_fdf *fdf);
 void			text_set_num(t_text_image *text, const char *s_base, int32_t n);
 void			text_set(t_text_image *text, char *s);
 void			text_draw(mlx_t *mlx, t_text_image *text);
+
+// math.c
+int32_t			ft_abs(int32_t n);
 
 // meuk.c
 void			print_text(t_text_image *t);

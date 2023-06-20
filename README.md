@@ -72,7 +72,6 @@ So instead of implementing this and probably facing more endianness related issu
 
 
 
-
 ## Issues
 - [x] Only draw the pixels that are viewable.
 - [x] Segfault when opening a max with scale too large for window. (only on mac)
@@ -81,12 +80,11 @@ So instead of implementing this and probably facing more endianness related issu
 - [x] Use union for colors to get rid of `get_color_x` functions.
 - [ ] Map does weird stuff on spaces see `weird_map.fdf`
 - [?] Segfault when resizing too quick.
-- [?] Color union endianness?
+- [x] Color union endianness?
 - [ ] Calculating the gradient in `COLOR_MODE_HEIGHT` is pretty slow.
 
 ## Todo for next time
 
-- [ ] Resize goes below sidebar limit.
 - [ ] Use `t_timer` in `fps_hook(void *param)`.
 - [ ] Move on `t1` doens't work.
 - [ ] Is there another way to name `g_control_text_strings`?

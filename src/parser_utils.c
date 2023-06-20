@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/20 12:41:37 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 12:45:17 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 22:51:44 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ void parser_util_add_point(t_fdf *fdf, t_point point)
 		fdf->map->points_last = lstadd_back(&fdf->map->points_last,
 				lstnew(point));
 }
-

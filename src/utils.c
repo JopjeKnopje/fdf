@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:52:49 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 15:45:19 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 23:01:29 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,45 +46,6 @@ uint32_t	list_to_arr(t_fdf *fdf)
 	}
 	free_lst(fdf->map->points_list);
 	return (0);
-}
-
-t_point	mat1x3mul(t_point point, t_mat3x3 m)
-{
-	const float	px = point.x;
-	const float	py = point.y;
-	const float	pz = point.z;
-
-	point.x = (px * m.data[0][0]) + (py * m.data[0][1]) + (pz * m.data[0][2]);
-	point.y = (px * m.data[1][0]) + (py * m.data[1][1]) + (pz * m.data[1][2]);
-	point.z = (px * m.data[2][0]) + (py * m.data[2][1]) + (pz * m.data[2][2]);
-	return (point);
-}
-
-t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2)
-{
-	t_mat3x3	res;
-	int			i;
-	int			j;
-	int			k;
-
-	ft_bzero(&res, sizeof(t_mat3x3));
-	i = 0;
-	while (i < 3)
-	{
-		j = 0;
-		while (j < 3)
-		{
-			k = 0;
-			while (k < 3)
-			{
-				res.data[i][j] += m1.data[i][k] * m2.data[k][j];
-				k++;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (res);
 }
 
 uint8_t	points_in_window(mlx_image_t *image, t_point p1, t_point p2)
