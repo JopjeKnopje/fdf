@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view_translations.c                               :+:    :+:             */
+/*   view_translations.c                                :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/19 17:22:23 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/19 23:15:17 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:08:44 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,14 @@
 
 void view_scale(t_fdf *fdf, t_view *view, t_direction dir)
 {
-	char *s;
-
 	view->scalar += dir * (SCALAR_STEP * view->scalar / 2);
-	s = ft_itoa(view->scalar);
-	text_set(&fdf->ui.texts[TEXT_SCALAR], ft_strjoin("Scalar: ", s));
-	free(s);
+	text_set_num(&fdf->ui.texts[TEXT_SCALAR], "Scalar: ", view->scalar);
 }
 
 void view_amplitude(t_fdf *fdf, t_view *view, t_direction dir)
 {
-	char *s;
-
 	view->amplitude += dir * (AMPLITUDE_STEP);
-	s = ft_itoa(view->amplitude * 100);
-	text_set(&fdf->ui.texts[TEXT_AMPLITUDE], ft_strjoin("Amplitude: ", s));
-	free(s);
+	text_set_num(&fdf->ui.texts[TEXT_AMPLITUDE], "Amplitude: ", view->amplitude * 100);
 }
 
 void view_move(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir)

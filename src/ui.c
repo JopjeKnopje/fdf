@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 08:58:23 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:03:13 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,7 @@ void ui_init(t_fdf *fdf)
 	setup_text_controls(fdf);
 	text_set_num(&fdf->ui.texts[TEXT_MAP_WIDTH], "Map width: ", fdf->map->width);
 	text_set_num(&fdf->ui.texts[TEXT_MAP_HEIGHT], "Map height: ", fdf->map->height);
-	view_cylce_color_mode(fdf, 0);
-	view_scale(fdf, view, 0);
-	view_move(fdf, view, 0, 0);
-	view_amplitude(fdf, view, 0);
+	// ui_update_texts(fdf);
 }
 
 void ui_draw(t_fdf *fdf)
