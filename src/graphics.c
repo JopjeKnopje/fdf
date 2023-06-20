@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 08:58:12 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:11:31 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int32_t	graphics_init(t_fdf *fdf)
 	if (!create_image(fdf->mlx, &fdf->ui.image, DIM_UI_WIDTH, DIM_UI_HEIGHT))
 		return (1);
 	hooks_init(fdf);
-	projector_init(fdf);
 	ui_init(fdf);
+	projector_init(fdf);
 	mlx_loop(fdf->mlx);
 	mlx_terminate(fdf->mlx);
 	return (EXIT_SUCCESS);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   text.c                                            :+:    :+:             */
+/*   text.c                                             :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/18 19:07:46 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 23:55:13 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:09:47 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void text_set_num(t_text_image *text, char *s_base, int32_t n)
+void text_set_num(t_text_image *text, const char *s_base, int32_t n)
 {
 	char *s = ft_itoa(n);
 	text_set(text, ft_strjoin(s_base, s));
