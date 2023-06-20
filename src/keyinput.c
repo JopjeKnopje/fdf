@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                        :+:    :+:             */
+/*   keyinput.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 23:24:56 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 08:58:18 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42.h"
 #include "MLX42/MLX42_Input.h"
 #include "fdf.h"
-#include "timer.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 static void	key_hook_rotate(t_fdf *fdf)
 {
@@ -43,23 +44,38 @@ static void	key_hook_rotate(t_fdf *fdf)
 		view_move(fdf, view, AXIS_X, DIR_NEGATIVE);
 }
 
+static bool key_pressed(t_fdf *fdf, keys_t k)
+{
+	bool *state;
+
+	state = &fdf->ui.key_states[k - MLX_KEY_SPACE];
+	if (mlx_is_key_down(fdf->mlx, k) && !*state)
+	{
+			*state = true;
+			return (true);
+	}
+	else if (!mlx_is_key_down(fdf->mlx, k) && *state)
+		*state = false;
+	return (false);
+}
+
 static void 	key_hook_view(t_fdf	*fdf)
 {
 	t_view	*view;
+	static bool debounce = false;
 
 	view = &fdf->projector.active_view;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1))
+	if (key_pressed(fdf, MLX_KEY_1))
 		view_select(fdf, VIEW_ORTHO);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_2))
+	if (key_pressed(fdf, MLX_KEY_2))
 		view_select(fdf, VIEW_ISO);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_3))
+	if (key_pressed(fdf, MLX_KEY_3))
 	{
 		if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_SHIFT))
 			view_save(&fdf->projector);
 		else
 			view_select(fdf, VIEW_SAVED);
 	}
-
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
 		view_scale(fdf, view, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
@@ -75,14 +91,8 @@ static void 	key_hook_misc(t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_G))
-	{
-		if (timer_delta(fdf->timers[TIMER_VIEW_INPUT]) >= 0.2)
-		{
+	if (key_pressed(fdf, MLX_KEY_G))
 			view_cylce_color_mode(fdf, DIR_POSTIVE);
-			timer_start(fdf->timers[TIMER_VIEW_INPUT]);
-		}
-	}
 }
 
 void	key_hook(void *param)

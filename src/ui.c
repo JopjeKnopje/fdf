@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                              :+:    :+:             */
+/*   ui.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 23:54:57 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 08:58:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-#include "timer.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -94,6 +93,16 @@ static void setup_text_controls(t_fdf *fdf)
 		t->s = ft_strdup(CONTROL_TEXT_CONTENT[i]);
 		i++;
 	}
+}
+
+void ui_update_texts(t_fdf *fdf)
+{
+	t_view *v = &fdf->projector.active_view;
+
+	view_cylce_color_mode(fdf, 0);
+	view_scale(fdf, v, 0);
+	view_move(fdf, v, 0, 0);
+	view_amplitude(fdf, v, 0);
 }
 
 void ui_init(t_fdf *fdf)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/19 23:54:24 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 08:57:32 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "timer.h"
 
 
 # define COLOR_BACKGROUND_UI 0x44444466
@@ -165,11 +164,6 @@ const static char *CONTROL_TEXT_CONTENT[] = {
 	[CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up|down",
 };
 
-typedef enum e_timers {
-	TIMER_VIEW_INPUT,
-	TIMER_COUNT,
-} t_timers;
-
 typedef struct s_text_image {
 	mlx_image_t *image;
 	uint32_t	x;
@@ -183,13 +177,13 @@ typedef struct s_ui
 	mlx_image_t *image;
 	t_text_image texts[TEXT_COUNT + CONTROL_TEXT_COUNT];
 	uint32_t fps;
+	bool 	key_states[MLX_KEY_MENU - MLX_KEY_SPACE];
 } t_ui;
 
 typedef struct s_fdf
 {
 	t_map *map;
 	mlx_t *mlx;
-	t_timer *timers[TIMER_COUNT];
 	t_projector projector;
 	mlx_image_t *image;
 	t_ui ui;
