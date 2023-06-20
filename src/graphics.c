@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 09:11:31 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:15:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static uint8_t create_image(mlx_t *mlx, mlx_image_t **image, uint32_t width, uin
 		error_print(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	return 1;
+	return (1);
 }
 
 

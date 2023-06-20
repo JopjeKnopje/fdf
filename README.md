@@ -68,6 +68,7 @@ So instead of implementing this and probably facing more endianness related issu
 - [ ] Calculate the initial size of the wireframe so it fits perfectly in the window (also do this on resize).
 - [ ] Mouse dragging to move wireframe.
 - [ ] Draw square for all the point colors.
+- [ ] Speed-up big maps.
 
 
 
@@ -85,9 +86,10 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
-- [ ] Update `colormode` `scalar` and `amplitude` when changing view.
-- [ ] Speed-up big maps.
-- [ ] Check the interpolate function bitshift value on mac.
+- [ ] Resize goes below sidebar limit.
+- [ ] Is there another way to name `g_control_text_strings`?
+- [ ] Look at `t_color_gradient`.
+- [ ] Check makefile.
 
 
 ## Resources

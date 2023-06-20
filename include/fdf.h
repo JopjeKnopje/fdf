@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 09:09:46 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:30:34 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 # define COLOR_BACKGROUND_UI 0x44444466
 # define COLOR_BACKGROUND 0x333333ff
 # define COLOR_POINT_DEFAULT 0xCCCCCCFF
@@ -30,8 +29,6 @@
 # define SCALAR_STEP 0.1f
 
 # define FONT_HEIGHT 20
-
-
 
 typedef union s_rgba
 {
@@ -45,7 +42,7 @@ typedef union s_rgba
 	};
 }	t_rgba;
 
-// very cursed
+// Very cursed.
 typedef enum e_dimensions {
 	DIM_WINDOW_WIDTH = 1024,
 	DIM_WINDOW_HEIGHT = 720,
@@ -53,82 +50,77 @@ typedef enum e_dimensions {
 	DIM_UI_HEIGHT = DIM_WINDOW_HEIGHT,
 	DIM_VIEWPORT_WIDTH = DIM_WINDOW_WIDTH,
 	DIM_VIEWPORT_HEIGHT = DIM_WINDOW_HEIGHT,
-
-} t_dimensions;
+}	t_dimensions;
 
 typedef enum e_color_mode {
 	COLOR_MODE_MAP,
 	COLOR_MODE_HEIGHT,
 	COLOR_MODE_COUNT,
-} t_color_mode;
-
+}	t_color_mode;
 
 typedef union s_color_gradient
 {
 	t_rgba	c[2];
 	struct
 	{
-		t_rgba c1;
-		t_rgba c2;
+		t_rgba	c1;
+		t_rgba	c2;
 	};
-} t_color_gradient;
+}	t_color_gradient;
 
 typedef struct s_mat3x3
 {
-	float data[3][3];
-} t_mat3x3;
+	float	data[3][3];
+}	t_mat3x3;
 
 typedef struct s_point
 {
 	float	x;
 	float	y;
 	float	z;
-	float 	actual_z;
-	t_rgba 	color;
+	float	actual_z;
+	t_rgba	color;
 }	t_point;
 
 typedef struct s_node
 {
-	t_point 		point;
+	t_point			point;
 	struct s_node	*next;
 }	t_node;
 
 typedef struct s_map
 {
-	t_node *points_list;
-	t_node *points_last;
-
-	t_point *points;
-
-	const char *name;
-	int32_t min_z;
-	int32_t max_z;
-	uint32_t width;
-	uint32_t height;
+	t_node		*points_list;
+	t_node		*points_last;
+	t_point		*points;
+	const char	*name;
+	int32_t		min_z;
+	int32_t		max_z;
+	uint32_t	width;
+	uint32_t	height;
 }	t_map;
 
 typedef enum e_views {
 	VIEW_ORTHO,
 	VIEW_ISO,
 	VIEW_SAVED,
-} t_views;
+}	t_views;
 
 typedef struct s_view
 {
-	t_mat3x3 id_matrix;
-	int32_t x_move;
-	int32_t y_move;
-	float	scalar;
-	float	amplitude;
-	t_color_mode color_mode;
-} t_view;
+	t_mat3x3		id_matrix;
+	int32_t			x_move;
+	int32_t			y_move;
+	float			scalar;
+	float			amplitude;
+	t_color_mode	color_mode;
+}	t_view;
 
 typedef struct s_projector
 {
-	t_view active_view;
-	t_view saved_view;
-} 	t_projector;
-
+	t_view	active_view;
+	t_view	saved_view;
+}	t_projector;
 
 typedef enum e_texts {
 	TEXT_FPS,
@@ -139,7 +131,7 @@ typedef enum e_texts {
 	TEXT_MAP_WIDTH,
 	TEXT_MAP_HEIGHT,
 	TEXT_COUNT,
-} t_texts;
+}	t_texts;
 
 typedef enum e_control_texts {
 	CONTROL_TEXT_VIEWS,
@@ -153,16 +145,6 @@ typedef enum e_control_texts {
 	CONTROL_TEXT_COUNT,
 }	t_control_texts;
 
-const static char *CONTROL_TEXT_CONTENT[] = {
-	[CONTROL_TEXT_VIEWS] = "Views: 1|2|3",
-	[CONTROL_TEXT_SAVE_VIEW] = "Save view: Shift+3",
-	[CONTROL_TEXT_COLORMODE] = "Cycle colormode: G",
-	[CONTROL_TEXT_ROTATE_X] = "Rotate X-axis: W|S",
-	[CONTROL_TEXT_ROTATE_Y] = "Rotate Y-axis: Q|E",
-	[CONTROL_TEXT_ROTATE_Z] = "Rotate Z-axis: A|D",
-	[CONTROL_TEXT_MOVE_X] = "Move X-axis: left|right",
-	[CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up|down",
-};
 
 typedef struct s_text_image {
 	mlx_image_t *image;
@@ -170,7 +152,7 @@ typedef struct s_text_image {
 	uint32_t	y;
 	char		*s;
 	bool 		redraw;
-} t_text_image;
+}	t_text_image;
 
 typedef struct s_ui
 {
@@ -226,6 +208,17 @@ const static char *VIEW_NAMES[] = {
 const static char *COLOR_MODE_NAMES[] = {
 	[COLOR_MODE_MAP] = "Colormode: Map",
 	[COLOR_MODE_HEIGHT] = "Colormode: Height",
+};
+
+const static char	*g_control_text_strings[] = {
+	[CONTROL_TEXT_VIEWS] = "Views: 1|2|3", 
+	[CONTROL_TEXT_SAVE_VIEW] = "Save view: Shift+3",
+	[CONTROL_TEXT_COLORMODE] = "Cycle colormode: G",
+	[CONTROL_TEXT_ROTATE_X]	= "Rotate X-axis: W|S",
+	[CONTROL_TEXT_ROTATE_Y]	= "Rotate Y-axis: Q|E",
+	[CONTROL_TEXT_ROTATE_Z] = "Rotate Z-axis: A|D",
+	[CONTROL_TEXT_MOVE_X] =	"Move X-axis: left|right",
+	[CONTROL_TEXT_MOVE_Y] =	"Move Y-axis: up|down",
 };
 
 // fdf.c

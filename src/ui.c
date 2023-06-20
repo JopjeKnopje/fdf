@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 09:11:02 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 09:23:57 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void setup_text_controls(t_fdf *fdf)
 		if (i >= CONTROL_TEXT_ROTATE_X)
 			t->y += FONT_HEIGHT;
 		t->redraw = 1;
-		t->s = ft_strdup(CONTROL_TEXT_CONTENT[i]);
+		t->s = ft_strdup(g_control_text_strings[i]);
 		i++;
 	}
 }
