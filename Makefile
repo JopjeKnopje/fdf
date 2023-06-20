@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/20 23:04:51 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/20 23:23:17 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
-CFLAGS += -Wall -Wextra 
-# CFLAGS += -g -fsanitize=address
+# CFLAGS += -Wall -Wextra 
+CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast -flto -march=native
 
@@ -63,14 +63,16 @@ SRCS = main.c \
 	   parser.c \
 	   parser_color.c \
 	   parser_utils.c \
-	   math.c
+	   math.c \
+	   timer.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
 HEADER_DIR = include
 HEADERS = fdf.h \
 		  parser.h \
-		  ui.h
+		  ui.h \
+		  timer.h
 
 HEADERS := $(addprefix $(HEADER_DIR)/, $(HEADERS))
 

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 00:29:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 12:28:17 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 23:23:40 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	free_fdf(t_fdf *fdf)
 {
 	free(fdf->map->points);
 	free(fdf->map);
+	timer_free(fdf->fps_timer);
 	free_ui_texts(&fdf->ui);
 }

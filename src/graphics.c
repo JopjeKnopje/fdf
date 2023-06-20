@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                         :+:    :+:            */
+/*   graphics.c                                        :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 17:34:48 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:23:19 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 
 static void	fps_hook(void *param)
 {
-	static double	time_old = 0;
 	t_fdf			*fdf;
 
 	fdf = param;
-	if (mlx_get_time() - time_old >= 1)
+	if (timer_delta(fdf->fps_timer) >= 1)
 	{
-		time_old = mlx_get_time();
 		text_set_num(&fdf->ui.texts[TEXT_FPS], "FPS: ", fdf->ui.fps);
+		timer_start(fdf->fps_timer);
 		fdf->ui.fps = 0;
 	}
 	else
@@ -85,6 +84,7 @@ int32_t	graphics_init(t_fdf *fdf)
 			DIM_UI_HEIGHT))
 		return (1);
 	hooks_init(fdf);
+	fdf->fps_timer = timer_init(&mlx_get_time);
 	ui_init(fdf);
 	projector_init(fdf);
 	mlx_loop(fdf->mlx);

@@ -56,6 +56,7 @@ So instead of implementing this and probably facing more endianness related issu
 - [x] FPS Counter in screen.
 - [x] Gradient on height.
 - [x] Sidebar.
+- [x] Use `t_timer` in `fps_hook(void *param)`.
 - [ ] For clearing the screen just memset into the pixel buffer.
 - [ ] Instead of gnl just read a shit ton of data from the map.
 - [ ] Spherical projection.
@@ -85,7 +86,6 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
-- [ ] Use `t_timer` in `fps_hook(void *param)`.
 - [ ] Move on `t1` doens't work.
 - [ ] Is there another way to name `g_control_text_strings`?
 - [ ] Look at `t_color_gradient`.

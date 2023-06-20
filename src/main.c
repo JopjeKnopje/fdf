@@ -6,12 +6,11 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 23:05:00 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:08:28 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int32_t	main(int32_t argc, const char *argv[])
 {

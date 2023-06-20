@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 23:04:32 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:09:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include "libft.h"
+# include "timer.h"
 # include <MLX42/MLX42.h>
 # include <stdint.h>
 # include <stdlib.h>
@@ -167,6 +168,7 @@ typedef struct s_fdf
 	t_projector	projector;
 	mlx_image_t	*image;
 	t_ui		ui;
+	t_timer 	*fps_timer;
 }	t_fdf;
 
 typedef enum e_direction {
