@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                         :+:    :+:            */
+/*   keyinput.c                                        :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 08:58:18 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 12:28:11 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/MLX42.h"
-#include "MLX42/MLX42_Input.h"
 #include "fdf.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 static void	key_hook_rotate(t_fdf *fdf)
 {
@@ -33,7 +29,6 @@ static void	key_hook_rotate(t_fdf *fdf)
 		view_rotate(fdf, view, AXIS_Z, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
 		view_rotate(fdf, view, AXIS_Z, DIR_NEGATIVE);
-
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 		view_move(fdf, view, AXIS_Y, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
@@ -44,25 +39,24 @@ static void	key_hook_rotate(t_fdf *fdf)
 		view_move(fdf, view, AXIS_X, DIR_NEGATIVE);
 }
 
-static bool key_pressed(t_fdf *fdf, keys_t k)
+static bool	key_pressed(t_fdf *fdf, keys_t k)
 {
-	bool *state;
+	bool	*state;
 
 	state = &fdf->ui.key_states[k - MLX_KEY_SPACE];
 	if (mlx_is_key_down(fdf->mlx, k) && !*state)
 	{
-			*state = true;
-			return (true);
+		*state = true;
+		return (true);
 	}
 	else if (!mlx_is_key_down(fdf->mlx, k) && *state)
 		*state = false;
 	return (false);
 }
 
-static void 	key_hook_view(t_fdf	*fdf)
+static void	key_hook_view(t_fdf	*fdf)
 {
 	t_view	*view;
-	static bool debounce = false;
 
 	view = &fdf->projector.active_view;
 	if (key_pressed(fdf, MLX_KEY_1))
@@ -80,24 +74,23 @@ static void 	key_hook_view(t_fdf	*fdf)
 		view_scale(fdf, view, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
 		view_scale(fdf, view, DIR_NEGATIVE);
-
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_0))
 		view_amplitude(fdf, view, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_9))
 		view_amplitude(fdf, view, DIR_NEGATIVE);
 }
 
-static void 	key_hook_misc(t_fdf	*fdf)
+static void	key_hook_misc(t_fdf	*fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (key_pressed(fdf, MLX_KEY_G))
-			view_cylce_color_mode(fdf, DIR_POSTIVE);
+		view_cylce_color_mode(fdf, DIR_POSTIVE);
 }
 
 void	key_hook(void *param)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
 	fdf = param;
 	key_hook_rotate(fdf);

@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   main.c                                            :+:    :+:             */
+/*   parser.h                                          :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
-/*   Created: 2023/05/15 11:33:08 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 12:31:08 by jboeve        ########   odam.nl         */
+/*   Created: 2023/06/20 13:25:58 by jboeve        #+#    #+#                 */
+/*   Updated: 2023/06/20 13:28:57 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef PARSER_H
+# define PARSER_H
 
-#include "fdf.h"
+# include "fdf.h"
 
-int32_t	main(int32_t argc, const char *argv[])
-{
-	return (fdf(argc, argv));
-}
+// parser_utils.c
+uint8_t			parser_util_open_map(const char *map);
+void			parser_util_add_point(t_fdf *fdf, t_point point);
+
+// parser_color.c
+t_rgba			parse_color(t_map *map, const char *s);
+
+#endif

@@ -6,14 +6,14 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 11:45:26 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 16:32:57 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
+#include "ui.h"
 
-static void view_reset(t_projector *p)
+static void	view_reset(t_projector *p)
 {
 	ft_bzero(&p->active_view.id_matrix, sizeof(t_mat3x3));
 	p->active_view.id_matrix.data[0][0] = 1.00f;
@@ -25,32 +25,35 @@ static void view_reset(t_projector *p)
 	p->active_view.color_mode = COLOR_MODE_COUNT;
 }
 
-
-void view_cylce_color_mode(t_fdf *fdf, t_direction dir)
+void	view_cylce_color_mode(t_fdf *fdf, t_direction dir)
 {
-	fdf->projector.active_view.color_mode += dir;
-	if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
-		fdf->projector.active_view.color_mode = 0;
-	text_set(&fdf->ui.texts[TEXT_COLOR_MODE], ft_strdup(g_color_mode_names[fdf->projector.active_view.color_mode]));
+	t_view			*v;
+
+	v = &fdf->projector.active_view;
+	v->color_mode += dir;
+	if (v->color_mode >= COLOR_MODE_COUNT)
+		v->color_mode = 0;
+	text_set(&fdf->ui.texts[TEXT_COLOR_MODE], ft_strdup(g_color_mode_names[v->color_mode]));
 }
 
-void view_save(t_projector *p)
+void	view_save(t_projector *p)
 {
 	ft_memcpy(&p->saved_view, &p->active_view, sizeof(t_view));
 }
 
-void view_select(t_fdf *fdf, t_views view)
+void	view_select(t_fdf *fdf, t_views view)
 {
-	t_view *v;
+	const uint32_t	i_width = fdf->image->width;
+	const uint32_t	m_width = fdf->map->width;
+	t_view			*v;
+
+	v = &fdf->projector.active_view;
 	view_reset(&fdf->projector);
-	fdf->projector.active_view.scalar = (float) fdf->image->width / (fdf->map->width * 2) * 0.58f;
-
-
+	v->scalar = (float)(i_width) / (m_width * 2) * 0.58f;
 	if (view == VIEW_ISO)
-		fdf->projector.active_view.id_matrix = get_matrix_iso();
+		v->id_matrix = get_matrix_iso();
 	else if (view == VIEW_SAVED)
-		ft_memcpy(&fdf->projector.active_view, &fdf->projector.saved_view, sizeof(t_view));
+		ft_memcpy(v, &fdf->projector.saved_view, sizeof(t_view));
 	text_set(&fdf->ui.texts[TEXT_VIEW], ft_strdup(g_view_names[view]));
-
 	ui_update_texts(fdf);
 }

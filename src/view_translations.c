@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view_translations.c                                :+:    :+:            */
+/*   view_translations.c                               :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/19 17:22:23 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 09:08:44 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 13:18:41 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void view_move(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir)
 
 void view_rotate(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir)
 {
-	const t_mat3x3 (*matrices[3])(float angle) = {
+	t_mat3x3 (*matrices[3])(float angle) = {
 		&get_matrix_rotate_x,
 		&get_matrix_rotate_y,
 		&get_matrix_rotate_z,

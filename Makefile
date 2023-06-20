@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                          :+:    :+:              #
 #                                                      +:+                     #
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/20 08:57:26 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/20 13:44:59 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
 # CFLAGS += -Wall -Wextra -Werror
-CFLAGS += -g -fsanitize=address
+CFLAGS += -Wall -Wextra 
+# CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast -flto -march=native
 
@@ -41,7 +42,6 @@ INC = -Ilibft/include -IMLX42/include -Iinclude
 
 SRC_DIR = src
 SRCS = main.c \
-	   parser.c \
 	   error.c \
 	   utils.c \
 	   fdf.c \
@@ -58,14 +58,19 @@ SRCS = main.c \
 	   view.c \
 	   view_translations.c \
 	   color.c \
-	   parser_color.c \
 	   wireframe.c \
-	   text.c
+	   text.c \
+	   parser.c \
+	   parser_color.c \
+	   parser_utils.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
 HEADER_DIR = include
-HEADERS = fdf.h
+HEADERS = fdf.h \
+		  parser.h \
+		  ui.h
+
 HEADERS := $(addprefix $(HEADER_DIR)/, $(HEADERS))
 
 OBJ_DIR = obj

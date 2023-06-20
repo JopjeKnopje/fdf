@@ -6,41 +6,23 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 01:06:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 13:26:44 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
+#include "parser.h"
 #include "get_next_line.h"
 #include <assert.h>
 #include <limits.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <unistd.h>
 
-static uint8_t	open_map(const char *map)
+static float	parse_z(t_map *map, const char *s)
 {
-	int	fd;
-
-	if (!check_extension(map, ".fdf"))
-		return (!error_message(ERR_MAP_INVALID));
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
-		return (!error_print(strerror(errno)));
-	return (fd);
-}
-
-static float parse_z(t_map *map, const char *s)
-{
-	float z;
+	float	z;
 
 	z = ft_atoi(s);
-
 	if (z > map->max_z)
 		map->max_z = z;
 	if (z < map->min_z)
@@ -64,14 +46,7 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.y = line_count;
 		point.z = parse_z(fdf->map, split[i]);
 		point.color = parse_color(fdf->map, split[i]);
-		if (!fdf->map->points_list)
-		{
-			fdf->map->points_list = lstnew(point);
-			fdf->map->points_last = fdf->map->points_list;
-		}
-		else
-			fdf->map->points_last = lstadd_back(&fdf->map->points_last,
-					lstnew(point));
+		parser_util_add_point(fdf, point);
 		i++;
 	}
 	fdf->map->width = i;
@@ -79,12 +54,11 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	return (0);
 }
 
-static uint8_t map_init(t_fdf *fdf)
+static uint8_t	map_init(t_fdf *fdf)
 {
 	fdf->map = ft_calloc(1, sizeof(t_map));
 	if (!fdf->map)
 		return (0);
-
 	fdf->map->min_z = INT_MAX;
 	fdf->map->max_z = INT_MIN;
 	return (1);
@@ -120,7 +94,7 @@ uint32_t	parser(t_fdf *fdf, const char *map)
 {
 	int	fd;
 
-	fd = open_map(map);
+	fd = parser_util_open_map(map);
 	if (!fd)
 		return (1);
 	if (read_map(fdf, fd))

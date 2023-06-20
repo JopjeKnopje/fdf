@@ -6,15 +6,12 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/17 01:09:32 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 12:30:30 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/MLX42.h"
 #include "fdf.h"
 #include <math.h>
-#include <stdint.h>
-#include <stdio.h>
 
 
 static int32_t increment(int32_t val)

@@ -1,53 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                               :+:    :+:            */
+/*   ui.c                                              :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 09:23:57 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 14:05:10 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-#include <math.h>
-#include <stdint.h>
-#include <stdio.h>
+#include "ui.h"
 
-void	fps_hook(void *param)
-{
-	t_fdf	*fdf;
-	char	*fps;
-	static double time_old = 0;
-
-	fdf = param;
-	if (mlx_get_time() - time_old >= 1)
-	{
-		time_old = mlx_get_time();
-		fps = ft_itoa(fdf->ui.fps);
-		text_set(&fdf->ui.texts[TEXT_FPS], ft_strjoin("FPS: ", fps));
-		free(fps);
-		fdf->ui.fps = 0;
-	}
-	else
-		fdf->ui.fps++;
-}
-
-static	void draw_text_images(t_fdf *fdf)
-{
-	uint32_t	i;
-
-	i = 0;
-	while (i < TEXT_COUNT + CONTROL_TEXT_COUNT)
-	{
-		text_draw(fdf->mlx, &(fdf->ui.texts[i]));
-		i++;
-	}
-}
-
-static void setup_text(t_fdf *fdf)
+static void	setup_text(t_fdf *fdf)
 {
 	t_text_image	*t;
 	uint32_t		i;
@@ -75,11 +42,11 @@ static void setup_text(t_fdf *fdf)
 	}
 }
 
-static void setup_text_controls(t_fdf *fdf)
+static void	setup_text_controls(t_fdf *fdf)
 {
 	t_text_image	*t;
 	uint32_t		i;
-	const uint32_t 	offset = fdf->ui.texts[TEXT_COUNT - 1].y + FONT_HEIGHT;
+	const uint32_t	offset = fdf->ui.texts[TEXT_COUNT - 1].y + FONT_HEIGHT;
 
 	i = 0;
 	while (i < CONTROL_TEXT_COUNT)
@@ -89,35 +56,43 @@ static void setup_text_controls(t_fdf *fdf)
 		t->y = offset + (FONT_HEIGHT * 3) + (FONT_HEIGHT * i) + 10 * i;
 		if (i >= CONTROL_TEXT_ROTATE_X)
 			t->y += FONT_HEIGHT;
-		t->redraw = 1;
-		t->s = ft_strdup(g_control_text_strings[i]);
+		text_set(t, ft_strdup(g_control_text_strings[i]));
 		i++;
 	}
 }
 
-void ui_update_texts(t_fdf *fdf)
+void	ui_update_texts(t_fdf *fdf)
 {
-	t_view *v = &fdf->projector.active_view;
+	t_view	*v;
 
+	v = &fdf->projector.active_view;
 	view_cylce_color_mode(fdf, 0);
 	view_scale(fdf, v, 0);
 	view_move(fdf, v, 0, 0);
 	view_amplitude(fdf, v, 0);
 }
 
-void ui_init(t_fdf *fdf)
+void	ui_init(t_fdf *fdf)
 {
-	t_view *view;
+	t_view	*view;
 
 	view = &fdf->projector.active_view;
 	setup_text(fdf);
 	setup_text_controls(fdf);
-	text_set_num(&fdf->ui.texts[TEXT_MAP_WIDTH], "Map width: ", fdf->map->width);
-	text_set_num(&fdf->ui.texts[TEXT_MAP_HEIGHT], "Map height: ", fdf->map->height);
-	// ui_update_texts(fdf);
+	text_set_num(&fdf->ui.texts[TEXT_MAP_WIDTH],
+		"Map width: ", fdf->map->width);
+	text_set_num(&fdf->ui.texts[TEXT_MAP_HEIGHT],
+		"Map height: ", fdf->map->height);
 }
 
-void ui_draw(t_fdf *fdf)
+void	ui_draw(t_fdf *fdf)
 {
-	draw_text_images(fdf);
+	uint32_t	i;
+
+	i = 0;
+	while (i < TEXT_COUNT + CONTROL_TEXT_COUNT)
+	{
+		text_draw(fdf->mlx, &(fdf->ui.texts[i]));
+		i++;
+	}
 }
