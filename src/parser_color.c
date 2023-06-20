@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   parser_color.c                                     :+:    :+:            */
+/*   parser_color.c                                    :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 02:26:11 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 17:29:42 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:50:39 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static uint32_t 	char_count(const char *s, const char c)
+static uint32_t	char_count(const char *s, const char c)
 {
-	uint32_t		i;
+	uint32_t	i;
 
 	i = 0;
 	while (*s == ' ')
@@ -28,20 +28,19 @@ static uint32_t 	char_count(const char *s, const char c)
 
 static t_rgba	color_add_alpha(const char *s)
 {
-	t_rgba c;
-	const uint32_t NIBBLE = 4;
-	const uint32_t skip = char_count(s, '0');
+	const uint32_t	skip = char_count(s, '0');
+	uint32_t		tmp;
+	t_rgba			c;
+	int				i;
 
+	i = 8 - skip;
 	c.value = ft_atoi_hex(s);
-
-	int i = 8 - skip;
-	uint32_t tmp = c.value;
+	tmp = c.value;
 	while (tmp)
 	{
 		tmp /= 16;
 		i--;
 	}
-
 	c.value <<= NIBBLE * i;
 	c.a = 0xff;
 	return (c);
@@ -54,11 +53,8 @@ t_rgba	parse_color(const char *s)
 
 	delim = ft_strchr(s, ',');
 	if (delim && delim + 1)
-	{
 		color = color_add_alpha(delim + 1);
-	}
 	else
 		color.value = COLOR_POINT_DEFAULT;
 	return (color);
 }
-

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 23:09:23 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/21 00:04:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define SCALAR_STEP 0.1f
 
 # define FONT_HEIGHT 20
+# define NIBBLE 4
 
 typedef union s_rgba
 {
@@ -163,12 +164,12 @@ typedef struct s_ui
 
 typedef struct s_fdf
 {
-	t_map		*map;
 	mlx_t		*mlx;
-	t_projector	projector;
+	t_map		*map;
+	t_timer		*fps_timer;
 	mlx_image_t	*image;
+	t_projector	projector;
 	t_ui		ui;
-	t_timer 	*fps_timer;
 }	t_fdf;
 
 typedef enum e_direction {
@@ -253,14 +254,16 @@ void			view_save(t_projector *p);
 void			view_scale(t_fdf *fdf, t_view *view, t_direction dir);
 void			view_amplitude(t_fdf *fdf, t_view *view, t_direction dir);
 void			view_move(t_view *view, t_axis axis, t_direction dir);
-void 			view_rotate(t_view *view, t_axis axis, t_direction dir);
+void			view_rotate(t_view *view, t_axis axis, t_direction dir);
 
 // rotate.c
 void			rotate(t_fdf *fdf, t_axis axis, t_direction dir);
 
 // color.c
-t_rgba			color_gradient(t_rgba c_start, t_rgba c_end, uint32_t step, int32_t len);
-t_rgba			get_color(t_fdf *fdf, t_color_gradient g, uint32_t step, int32_t len, float start_z, float end_z);
+t_rgba			color_gradient(t_rgba c_start, t_rgba c_end,
+					uint32_t step, int32_t len);
+t_rgba			get_color(t_fdf *fdf, t_color_gradient g,
+					uint32_t step, int32_t len, float start_z, float end_z);
 
 // wireframe.c
 void			wireframe_draw(t_fdf *fdf);

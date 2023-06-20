@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/20 13:41:10 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 13:57:46 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/21 00:02:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,9 @@ static const char	*g_control_text_strings[] = {
 [CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up|down",
 };
 
-
 // ui.c
 void	ui_init(t_fdf *fdf);
 void	ui_draw(t_fdf *fdf);
 void	ui_update_texts(t_fdf *fdf);
-
-
-
 
 #endif

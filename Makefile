@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/20 23:23:17 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/20 23:55:59 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,6 @@ SRCS = main.c \
 	   fdf.c \
 	   list.c \
 	   free.c \
-	   meuk.c \
 	   graphics.c \
 	   line.c \
 	   projector.c \

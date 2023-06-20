@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 23:23:19 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:55:28 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	fps_hook(void *param)
 	else
 		fdf->ui.fps++;
 }
-
 
 static void	resize(int32_t width, int32_t height, void *param)
 {

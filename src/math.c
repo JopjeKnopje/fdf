@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/20 23:01:20 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 23:04:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:46:23 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_mat3x3	mat3x3mul(t_mat3x3 m1, t_mat3x3 m2)
 	return (res);
 }
 
-int32_t ft_abs(int32_t n)
+int32_t	ft_abs(int32_t n)
 {
 	if (n < 0)
 		n = -n;

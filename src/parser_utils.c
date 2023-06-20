@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/20 12:41:37 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 22:51:44 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 23:56:58 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ uint8_t	parser_util_open_map(const char *map)
 	return (fd);
 }
 
-void parser_util_add_point(t_fdf *fdf, t_point point)
+void	parser_util_add_point(t_fdf *fdf, t_point point)
 {
 	if (!fdf->map->points_list)
 	{
