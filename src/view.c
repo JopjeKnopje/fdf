@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   view.c                                             :+:    :+:            */
+/*   view.c                                            :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 08:37:24 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 11:45:26 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void view_cylce_color_mode(t_fdf *fdf, t_direction dir)
 	fdf->projector.active_view.color_mode += dir;
 	if (fdf->projector.active_view.color_mode >= COLOR_MODE_COUNT)
 		fdf->projector.active_view.color_mode = 0;
-	text_set(&fdf->ui.texts[TEXT_COLOR_MODE], ft_strdup(COLOR_MODE_NAMES[fdf->projector.active_view.color_mode]));
+	text_set(&fdf->ui.texts[TEXT_COLOR_MODE], ft_strdup(g_color_mode_names[fdf->projector.active_view.color_mode]));
 }
 
 void view_save(t_projector *p)
@@ -50,7 +50,7 @@ void view_select(t_fdf *fdf, t_views view)
 		fdf->projector.active_view.id_matrix = get_matrix_iso();
 	else if (view == VIEW_SAVED)
 		ft_memcpy(&fdf->projector.active_view, &fdf->projector.saved_view, sizeof(t_view));
-	text_set(&fdf->ui.texts[TEXT_VIEW], ft_strdup(VIEW_NAMES[view]));
+	text_set(&fdf->ui.texts[TEXT_VIEW], ft_strdup(g_view_names[view]));
 
 	ui_update_texts(fdf);
 }
