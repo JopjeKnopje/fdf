@@ -101,6 +101,8 @@ So instead of implementing this and probably facing more endianness related issu
 * https://stackoverflow.com/questions/39440390/deforming-plane-mesh-to-sphere
 * http://paulbourke.net/geometry/transformationprojection/
 
+### Line drawing algorithm
+* https://www.middle-engine.com/blog/posts/2020/07/28/bresenhams-line-algorithm
 
 ### Color union
 * https://www.flipcode.com/archives/Using_a_Union_for_Packed_Color_Values.shtml
@@ -110,7 +112,6 @@ So instead of implementing this and probably facing more endianness related issu
 
 ### Colors
 * https://krazydad.com/tutorials/makecolors.php
-
 
 ### Sidenotes
 * vaporwave type beat colors 
