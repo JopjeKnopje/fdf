@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   keyinput.c                                        :+:    :+:             */
+/*   keyinput.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:36:47 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 12:28:11 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 17:32:38 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@ static void	key_hook_rotate(t_fdf *fdf)
 
 	view = &fdf->projector.active_view;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		view_rotate(fdf, view, AXIS_X, DIR_POSTIVE);
+		view_rotate(view, AXIS_X, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		view_rotate(fdf, view, AXIS_X, DIR_NEGATIVE);
+		view_rotate(view, AXIS_X, DIR_NEGATIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		view_rotate(fdf, view, AXIS_Y, DIR_NEGATIVE);
+		view_rotate(view, AXIS_Y, DIR_NEGATIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		view_rotate(fdf, view, AXIS_Y, DIR_POSTIVE);
+		view_rotate(view, AXIS_Y, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		view_rotate(fdf, view, AXIS_Z, DIR_POSTIVE);
+		view_rotate(view, AXIS_Z, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		view_rotate(fdf, view, AXIS_Z, DIR_NEGATIVE);
+		view_rotate(view, AXIS_Z, DIR_NEGATIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		view_move(fdf, view, AXIS_Y, DIR_POSTIVE);
+		view_move(view, AXIS_Y, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		view_move(fdf, view, AXIS_Y, DIR_NEGATIVE);
+		view_move(view, AXIS_Y, DIR_NEGATIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		view_move(fdf, view, AXIS_X, DIR_POSTIVE);
+		view_move(view, AXIS_X, DIR_POSTIVE);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		view_move(fdf, view, AXIS_X, DIR_NEGATIVE);
+		view_move(view, AXIS_X, DIR_NEGATIVE);
 }
 
 static bool	key_pressed(t_fdf *fdf, keys_t k)

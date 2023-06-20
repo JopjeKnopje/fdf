@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                              :+:    :+:             */
+/*   ui.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 14:05:10 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 17:34:30 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,12 @@ void	ui_update_texts(t_fdf *fdf)
 	v = &fdf->projector.active_view;
 	view_cylce_color_mode(fdf, 0);
 	view_scale(fdf, v, 0);
-	view_move(fdf, v, 0, 0);
+	view_move(v, 0, 0);
 	view_amplitude(fdf, v, 0);
 }
 
 void	ui_init(t_fdf *fdf)
 {
-	t_view	*view;
-
-	view = &fdf->projector.active_view;
 	setup_text(fdf);
 	setup_text_controls(fdf);
 	text_set_num(&fdf->ui.texts[TEXT_MAP_WIDTH],

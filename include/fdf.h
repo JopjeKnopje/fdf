@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                             :+:    :+:             */
+/*   fdf.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 14:08:26 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 17:33:09 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define COLOR_POINT_DEFAULT 0xCCCCCCFF
 
 # define AMPLITUDE_STEP 0.01f
-# define ANGLE_STEP 0.01f
+# define ANGLE_STEP 0.025f
 # define SCALAR_STEP 0.1f
 
 # define FONT_HEIGHT 20
@@ -250,8 +250,8 @@ void			view_save(t_projector *p);
 // view_translations.c
 void			view_scale(t_fdf *fdf, t_view *view, t_direction dir);
 void			view_amplitude(t_fdf *fdf, t_view *view, t_direction dir);
-void			view_move(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir);
-void			view_rotate(t_fdf *fdf, t_view *view, t_axis axis, t_direction dir);
+void			view_move(t_view *view, t_axis axis, t_direction dir);
+void 			view_rotate(t_view *view, t_axis axis, t_direction dir);
 
 // rotate.c
 void			rotate(t_fdf *fdf, t_axis axis, t_direction dir);

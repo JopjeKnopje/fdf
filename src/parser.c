@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   parser.c                                          :+:    :+:             */
+/*   parser.c                                           :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 13:26:44 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 17:30:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 		point.x = i;
 		point.y = line_count;
 		point.z = parse_z(fdf->map, split[i]);
-		point.color = parse_color(fdf->map, split[i]);
+		point.color = parse_color(split[i]);
 		parser_util_add_point(fdf, point);
 		i++;
 	}

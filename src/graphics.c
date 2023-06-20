@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   graphics.c                                        :+:    :+:             */
+/*   graphics.c                                         :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 13:53:47 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/20 17:34:48 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	fps_hook(void *param)
 {
 	static double	time_old = 0;
 	t_fdf			*fdf;
-	char			*fps;
 
 	fdf = param;
 	if (mlx_get_time() - time_old >= 1)

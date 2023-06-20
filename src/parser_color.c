@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   parser_color.c                                    :+:    :+:             */
+/*   parser_color.c                                     :+:    :+:            */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 02:26:11 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/16 21:16:29 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/20 17:29:42 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_rgba	color_add_alpha(const char *s)
 	return (c);
 }
 
-t_rgba	parse_color(t_map *map, const char *s)
+t_rgba	parse_color(const char *s)
 {
 	t_rgba	color;
 	char	*delim;
