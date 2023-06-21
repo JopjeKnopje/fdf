@@ -87,6 +87,7 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
+- [ ] Bresenham leren.
 - [ ] Refactor the `get_color`.
 - [ ] Refactor the way we draw line.
 - [ ] Move on `t1` is slow.
