@@ -6,12 +6,13 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 12:30:30 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/21 14:22:32 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
+#include <stdio.h>
 
 
 static int32_t increment(int32_t val)
@@ -42,9 +43,10 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	int32_t err = 0;
 
 	const uint32_t len = sqrt(dx*dx + dy*dy);
-	t_color_gradient grad;
-	grad.c1 = p_start.color;
-	grad.c2 = p_end.color;
+	t_color_info info;
+	info.g.c1 = p_start.color;
+	info.g.c2 = p_end.color;
+
 
 	if (dx > dy)
 	{
@@ -58,7 +60,12 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	{
 		tmp.y = y_start;
 		tmp.x = x_start;
-		tmp.color = get_color(fdf, grad, step, len, p_start.actual_z, p_end.actual_z);
+		// tmp.color = get_color(fdf, grad, step, len, p_start.actual_z, p_end.actual_z);
+		info.step = step;
+		info.len = len;
+		info.end_z = p_end.actual_z;
+		info.start_z = p_start.actual_z;
+		tmp.color = get_color(fdf, &info);
 		fdf_put_pixel(fdf, tmp);
 		if (dx > dy)
 		{

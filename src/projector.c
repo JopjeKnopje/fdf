@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/28 19:30:29 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 14:18:08 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/21 14:05:52 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_point	projector(t_fdf *fdf, t_point point)
 	t_point	projected;
 
 	projected = point;
-	projected.actual_z = point.z;
 	offset(fdf, &projected);
 	scale(fdf, &projected);
 	projected.z *= fdf->projector.active_view.amplitude;

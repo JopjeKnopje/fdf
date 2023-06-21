@@ -86,8 +86,9 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
-- [ ] Move on `t1` doens't work.
+- [ ] Move on `t1` is slow.
 - [ ] Is there another way to name `g_control_text_strings`?
+- [x] Check for newline when counting width.
 - [ ] Look at `t_color_gradient`.
 - [ ] Check makefile.
 

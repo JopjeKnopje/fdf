@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/21 00:04:52 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/21 14:18:02 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,20 @@ typedef struct s_mat3x3
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
-	float	actual_z;
-	t_rgba	color;
+	float		x;
+	float		y;
+	float		z;
+	int32_t		actual_z;
+	t_rgba 		color;
 }	t_point;
+
+typedef struct s_color_info {
+	float 				end_z;
+	float 				start_z;
+	int32_t 			len;
+	uint32_t 			step;
+	t_color_gradient	g;
+}	t_color_info;
 
 typedef struct s_node
 {
@@ -260,10 +268,9 @@ void			view_rotate(t_view *view, t_axis axis, t_direction dir);
 void			rotate(t_fdf *fdf, t_axis axis, t_direction dir);
 
 // color.c
-t_rgba			color_gradient(t_rgba c_start, t_rgba c_end,
-					uint32_t step, int32_t len);
-t_rgba			get_color(t_fdf *fdf, t_color_gradient g,
-					uint32_t step, int32_t len, float start_z, float end_z);
+// t_rgba			get_color(t_fdf *fdf, t_color_gradient g,
+// 					uint32_t step, int32_t len, float start_z, float end_z);
+t_rgba get_color(t_fdf *fdf, t_color_info *info);
 
 // wireframe.c
 void			wireframe_draw(t_fdf *fdf);

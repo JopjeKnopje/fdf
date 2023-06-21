@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                       ::::::::             */
-/*   parser.c                                           :+:    :+:            */
+/*   parser.c                                          :+:    :+:             */
 /*                                                    +:+                     */
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 17:30:15 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/21 13:57:31 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	if (!split)
 		return (error_message(ERR_MALLOC_FAILURE));
 	i = 0;
-	while (split[i])
+	while (split[i] && split[i][0] != '\n')
 	{
 		point.x = i;
 		point.y = line_count;
 		point.z = parse_z(fdf->map, split[i]);
+		point.actual_z = point.z;
 		point.color = parse_color(split[i]);
 		parser_util_add_point(fdf, point);
 		i++;
