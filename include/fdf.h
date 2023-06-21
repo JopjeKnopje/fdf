@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/21 14:18:02 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/21 16:18:53 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define AMPLITUDE_STEP 0.01f
 # define ANGLE_STEP 0.025f
 # define SCALAR_STEP 0.1f
+# define SCALAR_MAX 10000.0f
 
 # define FONT_HEIGHT 20
 # define NIBBLE 4
@@ -80,14 +81,14 @@ typedef struct s_point
 	float		y;
 	float		z;
 	int32_t		actual_z;
-	t_rgba 		color;
+	t_rgba		color;
 }	t_point;
 
 typedef struct s_color_info {
-	float 				end_z;
-	float 				start_z;
-	int32_t 			len;
-	uint32_t 			step;
+	float				end_z;
+	float				start_z;
+	int32_t				len;
+	uint32_t			step;
 	t_color_gradient	g;
 }	t_color_info;
 
@@ -268,9 +269,7 @@ void			view_rotate(t_view *view, t_axis axis, t_direction dir);
 void			rotate(t_fdf *fdf, t_axis axis, t_direction dir);
 
 // color.c
-// t_rgba			get_color(t_fdf *fdf, t_color_gradient g,
-// 					uint32_t step, int32_t len, float start_z, float end_z);
-t_rgba get_color(t_fdf *fdf, t_color_info *info);
+t_rgba			get_color(t_fdf *fdf, t_color_info *info);
 
 // wireframe.c
 void			wireframe_draw(t_fdf *fdf);

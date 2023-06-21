@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/19 17:22:23 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 23:32:14 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/21 16:18:00 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void	view_scale(t_fdf *fdf, t_view *view, t_direction dir)
 {
 	view->scalar += dir * (SCALAR_STEP * view->scalar / 2);
+	if (view->scalar >= SCALAR_MAX)
+		view->scalar = SCALAR_MAX;
+	else if (view->scalar <= 0.0f)
+		view->scalar = 0.0f;
 	text_set_num(&fdf->ui.texts[TEXT_SCALAR],
 		"Scalar: ", view->scalar);
 }

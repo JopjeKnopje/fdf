@@ -68,6 +68,7 @@ So instead of implementing this and probably facing more endianness related issu
 - [ ] Perspective camera.
 - [ ] Calculate the initial size of the wireframe so it fits perfectly in the window (also do this on resize).
 - [ ] Mouse dragging to move wireframe.
+- [x] Check for newline when counting width.
 - [ ] Draw square for all the point colors.
 - [ ] Speed-up big maps.
 
@@ -86,9 +87,10 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
+- [ ] Refactor the `get_color`.
+- [ ] Refactor the way we draw line.
 - [ ] Move on `t1` is slow.
 - [ ] Is there another way to name `g_control_text_strings`?
-- [x] Check for newline when counting width.
 - [ ] Look at `t_color_gradient`.
 - [ ] Check makefile.
 
