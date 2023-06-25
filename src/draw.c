@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/25 23:24:31 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/25 23:42:38 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static void	draw_clear(mlx_image_t *image, uint32_t c)
 {
 	const uint32_t	size = image->width * image->height;
-	uint32_t			i;
+	uint32_t		i;
 
 	i = 0;
 	while (i < size)
