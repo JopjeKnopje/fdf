@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/21 14:22:32 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/25 21:29:43 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 
-static int32_t increment(int32_t val)
+static int32_t direction(int32_t val)
 {
 	if (val)
 		return (1);
@@ -24,28 +24,31 @@ static int32_t increment(int32_t val)
 
 void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 {
+	t_vec3 start;
+	t_vec3 end;
+
 	t_point tmp;
 
-	tmp.color = p_start.color;
-	tmp.z = p_start.z;
+	start.x = p_start.x;
+	start.y = p_start.y;
+	start.z = p_start.actual_z;
+	end.x = p_end.x;
+	end.y = p_end.y;
+	end.z = p_end.actual_z;
 
-	int32_t x_start = p_start.x;
-	int32_t y_start = p_start.y;
-	int32_t x_end = p_end.x;
-	int32_t y_end = p_end.y;
-
-	int32_t dx = abs(x_end - x_start);
-	int32_t dy = abs(y_end - y_start);
-	int32_t sx = increment(x_end - x_start > 0);
-	int32_t sy = increment(y_end - y_start > 0);
+	int32_t dx = abs(start.x - end.x);
+	int32_t dy = abs(start.y - end.y);
+	int32_t dir_x = direction(end.x - start.x > 0);
+	int32_t dir_y = direction(end.y - start.y > 0);
 
 	uint32_t step = 0;
 	int32_t err = 0;
 
-	const uint32_t len = sqrt(dx*dx + dy*dy);
 	t_color_info info;
 	info.g.c1 = p_start.color;
 	info.g.c2 = p_end.color;
+	info.step = 0;
+	info.len = sqrt(dx * dx + dy * dy);
 
 
 	if (dx > dy)
@@ -56,40 +59,36 @@ void line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	{
 		err = (dx - dy) / 2;
 	}
-	while (x_start != x_end || y_start != y_end)
+	while (start.x != end.x || start.y != end.y)
 	{
-		tmp.y = y_start;
-		tmp.x = x_start;
-		// tmp.color = get_color(fdf, grad, step, len, p_start.actual_z, p_end.actual_z);
-		info.step = step;
-		info.len = len;
 		info.end_z = p_end.actual_z;
 		info.start_z = p_start.actual_z;
+		tmp.x = start.x;
+		tmp.y = start.y;
+		tmp.z = start.z;
 		tmp.color = get_color(fdf, &info);
 		fdf_put_pixel(fdf, tmp);
 		if (dx > dy)
 		{
-			x_start += sx;
+			start.x += dir_x;
 			err += dy;
 			if (err * 2 >= dx)
 			{
-				y_start += sy;
+				start.y += dir_y;
 				err -= dx;
 			}
 		}
 		else
 		{
-			y_start += sy;
+			start.y += dir_y;
 			err += dx;
 			if (err * 2 >= dy)
 			{
-				x_start += sx;
+				start.x += dir_x;
 				err -= dy;
 			}
 		}
-		step++;
+		info.step++;
 	}
-	tmp.x = x_start;
-	tmp.y = y_start;
 	fdf_put_pixel(fdf, tmp);
 }

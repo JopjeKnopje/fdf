@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/21 16:18:53 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/25 21:31:56 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,20 @@ typedef struct s_point
 	t_rgba		color;
 }	t_point;
 
+typedef struct s_vec3
+{
+	int32_t		x;
+	int32_t		y;
+	int32_t		z;
+}	t_vec3;
+
+typedef struct s_vec2
+{
+	int32_t		x;
+	int32_t		y;
+	int32_t		z;
+}	t_vec2;
+
 typedef struct s_color_info {
 	float				end_z;
 	float				start_z;
@@ -91,6 +105,15 @@ typedef struct s_color_info {
 	uint32_t			step;
 	t_color_gradient	g;
 }	t_color_info;
+
+typedef struct s_bresenham
+{
+	t_vec3 start;
+	t_vec3 end;
+	t_vec2 delta;
+	t_vec2 direction;
+	t_color_info info;
+} t_bresenham;
 
 typedef struct s_node
 {
