@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/25 23:23:36 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/25 23:43:41 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ typedef struct s_color_info {
 
 typedef struct s_bresenham
 {
-	t_vec3 start;
-	t_vec3 end;
-	t_vec2 delta;
-	t_vec2 direction;
-	int32_t err;
-	t_color_info info;
-} t_bresenham;
+	t_vec3			start;
+	t_vec3			end;
+	t_vec2			delta;
+	t_vec2			direction;
+	int32_t			err;
+	t_color_info	info;
+}	t_bresenham;
 
 typedef struct s_node
 {
@@ -269,7 +269,7 @@ t_point			projector(t_fdf *fdf, t_point point);
 
 // draw.c
 void			draw_hook(void *param);
-void	fdf_put_pixel(t_fdf *fdf, t_vec3 *p, uint32_t c);
+void			fdf_put_pixel(t_fdf *fdf, t_vec3 *p, uint32_t c);
 
 // matrices.c
 t_mat3x3		get_matrix_rotate_x(float angle);
