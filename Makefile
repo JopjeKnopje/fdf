@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/26 15:31:35 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/26 16:36:58 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = fdf
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw -lm
-	RUN_CMD = ./$(NAME) maps/42-custom.fdf
+	RUN_CMD = ./$(NAME) maps/dev_random.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
@@ -32,8 +32,8 @@ endif
 LIBFT = libft/build/libft.a
 MLX = MLX42/build/libmlx42.a
 
-# CFLAGS += -Wall -Wextra -Werror
-CFLAGS += -Wall -Wextra 
+CFLAGS += -Wall -Wextra -Werror
+# CFLAGS += -Wall -Wextra 
 CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast -flto -march=native
@@ -63,7 +63,8 @@ SRCS = main.c \
 	   parser_color.c \
 	   parser_utils.c \
 	   math.c \
-	   timer.c
+	   timer.c \
+	   meuk.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 

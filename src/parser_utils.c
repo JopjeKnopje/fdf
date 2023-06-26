@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/20 12:41:37 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 23:56:58 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/26 17:18:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ void	parser_util_add_point(t_fdf *fdf, t_point point)
 	else
 		fdf->map->points_last = lstadd_back(&fdf->map->points_last,
 				lstnew(point));
+}
+
+const char	*parser_map_name(const char *map)
+{
+	char	*s;
+
+	s = ft_strrchr(map, '/');
+	if (s && s + 1)
+		return (s + 1);
+	return (map);
 }

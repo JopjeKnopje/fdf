@@ -6,7 +6,7 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/17 14:34:42 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/20 12:22:10 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/26 16:38:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int32_t	fdf(int32_t argc, const char *argv[])
 		return (error_message(ERR_ARGS_INVALID));
 	if (parser(&fdf, argv[1]))
 		return (1);
+	print_points_arr(&fdf);
 	if (graphics_init(&fdf))
 	{
 		free_fdf(&fdf);

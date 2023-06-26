@@ -6,11 +6,12 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/21 13:57:31 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/26 17:01:10 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include "parser.h"
 #include "get_next_line.h"
 #include <assert.h>
@@ -103,6 +104,6 @@ uint32_t	parser(t_fdf *fdf, const char *map)
 	if (list_to_arr(fdf))
 		return (1);
 	close(fd);
-	fdf->map->name = ft_strrchr(map, '/') + 1;
+	fdf->map->name = parser_map_name(map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/25 23:42:38 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/26 16:37:52 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	draw_clear(mlx_image_t *image, uint32_t c)
 
 void	fdf_put_pixel(t_fdf *fdf, t_vec3 *p, uint32_t c)
 {
-	const uint32_t	width = fdf->image->width;
-	const uint32_t	height = fdf->image->height;
+	const int32_t	width = fdf->image->width;
+	const int32_t	height = fdf->image->height;
 
 	if (p->x >= 0 && p->x < width && p->y >= 0 && p->y < height)
 		mlx_put_pixel(fdf->image, p->x, p->y, c);
