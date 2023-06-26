@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/26 15:12:28 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/26 15:31:35 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $< 
 
-make_libs:
+make_libs: $(MLX)
 	$(MAKE) -C libft
 	$(MAKE) -C MLX42/build
 
@@ -98,13 +98,13 @@ MLX42:
 	git clone https://github.com/codam-coding-college/MLX42.git
 
 $(MLX): MLX42
+	mkdir MLX42/build
 	cmake MLX42 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B MLX42/build
 	make -C MLX42/build -j4
 	cp MLX42/build/compile_commands.json .
 
 clean:
 	rm -rf $(OBJ_DIR)
-	rm -rf $(TEST_BIN_DIR)
 
 fclean: clean
 	rm -f $(NAME)
