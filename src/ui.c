@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ui.c                                               :+:    :+:            */
+/*   ui.c                                              :+:    :+:             */
 /*                                                     +:+                    */
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:38:19 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 17:34:30 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/26 13:08:16 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include "ui.h"
+
+static const char	*g_control_text_strings[] = {\
+	[CONTROL_TEXT_VIEWS] = "Views: 1|2|3",				\
+	[CONTROL_TEXT_SAVE_VIEW] = "Save view: Shift+3",	\
+	[CONTROL_TEXT_COLORMODE] = "Cycle colormode: G",	\
+	[CONTROL_TEXT_ROTATE_X] = "Rotate X-axis: W|S",		\
+	[CONTROL_TEXT_ROTATE_Y] = "Rotate Y-axis: Q|E",		\
+	[CONTROL_TEXT_ROTATE_Z] = "Rotate Z-axis: A|D",		\
+	[CONTROL_TEXT_MOVE_X] = "Move X-axis: left|right",	\
+	[CONTROL_TEXT_MOVE_Y] = "Move Y-axis: up|down",		\
+};
 
 static void	setup_text(t_fdf *fdf)
 {

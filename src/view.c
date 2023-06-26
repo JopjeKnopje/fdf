@@ -6,12 +6,23 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/20 23:55:00 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/26 13:08:04 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "ui.h"
+
+static const char	*g_view_names[] = {\
+	[VIEW_ORTHO] = "View: Orthographic",		\
+	[VIEW_ISO] = "View: Isometric",				\
+	[VIEW_SAVED] = "View: Saved",				\
+};
+
+static const char	*g_color_mode_names[] = {\
+	[COLOR_MODE_MAP] = "Colormode: Map",		\
+	[COLOR_MODE_HEIGHT] = "Colormode: Height",	\
+};
 
 static void	view_reset(t_projector *p)
 {

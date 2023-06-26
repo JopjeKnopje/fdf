@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/25 21:25:41 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/26 13:09:17 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ compile_commands: dfclean fclean
 	$(MAKE) | compiledb
 
 norm:
-	norminette libft include src 
+	norminette libft include src
 
 dfclean:
 	$(MAKE) -C libft fclean
