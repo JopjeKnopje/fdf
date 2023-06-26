@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/26 17:38:14 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/26 22:40:17 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ MLX = MLX42/build/libmlx42.a
 
 CFLAGS += -Wall -Wextra -Werror
 # CFLAGS += -Wall -Wextra 
-CFLAGS += -g -fsanitize=address
+# CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast -flto -march=native
 
