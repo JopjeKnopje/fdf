@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/26 16:36:58 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/26 17:38:14 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = fdf
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw -lm
-	RUN_CMD = ./$(NAME) maps/dev_random.fdf
+	RUN_CMD = ./$(NAME) map.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
@@ -63,8 +63,7 @@ SRCS = main.c \
 	   parser_color.c \
 	   parser_utils.c \
 	   math.c \
-	   timer.c \
-	   meuk.c
+	   timer.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
@@ -99,7 +98,7 @@ MLX42:
 	git clone https://github.com/codam-coding-college/MLX42.git
 
 $(MLX): MLX42
-	mkdir MLX42/build
+	mkdir -p MLX42/build
 	cmake MLX42 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B MLX42/build
 	make -C MLX42/build -j4
 	cp MLX42/build/compile_commands.json .
