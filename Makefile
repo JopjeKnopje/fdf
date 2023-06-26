@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/26 13:09:17 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/26 15:12:28 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,5 +123,6 @@ norm:
 dfclean:
 	$(MAKE) -C libft fclean
 	$(MAKE) -C MLX42/build clean
+
 dre: re
 	$(MAKE) -C libft re
