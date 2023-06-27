@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/27 15:56:29 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:58:04 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	t_point	point;
 	int		i;
 
-	// split = ft_split(line, ' ');
-	split = NULL;
+	split = ft_split(line, ' ');
 	if (!split)
 		return (error_message(ERR_MALLOC_FAILURE));
 	i = 0;
