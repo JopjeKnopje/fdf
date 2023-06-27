@@ -81,14 +81,11 @@ So instead of implementing this and probably facing more endianness related issu
 - [x] Colors in map don't correspond to their hex value on linux.
 - [x] Use union for colors to get rid of `get_color_x` functions.
 - [ ] Map does weird stuff on spaces see `weird_map.fdf`
-- [?] Segfault when resizing too quick.
+- [x] Segfault when resizing too quick.
 - [x] Color union endianness?
 - [ ] Calculating the gradient in `COLOR_MODE_HEIGHT` is pretty slow.
-
-## Todo for next time
-
-
-- [ ] Check makefile.
+- [ ] Malloc protection.
+- [ ] overflow protection in `ft_atoi`.
 
 
 
