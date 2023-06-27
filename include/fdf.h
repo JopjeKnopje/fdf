@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 01:09:59 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/25 23:43:41 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 13:14:12 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ typedef struct s_color_info {
 
 typedef struct s_bresenham
 {
-	t_vec3			start;
+	t_vec3			current;
 	t_vec3			end;
 	t_vec2			delta;
 	t_vec2			direction;
-	int32_t			err;
+	int32_t			slow_move;
 	t_color_info	info;
 }	t_bresenham;
 

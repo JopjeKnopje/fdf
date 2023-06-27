@@ -87,13 +87,12 @@ So instead of implementing this and probably facing more endianness related issu
 
 ## Todo for next time
 
-- [ ] remove `color info` and integrate with `t_bresenham`.
-- [ ] Bresenham leren.
-- [ ] Refactor the `get_color`.
+
 - [ ] Move on `t1` is slow.
-- [ ] Is there another way to name `g_control_text_strings`?
-- [ ] Look at `t_color_gradient`.
 - [ ] Check makefile.
+
+## Tests
+- [ ] Color code test.
 
 
 ## Resources
