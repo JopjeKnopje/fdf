@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/27 15:56:56 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/27 20:32:32 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,9 @@ OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
 .PHONY: make_libs
 
-all: make_libs $(NAME)
+all:
+	$(MAKE) make_libs -j4
+	$(MAKE) $(NAME) -j4
 
 $(NAME): $(MLX) $(OBJS) $(LIBFT) 
 	echo $(MLX_CFLAGS)
