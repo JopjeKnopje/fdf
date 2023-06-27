@@ -88,11 +88,8 @@ So instead of implementing this and probably facing more endianness related issu
 ## Todo for next time
 
 
-- [ ] Move on `t1` is slow.
 - [ ] Check makefile.
 
-## Tests
-- [ ] Color code test.
 
 
 ## Resources

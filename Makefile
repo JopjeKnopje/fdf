@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/27 15:20:56 by jboeve        ########   odam.nl          #
+#    Updated: 2023/06/27 15:33:10 by jboeve        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,25 +18,23 @@ NAME = fdf
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX_CFLAGS = -lglfw -lm
-	RUN_CMD = ./$(NAME) maps/42-custom.fdf
 endif
 ifeq ($(UNAME_S),Darwin)
 	MLX_CFLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -ldl -pthread -lm
-	# RUN_CMD = open -a terminal ./open.sh
-	RUN_CMD = ./$(NAME) maps/42-custom.fdf
 	CFLAGS = -DOS_MAC
 endif
 
 
-
-LIBFT = libft/build/libft.a
-MLX = MLX42/build/libmlx42.a
+RUN_CMD = ./$(NAME) maps/42-custom.fdf
 
 CFLAGS += -Wall -Wextra -Werror
-# CFLAGS += -Wall -Wextra 
 # CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast -flto -march=native
+
+
+LIBFT = libft/build/libft.a
+MLX = MLX42/build/libmlx42.a
 
 INC = -Ilibft/include -IMLX42/include -Iinclude 
 
@@ -94,10 +92,7 @@ make_libs: $(MLX)
 	$(MAKE) -C libft
 	$(MAKE) -C MLX42/build
 
-MLX42:
-	git clone https://github.com/codam-coding-college/MLX42.git
-
-$(MLX): MLX42
+$(MLX):
 	mkdir -p MLX42/build
 	cmake MLX42 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B MLX42/build
 	make -C MLX42/build -j4
@@ -107,6 +102,8 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
+	$(MAKE) -C MLX42/build clean
+	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 
 re: fclean all
@@ -114,15 +111,11 @@ re: fclean all
 run: all
 	$(RUN_CMD)
 
-compile_commands: dfclean fclean
+compile_commands: fclean
 	$(MAKE) | compiledb
 
 norm:
 	norminette libft include src
-
-dfclean:
-	$(MAKE) -C libft fclean
-	$(MAKE) -C MLX42/build clean
 
 dre: re
 	$(MAKE) -C libft re
