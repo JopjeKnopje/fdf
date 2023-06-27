@@ -6,7 +6,7 @@
 #    By: jboeve <jboeve@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/17 12:05:02 by jboeve        #+#    #+#                  #
-#    Updated: 2023/06/27 15:44:12 by joppe         ########   odam.nl          #
+#    Updated: 2023/06/27 15:56:56 by joppe         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,8 @@ endif
 
 RUN_CMD = ./$(NAME) maps/42-custom.fdf
 
-# CFLAGS += -Wall -Wextra -Werror
-CFLAGS += -Wall -Wextra 
-CFLAGS += -g -fsanitize=address
+CFLAGS += -Wall -Wextra -Werror
+# CFLAGS += -g -fsanitize=address
 # CFLAGS = -g 
 # CFLAGS = -Ofast -flto -march=native
 

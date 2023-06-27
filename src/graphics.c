@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/20 01:22:21 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/27 15:47:20 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:52:35 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int32_t	graphics_init(t_fdf *fdf)
 		return (1);
 	hooks_init(fdf);
 	fdf->fps_timer = timer_init(&mlx_get_time);
+	if (!fdf->fps_timer)
+		return (1);
 	ui_init(fdf);
 	projector_init(fdf);
 	mlx_loop(fdf->mlx);

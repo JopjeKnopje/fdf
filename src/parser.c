@@ -6,14 +6,13 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/27 15:45:15 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:56:29 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "parser.h"
 #include "get_next_line.h"
-#include <stdlib.h>
 
 static float	parse_z(t_map *map, const char *s)
 {
@@ -33,7 +32,8 @@ static uint8_t	parse_line(t_fdf *fdf, const char *line, uint8_t line_count)
 	t_point	point;
 	int		i;
 
-	split = ft_split(line, ' ');
+	// split = ft_split(line, ' ');
+	split = NULL;
 	if (!split)
 		return (error_message(ERR_MALLOC_FAILURE));
 	i = 0;
@@ -75,7 +75,7 @@ static uint8_t	read_map(t_fdf *fdf, int fd)
 		return (free(fdf->map), error_message(ERR_MAP_INVALID));
 	while (line)
 	{
-		if (parse_line(fdf, line, i) || i >= 2)
+		if (parse_line(fdf, line, i))
 		{
 			free_lst(fdf->map->points_list);
 			free(fdf->map);
