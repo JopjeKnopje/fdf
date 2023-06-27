@@ -6,13 +6,14 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/27 15:25:00 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/27 15:45:15 by joppe         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "parser.h"
 #include "get_next_line.h"
+#include <stdlib.h>
 
 static float	parse_z(t_map *map, const char *s)
 {
@@ -71,11 +72,13 @@ static uint8_t	read_map(t_fdf *fdf, int fd)
 	i = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (error_message(ERR_MAP_INVALID));
+		return (free(fdf->map), error_message(ERR_MAP_INVALID));
 	while (line)
 	{
-		if (parse_line(fdf, line, i))
+		if (parse_line(fdf, line, i) || i >= 2)
 		{
+			free_lst(fdf->map->points_list);
+			free(fdf->map);
 			free(line);
 			return (1);
 		}
