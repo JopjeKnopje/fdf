@@ -6,18 +6,13 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/16 22:23:56 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/26 17:01:10 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:25:00 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
 #include "parser.h"
 #include "get_next_line.h"
-#include <assert.h>
-#include <limits.h>
-#include <string.h>
-#include <errno.h>
 
 static float	parse_z(t_map *map, const char *s)
 {

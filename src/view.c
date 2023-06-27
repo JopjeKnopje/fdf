@@ -6,11 +6,10 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/01 01:10:34 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/26 13:08:04 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:27:41 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "ui.h"
 
 static const char	*g_view_names[] = {\

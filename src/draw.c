@@ -6,13 +6,11 @@
 /*   By: joppe <jboeve@student.codam.nl>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:39:45 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/27 14:05:17 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/27 15:19:02 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "ui.h"
-#include <stdint.h>
 
 static void	draw_clear(mlx_image_t *image, uint32_t c)
 {

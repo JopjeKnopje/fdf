@@ -6,14 +6,11 @@
 /*   By: jboeve <marvin@42.fr>                       +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/06/12 15:26:33 by jboeve        #+#    #+#                 */
-/*   Updated: 2023/06/21 16:13:13 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:23:25 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <math.h>
-#include <stdint.h>
-#include <stdio.h>
 
 static uint32_t	interpolate(uint8_t ar, uint8_t br, uint8_t shift, float frac)
 {
@@ -36,8 +33,8 @@ static t_rgba	color_gradient(t_rgba c1, t_rgba c2, uint32_t step, int32_t len)
 
 t_rgba	get_color(t_fdf *fdf, t_color_info *info)
 {
-	const float		min_z = abs(fdf->map->min_z);
-	const float		max_z = abs(fdf->map->max_z);
+	const float		min_z = ft_abs(fdf->map->min_z);
+	const float		max_z = ft_abs(fdf->map->max_z);
 	const t_rgba	c_start = {.value = 0xff00ffff};
 	t_rgba			start_l;
 	t_rgba			end_l;

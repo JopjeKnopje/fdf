@@ -6,7 +6,7 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/22 22:11:03 by joppe         #+#    #+#                 */
-/*   Updated: 2023/06/27 13:25:19 by jboeve        ########   odam.nl         */
+/*   Updated: 2023/06/27 15:23:40 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	line_draw(t_fdf *fdf, t_point p_start, t_point p_end)
 	line.end.x = p_end.x;
 	line.end.y = p_end.y;
 	line.end.z = p_end.actual_z;
-	line.delta.x = abs(line.current.x - line.end.x);
-	line.delta.y = abs(line.current.y - line.end.y);
+	line.delta.x = ft_abs(line.current.x - line.end.x);
+	line.delta.y = ft_abs(line.current.y - line.end.y);
 	line.direction.x = direction(line.end.x - line.current.x > 0);
 	line.direction.y = direction(line.end.y - line.current.y > 0);
 	info.g.c1 = p_start.color;

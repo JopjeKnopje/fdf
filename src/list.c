@@ -6,12 +6,11 @@
 /*   By: joppe <jboeve@student.codam.nl>             +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2023/05/19 23:59:15 by joppe         #+#    #+#                 */
-/*   Updated: 2023/05/29 21:35:05 by joppe         ########   odam.nl         */
+/*   Updated: 2023/06/27 15:22:24 by jboeve        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdint.h>
 
 int	lstsize(t_node *lst)
 {
