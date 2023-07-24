@@ -6,27 +6,6 @@
 * Draw
 
 
-## Parsing
-- [x] End with .fdf extension
-- [x] Empty map
-- [ ] Check for map dimensions
-- [ ] Invalid characters
-- [ ] Invalid color values
-
-
-### LinkedList version
-* Have a `point` datatype (vec3d with pixel color).
-* gnl the map file
-* split on each space and add each `point` to the linked list
-
-#### Pro's and cons
-Dynamic | slow
-
-
-### 2DArray version `z = points[x][y]`
-* Have a 2D int array contianing a `point` with this time containing only the z coord and the colorvalue.
-* gnl the map file
-
 
 ### Clearing screen performance
 #### Test map `42-custom2.fdf`
@@ -35,7 +14,7 @@ Dynamic | slow
 * Using memset 1800-2100 fps WTFFF??! (colors are incorrect tho because of the 1 byte thing).
 * Using a memset32 820-920 pretty good :)
 
-So instead of implementing this and probably facing more endianness related issues, lets just use the white loop. Since this stuff is like 5% percent of the actual performance on bigger maps.
+So instead of implementing this and probably facing more endianness related issues, lets just use the while loop. Since this stuff is like 5% percent of the actual performance on bigger maps.
 
 
 
